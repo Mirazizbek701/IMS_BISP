@@ -1,4 +1,5 @@
 ﻿using IMS_BISP.DAL.Models;
+using IMS_BISP.DAL.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,18 +9,6 @@ namespace IMS_BISP.DAL.Data
 {
     public static class StoreRepository
     {
-        private static Store MapStore(SqlDataReader reader)
-        {
-            return new Store
-            {
-                StoreId = (int)reader["StoreId"],
-                StoreName = reader["StoreName"].ToString(),
-                ContactPhone = reader["ContactPhone"] == DBNull.Value ? "" : reader["ContactPhone"].ToString(),
-                IsActive = (bool)reader["IsActive"],
-                CreatedAt = (DateTime)reader["CreatedAt"]
-            };
-        }
-
         public static List<Store> GetAll()
         {
             var list = new List<Store>();
@@ -30,7 +19,7 @@ namespace IMS_BISP.DAL.Data
                 con.Open();
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
-                    list.Add(MapStore(reader));
+                    list.Add(StoreMapper.Map(reader));
             }
             return list;
         }
@@ -45,7 +34,7 @@ namespace IMS_BISP.DAL.Data
                 con.Open();
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
-                    list.Add(MapStore(reader));
+                    list.Add(StoreMapper.Map(reader));
             }
             return list;
         }
@@ -59,7 +48,7 @@ namespace IMS_BISP.DAL.Data
                 cmd.Parameters.AddWithValue("@StoreId", storeId);
                 con.Open();
                 var reader = cmd.ExecuteReader();
-                if (reader.Read()) return MapStore(reader);
+                if (reader.Read()) return StoreMapper.Map(reader);
             }
             return null;
         }
