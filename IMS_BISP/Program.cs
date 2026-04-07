@@ -19,8 +19,6 @@ namespace IMS_BISP
             DatabaseHelper.ConnectionString =
                 ConfigurationManager.ConnectionStrings["MalikaTechMarketDB"].ConnectionString;
 
-
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
