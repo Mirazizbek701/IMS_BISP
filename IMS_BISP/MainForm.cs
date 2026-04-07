@@ -1,14 +1,11 @@
-﻿using IMS_BISP.DAL.Models;
-using IMS_BISP.Sessions;
+﻿using IMS_BISP.Sessions;
+using IMS_BISP.UserControls.Audit;
 using IMS_BISP.UserControls.Dashboard;
+using IMS_BISP.UserControls.Manage;
+using IMS_BISP.UserControls.Marketplace;
+using IMS_BISP.UserControls.Products;
+using IMS_BISP.UserControls.Requests;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IMS_BISP
@@ -21,19 +18,21 @@ namespace IMS_BISP
             SetupMenuByRole();
         }
 
-
         private void SetupMenuByRole()
         {
             myProductsToolStripMenuItem.Visible = false;
             marketplaceToolStripMenuItem.Visible = false;
+            requestsToolStripMenuItem.Visible = false;
             sentRequestsToolStripMenuItem.Visible = false;
             incomingRequestsToolStripMenuItem.Visible = false;
+            manageToolStripMenuItem.Visible = false;
             storesToolStripMenuItem.Visible = false;
             usersToolStripMenuItem.Visible = false;
             auditLogToolStripMenuItem.Visible = false;
 
             if (UserSession.IsAdmin())
             {
+                manageToolStripMenuItem.Visible = true;
                 storesToolStripMenuItem.Visible = true;
                 usersToolStripMenuItem.Visible = true;
                 auditLogToolStripMenuItem.Visible = true;
@@ -43,11 +42,13 @@ namespace IMS_BISP
                 myProductsToolStripMenuItem.Visible = true;
                 marketplaceToolStripMenuItem.Visible = true;
                 requestsToolStripMenuItem.Visible = true;
+                sentRequestsToolStripMenuItem.Visible = true;
                 incomingRequestsToolStripMenuItem.Visible = true;
             }
             else if (UserSession.IsStaff())
             {
                 myProductsToolStripMenuItem.Visible = true;
+                marketplaceToolStripMenuItem.Visible = true;
             }
 
             this.Text = $"IMS - {UserSession.FullName} ({UserSession.RoleName})";
@@ -67,38 +68,37 @@ namespace IMS_BISP
 
         private void myProductsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //LoadControl(new ucProducts());
+            LoadControl(new ucProducts());
         }
 
         private void marketplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //LoadControl(new ucMarketplace());
+            LoadControl(new ucMarketplace());
         }
 
         private void sentRequestsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //LoadControl(new ucSentRequests());
+            LoadControl(new ucSentRequests());
         }
 
         private void incomingRequestsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //LoadControl(new ucIncomingRequests());
+            LoadControl(new ucIncomingRequests());
         }
 
         private void storesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //LoadControl(new ucManageStores());
+            LoadControl(new ucManageStores());
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //LoadControl(new ucManageUsers());
-
+            LoadControl(new ucManageUsers());
         }
 
         private void auditLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //LoadControl(new ucAuditLog());
+            LoadControl(new ucAuditLog());
         }
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)

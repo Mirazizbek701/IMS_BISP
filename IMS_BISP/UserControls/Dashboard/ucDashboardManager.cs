@@ -19,6 +19,8 @@ namespace IMS_BISP.UserControls.Dashboard
 
             try
             {
+                lblHeader.Text = $"Welcome, {UserSession.FullName} — {UserSession.StoreName}";
+
                 var stats = DashboardRepository.GetStoreStats(UserSession.StoreId.Value);
 
                 lblTotalProducts.Text    = stats.TotalProducts.ToString();

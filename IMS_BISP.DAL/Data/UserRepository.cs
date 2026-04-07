@@ -163,6 +163,32 @@ namespace IMS_BISP.DAL.Data
             }
         }
 
+        public static void UpdateDetails(int userId, string fullName, int roleId, int? storeId)
+        {
+            try
+            {
+                using (var con = DatabaseHelper.GetConnection())
+                using (var cmd = new SqlCommand("sp_Users_UpdateDetails", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@UserId",   userId);
+                    cmd.Parameters.AddWithValue("@FullName", fullName);
+                    cmd.Parameters.AddWithValue("@RoleId",   roleId);
+                    cmd.Parameters.AddWithValue("@StoreId",  (object)storeId ?? DBNull.Value);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error in UpdateDetails (Users): " + ex.Message, ex);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static bool VerifyPassword(string password, string passwordHash)
         {
             return password == passwordHash;
