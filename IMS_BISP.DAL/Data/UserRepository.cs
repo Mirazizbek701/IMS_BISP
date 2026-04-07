@@ -1,4 +1,5 @@
 ﻿using IMS_BISP.DAL.Models;
+using IMS_BISP.DAL.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,22 +9,6 @@ namespace IMS_BISP.DAL.Data
 {
     public static class UserRepository
     {
-        private static User MapUser(SqlDataReader reader)
-        {
-            return new User
-            {
-                UserId = (int)reader["UserId"],
-                StoreId = reader["StoreId"] == DBNull.Value ? (int?)null : (int)reader["StoreId"],
-                StoreName = reader["StoreName"].ToString(),
-                RoleId = (int)reader["RoleId"],
-                RoleName = reader["RoleName"].ToString(),
-                Username = reader["Username"].ToString(),
-                PasswordHash = reader.HasColumn("PasswordHash") ? reader["PasswordHash"].ToString() : "",
-                FullName = reader["FullName"].ToString(),
-                IsActive = (bool)reader["IsActive"]
-            };
-        }
-
         public static List<User> GetAll()
         {
             var list = new List<User>();
@@ -34,7 +19,7 @@ namespace IMS_BISP.DAL.Data
                 con.Open();
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
-                    list.Add(MapUser(reader));
+                    list.Add(UserMapper.Map(reader));
             }
             return list;
         }
@@ -48,7 +33,7 @@ namespace IMS_BISP.DAL.Data
                 cmd.Parameters.AddWithValue("@UserId", userId);
                 con.Open();
                 var reader = cmd.ExecuteReader();
-                if (reader.Read()) return MapUser(reader);
+                if (reader.Read()) return UserMapper.Map(reader);
             }
             return null;
         }
@@ -62,7 +47,7 @@ namespace IMS_BISP.DAL.Data
                 cmd.Parameters.AddWithValue("@Username", username);
                 con.Open();
                 var reader = cmd.ExecuteReader();
-                if (reader.Read()) return MapUser(reader);
+                if (reader.Read()) return UserMapper.Map(reader);
             }
             return null;
         }
@@ -78,7 +63,7 @@ namespace IMS_BISP.DAL.Data
                 con.Open();
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
-                    list.Add(MapUser(reader));
+                    list.Add(UserMapper.Map(reader));
             }
             return list;
         }

@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using IMS_BISP.DAL.Mappers;
+using IMS_BISP.DAL.Models;
+
+namespace IMS_BISP.DAL.Data
+{
+    public static class ProductRepository
+    {
+        public static List<Product> GetByStore(int storeId)
+        {
+            var list = new List<Product>();
+            using (var con = DatabaseHelper.GetConnection())
+            using (var cmd = new SqlCommand("sp_Products_GetByStore", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@StoreId", storeId);
+                con.Open();
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    list.Add(ProductMapper.Map(reader));
+            }
+            return list;
+        }
+
+        public static Product GetById(int productId)
+        {
+            using (var con = DatabaseHelper.GetConnection())
+            using (var cmd = new SqlCommand("sp_Products_GetById", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ProductId", productId);
+                con.Open();
+                var reader = cmd.ExecuteReader();
+                if (reader.Read()) return ProductMapper.Map(reader);
+            }
+            return null;
+        }
+
+        public static List<Product> GetPublicExcludingStore(int storeId)
+        {
+            var list = new List<Product>();
+            using (var con = DatabaseHelper.GetConnection())
+            using (var cmd = new SqlCommand("sp_Products_GetPublicExcludingStore", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@StoreId", storeId);
+                con.Open();
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    list.Add(ProductMapper.Map(reader));
+            }
+            return list;
+        }
+
+        public static int Insert(int storeId, int categoryId, string productName,
+            string sku, int quantity, decimal unitPrice,
+            int minThreshold, string visibility, string description)
+        {
+            using (var con = DatabaseHelper.GetConnection())
+            using (var cmd = new SqlCommand("sp_Products_Insert", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@StoreId", storeId);
+                cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                cmd.Parameters.AddWithValue("@ProductName", productName);
+                cmd.Parameters.AddWithValue("@SKU", sku);
+                cmd.Parameters.AddWithValue("@Quantity", quantity);
+                cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
+                cmd.Parameters.AddWithValue("@MinThreshold", minThreshold);
+                cmd.Parameters.AddWithValue("@Visibility", visibility);
+                cmd.Parameters.AddWithValue("@Description", (object)description ?? DBNull.Value);
+                con.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public static void Update(int productId, int categoryId, string productName,
+            string sku, int quantity, decimal unitPrice,
+            int minThreshold, string visibility, string description)
+        {
+            using (var con = DatabaseHelper.GetConnection())
+            using (var cmd = new SqlCommand("sp_Products_Update", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ProductId", productId);
+                cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                cmd.Parameters.AddWithValue("@ProductName", productName);
+                cmd.Parameters.AddWithValue("@SKU", sku);
+                cmd.Parameters.AddWithValue("@Quantity", quantity);
+                cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
+                cmd.Parameters.AddWithValue("@MinThreshold", minThreshold);
+                cmd.Parameters.AddWithValue("@Visibility", visibility);
+                cmd.Parameters.AddWithValue("@Description", (object)description ?? DBNull.Value);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void ToggleVisibility(int productId, string visibility)
+        {
+            using (var con = DatabaseHelper.GetConnection())
+            using (var cmd = new SqlCommand("sp_Products_ToggleVisibility", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ProductId", productId);
+                cmd.Parameters.AddWithValue("@Visibility", visibility);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void SoftDelete(int productId)
+        {
+            using (var con = DatabaseHelper.GetConnection())
+            using (var cmd = new SqlCommand("sp_Products_SoftDelete", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ProductId", productId);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+}
