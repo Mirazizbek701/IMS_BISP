@@ -5,12 +5,12 @@ namespace IMS_BISP.UserControls.Dashboard
 {
     public static class ucDashboard
     {
-        public static UserControl Load()
+        public static Control Load()
         {
             if (UserSession.IsAdmin())
-                return (UserControl)(object)new ucDashboardAdmin();
+                return new ucDashboardAdmin();
             else
-                return (UserControl)(object)new ucDashboardManager();
+                return new ucDashboardManager();
         }
     }
 }

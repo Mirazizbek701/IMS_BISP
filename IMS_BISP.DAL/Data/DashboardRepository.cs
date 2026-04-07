@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using IMS_BISP.DAL.Models;
@@ -9,49 +9,71 @@ namespace IMS_BISP.DAL.Data
     {
         public static DashboardStats GetStoreStats(int storeId)
         {
-            using (var con = DatabaseHelper.GetConnection())
-            using (var cmd = new SqlCommand("sp_Dashboard_GetStoreStats", con))
+            try
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@StoreId", storeId);
-                con.Open();
-                var reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (var con = DatabaseHelper.GetConnection())
+                using (var cmd = new SqlCommand("sp_Dashboard_GetStoreStats", con))
                 {
-                    return new DashboardStats
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@StoreId", storeId);
+                    con.Open();
+                    var reader = cmd.ExecuteReader();
+                    if (reader.Read())
                     {
-                        TotalProducts = (int)reader["TotalProducts"],
-                        PublicProducts = (int)reader["PublicProducts"],
-                        LowStockCount = (int)reader["LowStockCount"],
-                        PendingIncoming = (int)reader["PendingIncoming"],
-                        PendingSent = (int)reader["PendingSent"],
-                        TotalInventoryValue = (decimal)reader["TotalInventoryValue"]
-                    };
+                        return new DashboardStats
+                        {
+                            TotalProducts      = (int)reader["TotalProducts"],
+                            PublicProducts     = (int)reader["PublicProducts"],
+                            LowStockCount      = (int)reader["LowStockCount"],
+                            PendingIncoming    = (int)reader["PendingIncoming"],
+                            PendingSent        = (int)reader["PendingSent"],
+                            TotalInventoryValue = (decimal)reader["TotalInventoryValue"]
+                        };
+                    }
                 }
+                return new DashboardStats();
             }
-            return new DashboardStats();
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error in GetStoreStats: " + ex.Message, ex);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public static AdminStats GetAdminStats()
         {
-            using (var con = DatabaseHelper.GetConnection())
-            using (var cmd = new SqlCommand("sp_Dashboard_GetAdminStats", con))
+            try
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                con.Open();
-                var reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (var con = DatabaseHelper.GetConnection())
+                using (var cmd = new SqlCommand("sp_Dashboard_GetAdminStats", con))
                 {
-                    return new AdminStats
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+                    var reader = cmd.ExecuteReader();
+                    if (reader.Read())
                     {
-                        TotalActiveStores = (int)reader["TotalActiveStores"],
-                        TotalActiveUsers = (int)reader["TotalActiveUsers"],
-                        TotalProducts = (int)reader["TotalProducts"],
-                        TotalPendingRequests = (int)reader["TotalPendingRequests"]
-                    };
+                        return new AdminStats
+                        {
+                            TotalActiveStores    = (int)reader["TotalActiveStores"],
+                            TotalActiveUsers     = (int)reader["TotalActiveUsers"],
+                            TotalProducts        = (int)reader["TotalProducts"],
+                            TotalPendingRequests = (int)reader["TotalPendingRequests"]
+                        };
+                    }
                 }
+                return new AdminStats();
             }
-            return new AdminStats();
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error in GetAdminStats: " + ex.Message, ex);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

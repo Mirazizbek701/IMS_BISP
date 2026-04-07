@@ -18,6 +18,7 @@ namespace IMS_BISP
         public MainForm()
         {
             InitializeComponent();
+            SetupMenuByRole();
         }
 
 
@@ -66,38 +67,38 @@ namespace IMS_BISP
 
         private void myProductsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadControl(new ucProducts());
+            //LoadControl(new ucProducts());
         }
 
         private void marketplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadControl(new ucMarketplace());
+            //LoadControl(new ucMarketplace());
         }
 
         private void sentRequestsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadControl(new ucSentRequests());
+            //LoadControl(new ucSentRequests());
         }
 
         private void incomingRequestsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadControl(new ucIncomingRequests());
+            //LoadControl(new ucIncomingRequests());
         }
 
         private void storesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadControl(new ucManageStores());
+            //LoadControl(new ucManageStores());
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadControl(new ucManageUsers());
+            //LoadControl(new ucManageUsers());
 
         }
 
         private void auditLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadControl(new ucAuditLog());
+            //LoadControl(new ucAuditLog());
         }
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -108,7 +109,9 @@ namespace IMS_BISP
             if (result == DialogResult.Yes)
             {
                 UserSession.Clear();
-                new Forms.frmLogin().Show();
+                var login = new Forms.frmLogin();
+                login.FormClosed += (s, args) => Application.Exit();
+                login.Show();
                 this.Close();
             }
         }

@@ -1,4 +1,4 @@
-﻿using IMS_BISP.DAL.Data;
+using IMS_BISP.DAL.Data;
 using IMS_BISP.Sessions;
 using System;
 using System.Windows.Forms;
@@ -24,35 +24,46 @@ namespace IMS_BISP.Forms
                 return;
             }
 
-            var user = UserRepository.GetByUsername(username);
-
-            if (user == null || !user.IsActive)
+            btnLogin.Enabled = false;
+            try
             {
-                MessageBox.Show("Invalid username or password.",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                var user = UserRepository.GetByUsername(username);
 
-            if (!UserRepository.VerifyPassword(password, user.PasswordHash))
+                if (user == null || !user.IsActive || !UserRepository.VerifyPassword(password, user.PasswordHash))
+                {
+                    MessageBox.Show("Invalid username or password.",
+                        "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbxPassword.Clear();
+                    tbxUsername.Focus();
+                    return;
+                }
+
+                UserSession.UserId    = user.UserId;
+                UserSession.StoreId   = user.StoreId;
+                UserSession.StoreName = user.StoreName;
+                UserSession.RoleId    = user.RoleId;
+                UserSession.RoleName  = user.RoleName;
+                UserSession.Username  = user.Username;
+                UserSession.FullName  = user.FullName;
+
+                AuditLogRepository.Insert(user.UserId, "LOGIN", $"{user.Username} logged in.");
+
+                var main = new MainForm();
+                main.FormClosed += (s, args) => Application.Exit();
+                main.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid username or password.",
+                MessageBox.Show("An error occurred during login:\n" + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                tbxPassword.Clear();
+                tbxUsername.Focus();
             }
-
-            UserSession.UserId = user.UserId;
-            UserSession.StoreId = user.StoreId;
-            UserSession.StoreName = user.StoreName;
-            UserSession.RoleId = user.RoleId;
-            UserSession.RoleName = user.RoleName;
-            UserSession.Username = user.Username;
-            UserSession.FullName = user.FullName;
-
-            AuditLogRepository.Insert(user.UserId, "LOGIN", $"{user.Username} logged in.");
-
-            var main = new MainForm();
-            main.Show();
-            this.Hide();
+            finally
+            {
+                btnLogin.Enabled = true;
+            }
         }
 
         private void tbxPassword_KeyDown(object sender, KeyEventArgs e)
