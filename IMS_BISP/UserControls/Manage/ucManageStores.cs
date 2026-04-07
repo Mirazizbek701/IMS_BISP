@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace IMS_BISP.UserControls
+namespace IMS_BISP.UserControls.Manage
 {
-    public partial class ucDashboard : Form
+    public partial class ucManageStores : Form
     {
-        public ucDashboard()
+        public ucManageStores()
         {
             InitializeComponent();
         }

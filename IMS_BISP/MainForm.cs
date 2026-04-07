@@ -1,5 +1,6 @@
 ﻿using IMS_BISP.DAL.Models;
 using IMS_BISP.Sessions;
+using IMS_BISP.UserControls.Dashboard;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,7 +52,7 @@ namespace IMS_BISP
             this.Text = $"IMS - {UserSession.FullName} ({UserSession.RoleName})";
         }
 
-        private void LoadControl(UserControl uc)
+        private void LoadControl(Control uc)
         {
             pnlContent.Controls.Clear();
             uc.Dock = DockStyle.Fill;
@@ -60,7 +61,7 @@ namespace IMS_BISP
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadControl(new ucDashboard());
+            LoadControl(ucDashboard.Load());
         }
 
         private void myProductsToolStripMenuItem_Click(object sender, EventArgs e)
