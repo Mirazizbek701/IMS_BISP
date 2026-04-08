@@ -10,7 +10,6 @@ namespace IMS_BISP.Forms
         private readonly bool _editMode;
         private readonly int  _userId;
 
-        // Add mode
         public frmAddEditUser()
         {
             InitializeComponent();
@@ -19,7 +18,6 @@ namespace IMS_BISP.Forms
             this.Load        += frmAddEditUser_Load;
         }
 
-        // Edit mode — only FullName, RoleId, StoreId can change
         public frmAddEditUser(User user)
         {
             InitializeComponent();
@@ -28,7 +26,6 @@ namespace IMS_BISP.Forms
             lblFormTitle.Text      = "Edit User";
             tbxFullName.Text       = user.FullName;
 
-            // Username and Password are not editable in edit mode
             tbxUsername.Text      = user.Username;
             tbxUsername.ReadOnly  = true;
             tbxUsername.BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
@@ -38,18 +35,16 @@ namespace IMS_BISP.Forms
             this.Load += (s, e) =>
             {
                 frmAddEditUser_Load(s, e);
-                // Pre-select current values after combos are loaded
                 if (cmbRole.Items.Count > 0)  cmbRole.SelectedValue  = user.RoleId;
-                if (cmbStore.Items.Count > 0) cmbStore.SelectedValue = (object)user.StoreId ?? DBNull.Value;
+                if (cmbStore.Items.Count > 0 && user.StoreId.HasValue) cmbStore.SelectedValue = user.StoreId.Value;
+                else cmbStore.SelectedIndex = -1;
             };
         }
-
-        // Exposed results
         public string FullName      => tbxFullName.Text.Trim();
         public string Username      => tbxUsername.Text.Trim();
         public string Password      => tbxPassword.Text.Trim();
         public int    SelectedRoleId  => (int)cmbRole.SelectedValue;
-        public int?   SelectedStoreId => cmbStore.SelectedValue == null ? (int?)null : (int?)cmbStore.SelectedValue;
+        public int?   SelectedStoreId => (cmbStore.SelectedValue == null || cmbStore.SelectedValue == DBNull.Value) ? (int?)null : Convert.ToInt32(cmbStore.SelectedValue);
         public bool   IsEditMode    => _editMode;
         public int    UserId        => _userId;
 

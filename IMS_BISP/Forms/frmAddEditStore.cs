@@ -9,7 +9,6 @@ namespace IMS_BISP.Forms
         private readonly bool _editMode;
         private readonly int  _storeId;
 
-        // Add mode
         public frmAddEditStore()
         {
             InitializeComponent();
@@ -17,7 +16,6 @@ namespace IMS_BISP.Forms
             lblFormTitle.Text = "Add Store";
         }
 
-        // Edit mode
         public frmAddEditStore(Store store)
         {
             InitializeComponent();

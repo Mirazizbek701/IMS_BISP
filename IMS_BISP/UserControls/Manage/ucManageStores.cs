@@ -86,7 +86,7 @@ namespace IMS_BISP.UserControls.Manage
 
         private Store GetSelectedStore()
         {
-            if (dgvStores.SelectedRows.Count == 0) return null;
+            if (_stores == null || dgvStores.SelectedRows.Count == 0) return null;
             int idx = dgvStores.SelectedRows[0].Index;
             return (idx >= 0 && idx < _stores.Count) ? _stores[idx] : null;
         }

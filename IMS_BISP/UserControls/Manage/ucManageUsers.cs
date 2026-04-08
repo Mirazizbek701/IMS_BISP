@@ -91,7 +91,7 @@ namespace IMS_BISP.UserControls.Manage
 
         private User GetSelectedUser()
         {
-            if (dgvUsers.SelectedRows.Count == 0) return null;
+            if (_users == null || dgvUsers.SelectedRows.Count == 0) return null;
             int idx = dgvUsers.SelectedRows[0].Index;
             return (idx >= 0 && idx < _users.Count) ? _users[idx] : null;
         }

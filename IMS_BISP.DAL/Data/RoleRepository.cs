@@ -8,10 +8,6 @@ namespace IMS_BISP.DAL.Data
 {
     public static class RoleRepository
     {
-        /// <summary>
-        /// Returns all roles except SuperAdmin — used when creating/editing store users.
-        /// Requires stored procedure: sp_Roles_GetAll  (SELECT RoleId, RoleName FROM Roles)
-        /// </summary>
         public static List<Role> GetNonAdmin()
         {
             try
