@@ -41,6 +41,23 @@ namespace IMS_BISP.UserControls.Dashboard
                 MessageBox.Show("Failed to load dashboard: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            try
+            {
+                var reqStats   = DashboardRepository.GetRequestStats(UserSession.StoreId.Value);
+                var lastUpdate = DashboardRepository.GetLastInventoryUpdate(UserSession.StoreId.Value);
+
+                lblLastUpdated.Text = "Last Updated: " + (lastUpdate.HasValue
+                                          ? lastUpdate.Value.ToString("dd.MM.yyyy HH:mm")
+                                          : "—");
+                lblAccepted.Text = $"Accepted Requests: {reqStats.AcceptedCount}";
+                lblRejected.Text = $"Rejected Requests: {reqStats.RejectedCount}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load additional dashboard stats: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

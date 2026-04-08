@@ -499,6 +499,25 @@ AS
         (SELECT COUNT(*) FROM ProductRequests WHERE Status = 'PENDING')            AS TotalPendingRequests;
 GO
 
+CREATE PROCEDURE sp_Dashboard_GetRequestStats
+    @StoreId INT
+AS
+    SELECT
+        (SELECT COUNT(*) FROM ProductRequests
+         WHERE SupplierStoreId = @StoreId AND Status = 'ACCEPTED') AS AcceptedCount,
+        (SELECT COUNT(*) FROM ProductRequests
+         WHERE SupplierStoreId = @StoreId AND Status = 'REJECTED') AS RejectedCount;
+GO
+
+CREATE PROCEDURE sp_Dashboard_GetLastInventoryUpdate
+    @StoreId INT
+AS
+    SELECT TOP 1 UpdatedAt
+    FROM Products
+    WHERE StoreId = @StoreId AND IsActive = 1
+    ORDER BY UpdatedAt DESC;
+GO
+
 -- ============================================================
 PRINT '-------------------------------------------------------';
 PRINT ' MalikaTechMarketDB setup complete!';

@@ -34,6 +34,7 @@ namespace IMS_BISP.UserControls.Dashboard
                 MessageBox.Show("Failed to load dashboard: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }

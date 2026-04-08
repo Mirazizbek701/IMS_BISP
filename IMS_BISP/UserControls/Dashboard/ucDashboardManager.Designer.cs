@@ -16,6 +16,9 @@ namespace IMS_BISP.UserControls.Dashboard
         private void InitializeComponent()
         {
             this.lblHeader = new System.Windows.Forms.Label();
+            this.lblLastUpdated = new System.Windows.Forms.Label();
+            this.lblAccepted    = new System.Windows.Forms.Label();
+            this.lblRejected    = new System.Windows.Forms.Label();
             this.pnlTotalProducts = new System.Windows.Forms.Panel();
             this.lblTotalProductsTitle = new System.Windows.Forms.Label();
             this.lblTotalProducts = new System.Windows.Forms.Label();
@@ -244,13 +247,46 @@ namespace IMS_BISP.UserControls.Dashboard
             this.lblInventory.Size = new System.Drawing.Size(91, 37);
             this.lblInventory.TabIndex = 1;
             this.lblInventory.Text = "0 UZS";
-            // 
+            //
+            // lblLastUpdated
+            //
+            this.lblLastUpdated.AutoSize  = true;
+            this.lblLastUpdated.Font      = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblLastUpdated.ForeColor = System.Drawing.Color.FromArgb(44, 62, 80);
+            this.lblLastUpdated.Location  = new System.Drawing.Point(30, 440);
+            this.lblLastUpdated.Name      = "lblLastUpdated";
+            this.lblLastUpdated.TabIndex  = 6;
+            this.lblLastUpdated.Text      = "Last Updated: —";
+            //
+            // lblAccepted
+            //
+            this.lblAccepted.AutoSize  = true;
+            this.lblAccepted.Font      = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblAccepted.ForeColor = System.Drawing.Color.FromArgb(30, 132, 73);
+            this.lblAccepted.Location  = new System.Drawing.Point(400, 440);
+            this.lblAccepted.Name      = "lblAccepted";
+            this.lblAccepted.TabIndex  = 7;
+            this.lblAccepted.Text      = "Accepted Requests: 0";
+            //
+            // lblRejected
+            //
+            this.lblRejected.AutoSize  = true;
+            this.lblRejected.Font      = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblRejected.ForeColor = System.Drawing.Color.FromArgb(169, 50, 38);
+            this.lblRejected.Location  = new System.Drawing.Point(680, 440);
+            this.lblRejected.Name      = "lblRejected";
+            this.lblRejected.TabIndex  = 8;
+            this.lblRejected.Text      = "Rejected Requests: 0";
+            //
             // ucDashboardManager
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
             this.Controls.Add(this.lblHeader);
+            this.Controls.Add(this.lblLastUpdated);
+            this.Controls.Add(this.lblAccepted);
+            this.Controls.Add(this.lblRejected);
             this.Controls.Add(this.pnlTotalProducts);
             this.Controls.Add(this.pnlPublicProducts);
             this.Controls.Add(this.pnlLowStock);
@@ -280,6 +316,9 @@ namespace IMS_BISP.UserControls.Dashboard
         #endregion
 
         private System.Windows.Forms.Label lblHeader;
+        private System.Windows.Forms.Label lblLastUpdated;
+        private System.Windows.Forms.Label lblAccepted;
+        private System.Windows.Forms.Label lblRejected;
 
         private System.Windows.Forms.Panel pnlTotalProducts;
         private System.Windows.Forms.Label lblTotalProductsTitle;
