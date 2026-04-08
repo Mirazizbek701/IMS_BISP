@@ -20,6 +20,7 @@ namespace IMS_BISP
 
         private void SetupMenuByRole()
         {
+            inventoryToolStripMenuItem.Visible = false;
             myProductsToolStripMenuItem.Visible = false;
             marketplaceToolStripMenuItem.Visible = false;
             requestsToolStripMenuItem.Visible = false;
@@ -39,6 +40,7 @@ namespace IMS_BISP
             }
             else if (UserSession.IsManager())
             {
+                inventoryToolStripMenuItem.Visible = true;
                 myProductsToolStripMenuItem.Visible = true;
                 marketplaceToolStripMenuItem.Visible = true;
                 requestsToolStripMenuItem.Visible = true;
@@ -47,6 +49,7 @@ namespace IMS_BISP
             }
             else if (UserSession.IsStaff())
             {
+                inventoryToolStripMenuItem.Visible = true;
                 myProductsToolStripMenuItem.Visible = true;
                 marketplaceToolStripMenuItem.Visible = true;
             }

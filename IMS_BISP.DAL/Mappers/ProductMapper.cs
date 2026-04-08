@@ -20,9 +20,9 @@ namespace IMS_BISP.DAL.Mappers
                 Quantity = (int)reader["Quantity"],
                 UnitPrice = (decimal)reader["UnitPrice"],
                 MinThreshold = reader.HasColumn("MinThreshold") ? (int)reader["MinThreshold"] : 0,
-                Visibility = reader["Visibility"].ToString(),
+                Visibility = reader.HasColumn("Visibility") ? reader["Visibility"].ToString() : "PUBLIC",
                 Description = reader["Description"] == DBNull.Value ? "" : reader["Description"].ToString(),
-                UpdatedAt = (DateTime)reader["UpdatedAt"]
+                UpdatedAt = reader.HasColumn("UpdatedAt") ? (DateTime)reader["UpdatedAt"] : DateTime.MinValue
             };
         }
     }
