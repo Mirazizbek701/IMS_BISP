@@ -8,6 +8,6 @@ namespace IMS_BISP.DAL.Models
         public string StoreName { get; set; }
         public string ContactPhone { get; set; }
         public bool IsActive { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } 
     }
 }

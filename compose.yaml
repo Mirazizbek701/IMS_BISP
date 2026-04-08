@@ -5,13 +5,16 @@ services:
     hostname: sqlserver
     restart: unless-stopped
     ports:
-      - "1433:1433"       
+      - "1433:1433"
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "763m44c44V"   
-      MSSQL_PID: "Developer"                       
+      MSSQL_SA_PASSWORD: "763m44c44V"
+      MSSQL_PID: "Developer"
     volumes:
-      - sqlserver_data:/var/opt/mssql              
+      - sqlserver_data:/var/opt/mssql
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./docker/entrypoint.sh:/entrypoint.sh:ro
+    entrypoint: ["/bin/bash", "/entrypoint.sh"]
     healthcheck:
       test:
         [
@@ -21,7 +24,7 @@ services:
       interval: 15s
       timeout: 10s
       retries: 5
-      start_period: 30s
+      start_period: 60s
 
 volumes:
   sqlserver_data:
