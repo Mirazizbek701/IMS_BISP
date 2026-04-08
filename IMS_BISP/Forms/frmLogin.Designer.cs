@@ -15,6 +15,7 @@ namespace IMS_BISP.Forms
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,7 +50,7 @@ namespace IMS_BISP.Forms
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(219, 58);
+            this.label1.Location = new System.Drawing.Point(224, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 20);
             this.label1.TabIndex = 1;
@@ -57,7 +58,7 @@ namespace IMS_BISP.Forms
             // 
             // tbxUsername
             // 
-            this.tbxUsername.Location = new System.Drawing.Point(219, 82);
+            this.tbxUsername.Location = new System.Drawing.Point(224, 82);
             this.tbxUsername.Name = "tbxUsername";
             this.tbxUsername.Size = new System.Drawing.Size(231, 22);
             this.tbxUsername.TabIndex = 2;
@@ -66,7 +67,7 @@ namespace IMS_BISP.Forms
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(219, 129);
+            this.label2.Location = new System.Drawing.Point(224, 129);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 20);
             this.label2.TabIndex = 3;
@@ -74,7 +75,7 @@ namespace IMS_BISP.Forms
             // 
             // tbxPassword
             // 
-            this.tbxPassword.Location = new System.Drawing.Point(219, 150);
+            this.tbxPassword.Location = new System.Drawing.Point(224, 150);
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.PasswordChar = '●';
             this.tbxPassword.Size = new System.Drawing.Size(231, 22);
@@ -111,6 +112,7 @@ namespace IMS_BISP.Forms
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";

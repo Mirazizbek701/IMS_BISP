@@ -61,7 +61,6 @@ namespace IMS_BISP.UserControls.Manage
                 FillWeight = 7, MinimumWidth = 60
             });
 
-            // Style header
             dgvUsers.ColumnHeadersDefaultCellStyle.Font      = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgvUsers.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
             dgvUsers.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -146,8 +145,6 @@ namespace IMS_BISP.UserControls.Manage
                 if (dlg.ShowDialog(this) != System.Windows.Forms.DialogResult.OK) return;
                 try
                 {
-                    // Update only FullName, RoleId, StoreId via dedicated SP or re-use Insert
-                    // Uses UpdateUserDetails if available, otherwise use a targeted approach
                     UserRepository.UpdateDetails(user.UserId, dlg.FullName,
                         dlg.SelectedRoleId, dlg.SelectedStoreId);
                     AuditLogRepository.Insert(UserSession.UserId, "EDIT_USER",

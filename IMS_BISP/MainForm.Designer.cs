@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,14 +60,14 @@
             this.logOutToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(1066, 30);
+            this.mainMenu.Size = new System.Drawing.Size(1066, 28);
             this.mainMenu.TabIndex = 1;
             this.mainMenu.Text = "menuStrip1";
             // 
             // dashboardToolStripMenuItem
             // 
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 26);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -75,20 +76,20 @@
             this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.myProductsToolStripMenuItem});
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
-            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(84, 26);
+            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
             this.inventoryToolStripMenuItem.Text = "Inventory";
             // 
             // myProductsToolStripMenuItem
             // 
             this.myProductsToolStripMenuItem.Name = "myProductsToolStripMenuItem";
-            this.myProductsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.myProductsToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
             this.myProductsToolStripMenuItem.Text = "My Products";
             this.myProductsToolStripMenuItem.Click += new System.EventHandler(this.myProductsToolStripMenuItem_Click);
             // 
             // marketplaceToolStripMenuItem
             // 
             this.marketplaceToolStripMenuItem.Name = "marketplaceToolStripMenuItem";
-            this.marketplaceToolStripMenuItem.Size = new System.Drawing.Size(105, 26);
+            this.marketplaceToolStripMenuItem.Size = new System.Drawing.Size(105, 24);
             this.marketplaceToolStripMenuItem.Text = "Marketplace";
             this.marketplaceToolStripMenuItem.Click += new System.EventHandler(this.marketplaceToolStripMenuItem_Click);
             // 
@@ -98,7 +99,7 @@
             this.sentRequestsToolStripMenuItem,
             this.incomingRequestsToolStripMenuItem});
             this.requestsToolStripMenuItem.Name = "requestsToolStripMenuItem";
-            this.requestsToolStripMenuItem.Size = new System.Drawing.Size(82, 26);
+            this.requestsToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.requestsToolStripMenuItem.Text = "Requests";
             // 
             // sentRequestsToolStripMenuItem
@@ -121,7 +122,7 @@
             this.storesToolStripMenuItem,
             this.usersToolStripMenuItem});
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
-            this.manageToolStripMenuItem.Size = new System.Drawing.Size(77, 26);
+            this.manageToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
             this.manageToolStripMenuItem.Text = "Manage";
             // 
             // storesToolStripMenuItem
@@ -141,23 +142,23 @@
             // auditLogToolStripMenuItem
             // 
             this.auditLogToolStripMenuItem.Name = "auditLogToolStripMenuItem";
-            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(88, 26);
+            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.auditLogToolStripMenuItem.Text = "Audit Log";
             this.auditLogToolStripMenuItem.Click += new System.EventHandler(this.auditLogToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(74, 26);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.logOutToolStripMenuItem.Text = "Log out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
             // pnlContent
             // 
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 30);
+            this.pnlContent.Location = new System.Drawing.Point(0, 28);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1066, 701);
+            this.pnlContent.Size = new System.Drawing.Size(1066, 703);
             this.pnlContent.TabIndex = 3;
             // 
             // MainForm
@@ -167,6 +168,7 @@
             this.ClientSize = new System.Drawing.Size(1066, 731);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.mainMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mainMenu;
             this.Name = "MainForm";

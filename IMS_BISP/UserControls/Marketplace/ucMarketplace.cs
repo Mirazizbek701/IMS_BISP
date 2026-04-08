@@ -80,7 +80,6 @@ namespace IMS_BISP.UserControls.Marketplace
 
         private void ucMarketplace_Load(object sender, EventArgs e)
         {
-            // Staff cannot request products
             if (UserSession.IsStaff())
                 btnRequestProduct.Visible = false;
 

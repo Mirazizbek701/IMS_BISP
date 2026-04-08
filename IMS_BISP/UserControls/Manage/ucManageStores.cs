@@ -56,7 +56,6 @@ namespace IMS_BISP.UserControls.Manage
                 FillWeight = 20, MinimumWidth = 130
             });
 
-            // Style header
             dgvStores.ColumnHeadersDefaultCellStyle.Font      = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgvStores.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
             dgvStores.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;

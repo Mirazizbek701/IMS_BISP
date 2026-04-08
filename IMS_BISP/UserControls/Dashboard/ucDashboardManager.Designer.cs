@@ -58,9 +58,9 @@ namespace IMS_BISP.UserControls.Dashboard
             this.pnlTotalProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(245)))), ((int)(((byte)(251)))));
             this.pnlTotalProducts.Controls.Add(this.lblTotalProductsTitle);
             this.pnlTotalProducts.Controls.Add(this.lblTotalProducts);
-            this.pnlTotalProducts.Location = new System.Drawing.Point(30, 62);
+            this.pnlTotalProducts.Location = new System.Drawing.Point(30, 64);
             this.pnlTotalProducts.Name = "pnlTotalProducts";
-            this.pnlTotalProducts.Size = new System.Drawing.Size(255, 110);
+            this.pnlTotalProducts.Size = new System.Drawing.Size(293, 153);
             this.pnlTotalProducts.TabIndex = 0;
             // 
             // lblTotalProductsTitle
@@ -90,9 +90,9 @@ namespace IMS_BISP.UserControls.Dashboard
             this.pnlPublicProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(250)))), ((int)(((byte)(241)))));
             this.pnlPublicProducts.Controls.Add(this.lblPublicProductsTitle);
             this.pnlPublicProducts.Controls.Add(this.lblPublicProducts);
-            this.pnlPublicProducts.Location = new System.Drawing.Point(315, 62);
+            this.pnlPublicProducts.Location = new System.Drawing.Point(381, 64);
             this.pnlPublicProducts.Name = "pnlPublicProducts";
-            this.pnlPublicProducts.Size = new System.Drawing.Size(255, 110);
+            this.pnlPublicProducts.Size = new System.Drawing.Size(293, 153);
             this.pnlPublicProducts.TabIndex = 1;
             // 
             // lblPublicProductsTitle
@@ -122,9 +122,9 @@ namespace IMS_BISP.UserControls.Dashboard
             this.pnlLowStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(237)))), ((int)(((byte)(236)))));
             this.pnlLowStock.Controls.Add(this.lblLowStockTitle);
             this.pnlLowStock.Controls.Add(this.lblLowStock);
-            this.pnlLowStock.Location = new System.Drawing.Point(600, 62);
+            this.pnlLowStock.Location = new System.Drawing.Point(740, 64);
             this.pnlLowStock.Name = "pnlLowStock";
-            this.pnlLowStock.Size = new System.Drawing.Size(255, 110);
+            this.pnlLowStock.Size = new System.Drawing.Size(293, 153);
             this.pnlLowStock.TabIndex = 2;
             // 
             // lblLowStockTitle
@@ -154,9 +154,9 @@ namespace IMS_BISP.UserControls.Dashboard
             this.pnlIncoming.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.pnlIncoming.Controls.Add(this.lblIncomingTitle);
             this.pnlIncoming.Controls.Add(this.lblIncoming);
-            this.pnlIncoming.Location = new System.Drawing.Point(30, 192);
+            this.pnlIncoming.Location = new System.Drawing.Point(30, 264);
             this.pnlIncoming.Name = "pnlIncoming";
-            this.pnlIncoming.Size = new System.Drawing.Size(255, 110);
+            this.pnlIncoming.Size = new System.Drawing.Size(293, 153);
             this.pnlIncoming.TabIndex = 3;
             // 
             // lblIncomingTitle
@@ -186,9 +186,9 @@ namespace IMS_BISP.UserControls.Dashboard
             this.pnlSent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(236)))), ((int)(((byte)(247)))));
             this.pnlSent.Controls.Add(this.lblSentTitle);
             this.pnlSent.Controls.Add(this.lblSent);
-            this.pnlSent.Location = new System.Drawing.Point(315, 192);
+            this.pnlSent.Location = new System.Drawing.Point(381, 264);
             this.pnlSent.Name = "pnlSent";
-            this.pnlSent.Size = new System.Drawing.Size(255, 110);
+            this.pnlSent.Size = new System.Drawing.Size(293, 153);
             this.pnlSent.TabIndex = 4;
             // 
             // lblSentTitle
@@ -218,9 +218,9 @@ namespace IMS_BISP.UserControls.Dashboard
             this.pnlInventory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(248)))), ((int)(((byte)(245)))));
             this.pnlInventory.Controls.Add(this.lblInventoryTitle);
             this.pnlInventory.Controls.Add(this.lblInventory);
-            this.pnlInventory.Location = new System.Drawing.Point(600, 192);
+            this.pnlInventory.Location = new System.Drawing.Point(740, 264);
             this.pnlInventory.Name = "pnlInventory";
-            this.pnlInventory.Size = new System.Drawing.Size(255, 110);
+            this.pnlInventory.Size = new System.Drawing.Size(293, 153);
             this.pnlInventory.TabIndex = 5;
             // 
             // lblInventoryTitle
@@ -258,7 +258,7 @@ namespace IMS_BISP.UserControls.Dashboard
             this.Controls.Add(this.pnlSent);
             this.Controls.Add(this.pnlInventory);
             this.Name = "ucDashboardManager";
-            this.Size = new System.Drawing.Size(900, 335);
+            this.Size = new System.Drawing.Size(1139, 510);
             this.Load += new System.EventHandler(this.ucDashboardManager_Load);
             this.pnlTotalProducts.ResumeLayout(false);
             this.pnlTotalProducts.PerformLayout();

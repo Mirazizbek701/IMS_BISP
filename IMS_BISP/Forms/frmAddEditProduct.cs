@@ -38,7 +38,6 @@ namespace IMS_BISP.Forms
             rbPublic.Checked     = product.Visibility == "PUBLIC";
             rbPrivate.Checked    = product.Visibility == "PRIVATE";
             tbxDescription.Text  = product.Description ?? string.Empty;
-            // category selection is done after Load when cmbCategory is populated
             this.Tag = product.CategoryId;
         }
 
