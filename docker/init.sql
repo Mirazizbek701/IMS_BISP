@@ -110,59 +110,25 @@ GO
 -- ============================================================
 --  SEED DATA
 -- ============================================================
--- ============================================================
---  DEMO PRODUCTS (20 ITEMS)
--- ============================================================
 
-DECLARE @StoreId INT;
-
--- Берем первый НЕ SYSTEM магазин или создаём тестовый
-SELECT TOP 1 @StoreId = StoreId FROM Stores WHERE StoreName != 'SYSTEM';
-
-IF @StoreId IS NULL
-BEGIN
-    INSERT INTO Stores (StoreName, ContactPhone)
-    VALUES ('Demo Store', '+998901234567');
-
-    SET @StoreId = SCOPE_IDENTITY();
-END
-
--- Добавляем 20 товаров
-INSERT INTO Products
-(StoreId, CategoryId, ProductName, SKU, Quantity, UnitPrice, MinThreshold, Visibility, Description)
-VALUES
-(@StoreId, 1, 'Dell XPS 13',        'SKU-001', 10, 1200, 3, 'PUBLIC',  'Ultrabook laptop'),
-(@StoreId, 1, 'HP Pavilion 15',     'SKU-002', 8, 900,  3, 'PUBLIC',  'Mid-range laptop'),
-(@StoreId, 2, 'Gaming PC RTX 3060', 'SKU-003', 5, 1500, 2, 'PRIVATE', 'Gaming desktop'),
-(@StoreId, 2, 'Office PC i5',       'SKU-004', 12, 700,  3, 'PUBLIC',  'Office desktop'),
-(@StoreId, 3, 'Intel i7 CPU',       'SKU-005', 20, 300,  5, 'PUBLIC',  'Processor'),
-(@StoreId, 3, '16GB DDR4 RAM',      'SKU-006', 25, 80,   5, 'PUBLIC',  'Memory module'),
-(@StoreId, 3, 'NVIDIA GTX 1660',    'SKU-007', 7, 400,   2, 'PRIVATE', 'Graphics card'),
-(@StoreId, 4, 'Logitech Mouse',     'SKU-008', 30, 25,   5, 'PUBLIC',  'Wireless mouse'),
-(@StoreId, 4, 'Mechanical Keyboard','SKU-009', 15, 120,  3, 'PUBLIC',  'RGB keyboard'),
-(@StoreId, 4, '27" Monitor',        'SKU-010', 10, 250,  2, 'PUBLIC',  'Full HD monitor'),
-(@StoreId, 5, 'TP-Link Router',     'SKU-011', 18, 60,   4, 'PUBLIC',  'WiFi router'),
-(@StoreId, 5, 'Network Switch',     'SKU-012', 9, 110,   2, 'PRIVATE', '8-port switch'),
-(@StoreId, 6, '1TB SSD',            'SKU-013', 20, 100,  5, 'PUBLIC',  'Solid State Drive'),
-(@StoreId, 6, '2TB HDD',            'SKU-014', 15, 80,   4, 'PUBLIC',  'Hard drive'),
-(@StoreId, 7, 'iPhone 13',          'SKU-015', 6, 999,   2, 'PUBLIC',  'Apple smartphone'),
-(@StoreId, 7, 'Samsung S21',        'SKU-016', 8, 850,   2, 'PUBLIC',  'Android smartphone'),
-(@StoreId, 8, 'Phone Case',         'SKU-017', 50, 10,   10,'PUBLIC',  'Protective case'),
-(@StoreId, 8, 'USB-C Cable',        'SKU-018', 40, 8,    10,'PUBLIC',  'Charging cable'),
-(@StoreId, 9, 'Laptop Stand',       'SKU-019', 12, 35,   3, 'PUBLIC',  'Aluminum stand'),
-(@StoreId, 9, 'Cooling Pad',        'SKU-020', 14, 30,   3, 'PRIVATE', 'Laptop cooler');
-
+-- 1. Roles
 INSERT INTO Roles (RoleName)
 VALUES ('SuperAdmin'), ('StoreManager'), ('StoreStaff');
 
+-- 2. Stores
 INSERT INTO Stores (StoreName, IsActive)
 VALUES ('SYSTEM', 1);
 
+INSERT INTO Stores (StoreName, ContactPhone)
+VALUES ('Demo Store', '+998901234567');
+
+-- 3. Categories
 INSERT INTO Categories (CategoryName) VALUES
     ('Laptops'), ('Desktops'), ('Components'),
     ('Peripherals'), ('Networking'), ('Storage'),
     ('Mobile Devices'), ('Accessories'), ('Other');
 
+-- 4. Users
 -- Default SuperAdmin: Username = admin | Password = Admin@123
 INSERT INTO Users (StoreId, RoleId, Username, PasswordHash, FullName)
 VALUES (
@@ -172,6 +138,33 @@ VALUES (
     'Admin@123',
     'Super Administrator'
 );
+
+-- 5. Demo Products (20 items — привязаны к Demo Store)
+DECLARE @StoreId INT = (SELECT StoreId FROM Stores WHERE StoreName = 'Demo Store');
+
+INSERT INTO Products
+(StoreId, CategoryId, ProductName, SKU, Quantity, UnitPrice, MinThreshold, Visibility, Description)
+VALUES
+(@StoreId, 1, 'Dell XPS 13',         'SKU-001', 10, 1200, 3, 'PUBLIC',  'Ultrabook laptop'),
+(@StoreId, 1, 'HP Pavilion 15',      'SKU-002', 8,  900,  3, 'PUBLIC',  'Mid-range laptop'),
+(@StoreId, 2, 'Gaming PC RTX 3060',  'SKU-003', 5,  1500, 2, 'PRIVATE', 'Gaming desktop'),
+(@StoreId, 2, 'Office PC i5',        'SKU-004', 12, 700,  3, 'PUBLIC',  'Office desktop'),
+(@StoreId, 3, 'Intel i7 CPU',        'SKU-005', 20, 300,  5, 'PUBLIC',  'Processor'),
+(@StoreId, 3, '16GB DDR4 RAM',       'SKU-006', 25, 80,   5, 'PUBLIC',  'Memory module'),
+(@StoreId, 3, 'NVIDIA GTX 1660',     'SKU-007', 7,  400,  2, 'PRIVATE', 'Graphics card'),
+(@StoreId, 4, 'Logitech Mouse',      'SKU-008', 30, 25,   5, 'PUBLIC',  'Wireless mouse'),
+(@StoreId, 4, 'Mechanical Keyboard', 'SKU-009', 15, 120,  3, 'PUBLIC',  'RGB keyboard'),
+(@StoreId, 4, '27" Monitor',         'SKU-010', 10, 250,  2, 'PUBLIC',  'Full HD monitor'),
+(@StoreId, 5, 'TP-Link Router',      'SKU-011', 18, 60,   4, 'PUBLIC',  'WiFi router'),
+(@StoreId, 5, 'Network Switch',      'SKU-012', 9,  110,  2, 'PRIVATE', '8-port switch'),
+(@StoreId, 6, '1TB SSD',             'SKU-013', 20, 100,  5, 'PUBLIC',  'Solid State Drive'),
+(@StoreId, 6, '2TB HDD',             'SKU-014', 15, 80,   4, 'PUBLIC',  'Hard drive'),
+(@StoreId, 7, 'iPhone 13',           'SKU-015', 6,  999,  2, 'PUBLIC',  'Apple smartphone'),
+(@StoreId, 7, 'Samsung S21',         'SKU-016', 8,  850,  2, 'PUBLIC',  'Android smartphone'),
+(@StoreId, 8, 'Phone Case',          'SKU-017', 50, 10,   10,'PUBLIC',  'Protective case'),
+(@StoreId, 8, 'USB-C Cable',         'SKU-018', 40, 8,    10,'PUBLIC',  'Charging cable'),
+(@StoreId, 9, 'Laptop Stand',        'SKU-019', 12, 35,   3, 'PUBLIC',  'Aluminum stand'),
+(@StoreId, 9, 'Cooling Pad',         'SKU-020', 14, 30,   3, 'PRIVATE', 'Laptop cooler');
 GO
 
 -- ============================================================

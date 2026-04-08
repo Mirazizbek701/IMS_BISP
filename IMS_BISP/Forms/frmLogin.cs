@@ -7,6 +7,8 @@ namespace IMS_BISP.Forms
 {
     public partial class frmLogin : Form
     {
+        public bool LoginSuccessful { get; private set; } = false;
+
         public frmLogin()
         {
             InitializeComponent();
@@ -25,6 +27,7 @@ namespace IMS_BISP.Forms
             }
 
             btnLogin.Enabled = false;
+
             try
             {
                 var user = UserRepository.GetByUsername(username);
@@ -38,20 +41,18 @@ namespace IMS_BISP.Forms
                     return;
                 }
 
-                UserSession.UserId    = user.UserId;
-                UserSession.StoreId   = user.StoreId;
+                UserSession.UserId = user.UserId;
+                UserSession.StoreId = user.StoreId;
                 UserSession.StoreName = user.StoreName;
-                UserSession.RoleId    = user.RoleId;
-                UserSession.RoleName  = user.RoleName;
-                UserSession.Username  = user.Username;
-                UserSession.FullName  = user.FullName;
+                UserSession.RoleId = user.RoleId;
+                UserSession.RoleName = user.RoleName;
+                UserSession.Username = user.Username;
+                UserSession.FullName = user.FullName;
 
                 AuditLogRepository.Insert(user.UserId, "LOGIN", $"{user.Username} logged in.");
 
-                var main = new MainForm();
-                main.FormClosed += (s, args) => Application.Exit();
-                main.Show();
-                this.Hide();
+                LoginSuccessful = true;
+                this.Close();
             }
             catch (Exception ex)
             {

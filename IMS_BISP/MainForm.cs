@@ -12,6 +12,7 @@ namespace IMS_BISP
 {
     public partial class MainForm : Form
     {
+        public bool ShouldLogout { get; private set; } = false;
         public MainForm()
         {
             InitializeComponent();
@@ -112,9 +113,7 @@ namespace IMS_BISP
             if (result == DialogResult.Yes)
             {
                 UserSession.Clear();
-                var login = new Forms.frmLogin();
-                login.FormClosed += (s, args) => Application.Exit();
-                login.Show();
+                ShouldLogout = true;
                 this.Close();
             }
         }

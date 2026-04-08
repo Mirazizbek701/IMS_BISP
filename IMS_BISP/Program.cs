@@ -34,7 +34,20 @@ namespace IMS_BISP
                 return;
             }
 
-            Application.Run(new frmLogin());
+            while (true)
+            {
+                var login = new frmLogin();
+                Application.Run(login);
+
+                if (!login.LoginSuccessful)
+                    break;
+
+                var main = new MainForm();
+                Application.Run(main);
+
+                if (!main.ShouldLogout)
+                    break;
+            }
         }
     }
 }
