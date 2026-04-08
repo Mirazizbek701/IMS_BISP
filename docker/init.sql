@@ -1,9 +1,3 @@
--- ============================================================
---  MTIMS - Malika Tech Market Inventory Management System
---  Complete Database Script (Simplified)
---  MS SQL Server
--- ============================================================
-
 IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'MalikaTechMarketDB')
     CREATE DATABASE MalikaTechMarketDB;
 GO
@@ -11,9 +5,6 @@ GO
 USE MalikaTechMarketDB;
 GO
 
--- ============================================================
---  DROP EXISTING (safe re-run)
--- ============================================================
 DECLARE @sql NVARCHAR(MAX) = '';
 SELECT @sql += 'DROP PROCEDURE ' + QUOTENAME(name) + ';' + CHAR(10)
 FROM sys.procedures;
@@ -116,11 +107,13 @@ INSERT INTO Roles (RoleName)
 VALUES ('SuperAdmin'), ('StoreManager'), ('StoreStaff');
 
 -- 2. Stores
-INSERT INTO Stores (StoreName, IsActive)
+INSERT INTO Stores (StoreName, IsActive) 
 VALUES ('SYSTEM', 1);
 
-INSERT INTO Stores (StoreName, ContactPhone)
-VALUES ('Demo Store', '+998901234567');
+INSERT INTO Stores (StoreName, ContactPhone) VALUES 
+('A-21 Bekzod',      '+998977702121'),
+('A-22 Mansur Aka',  '+998901234567'),
+('B-05 Flash-Store', '+998935550011');
 
 -- 3. Categories
 INSERT INTO Categories (CategoryName) VALUES
@@ -129,42 +122,43 @@ INSERT INTO Categories (CategoryName) VALUES
     ('Mobile Devices'), ('Accessories'), ('Other');
 
 -- 4. Users
--- Default SuperAdmin: Username = admin | Password = Admin@123
 INSERT INTO Users (StoreId, RoleId, Username, PasswordHash, FullName)
-VALUES (
-    NULL,
-    (SELECT RoleId FROM Roles WHERE RoleName = 'SuperAdmin'),
-    'admin',
-    'Admin@123',
-    'Super Administrator'
-);
+VALUES (NULL, 1, 'admin', '1234', 'Super Administrator');
 
--- 5. Demo Products (20 items — привязаны к Demo Store)
-DECLARE @StoreId INT = (SELECT StoreId FROM Stores WHERE StoreName = 'Demo Store');
+INSERT INTO Users (StoreId, RoleId, Username, PasswordHash, FullName) VALUES 
+(2, 2, 'bekzod21',   '1234', 'Bekzod Abdullaev'),
+(2, 3, 'jasur_pro',  '1234', 'Jasur Shogird'),
+(3, 2, 'mansur_aka', '1234', 'Mansur Ismoilov'),
+(4, 2, 'flash_aziz', '1234', 'Aziz Flash');
 
-INSERT INTO Products
+-- 5. Products
+INSERT INTO Products 
 (StoreId, CategoryId, ProductName, SKU, Quantity, UnitPrice, MinThreshold, Visibility, Description)
 VALUES
-(@StoreId, 1, 'Dell XPS 13',         'SKU-001', 10, 1200, 3, 'PUBLIC',  'Ultrabook laptop'),
-(@StoreId, 1, 'HP Pavilion 15',      'SKU-002', 8,  900,  3, 'PUBLIC',  'Mid-range laptop'),
-(@StoreId, 2, 'Gaming PC RTX 3060',  'SKU-003', 5,  1500, 2, 'PRIVATE', 'Gaming desktop'),
-(@StoreId, 2, 'Office PC i5',        'SKU-004', 12, 700,  3, 'PUBLIC',  'Office desktop'),
-(@StoreId, 3, 'Intel i7 CPU',        'SKU-005', 20, 300,  5, 'PUBLIC',  'Processor'),
-(@StoreId, 3, '16GB DDR4 RAM',       'SKU-006', 25, 80,   5, 'PUBLIC',  'Memory module'),
-(@StoreId, 3, 'NVIDIA GTX 1660',     'SKU-007', 7,  400,  2, 'PRIVATE', 'Graphics card'),
-(@StoreId, 4, 'Logitech Mouse',      'SKU-008', 30, 25,   5, 'PUBLIC',  'Wireless mouse'),
-(@StoreId, 4, 'Mechanical Keyboard', 'SKU-009', 15, 120,  3, 'PUBLIC',  'RGB keyboard'),
-(@StoreId, 4, '27" Monitor',         'SKU-010', 10, 250,  2, 'PUBLIC',  'Full HD monitor'),
-(@StoreId, 5, 'TP-Link Router',      'SKU-011', 18, 60,   4, 'PUBLIC',  'WiFi router'),
-(@StoreId, 5, 'Network Switch',      'SKU-012', 9,  110,  2, 'PRIVATE', '8-port switch'),
-(@StoreId, 6, '1TB SSD',             'SKU-013', 20, 100,  5, 'PUBLIC',  'Solid State Drive'),
-(@StoreId, 6, '2TB HDD',             'SKU-014', 15, 80,   4, 'PUBLIC',  'Hard drive'),
-(@StoreId, 7, 'iPhone 13',           'SKU-015', 6,  999,  2, 'PUBLIC',  'Apple smartphone'),
-(@StoreId, 7, 'Samsung S21',         'SKU-016', 8,  850,  2, 'PUBLIC',  'Android smartphone'),
-(@StoreId, 8, 'Phone Case',          'SKU-017', 50, 10,   10,'PUBLIC',  'Protective case'),
-(@StoreId, 8, 'USB-C Cable',         'SKU-018', 40, 8,    10,'PUBLIC',  'Charging cable'),
-(@StoreId, 9, 'Laptop Stand',        'SKU-019', 12, 35,   3, 'PUBLIC',  'Aluminum stand'),
-(@StoreId, 9, 'Cooling Pad',         'SKU-020', 14, 30,   3, 'PRIVATE', 'Laptop cooler');
+(2, 1, 'MacBook Air M2 / 8 / 256',      'MAC-M2-SGR',   5,  12400000, 2, 'PUBLIC',  'Space Gray, 2023 model'),
+(2, 7, 'iPhone 15 Pro 128GB',            'IPH-15P-NT',   2,  13500000, 3, 'PUBLIC',  'Natural Titanium'),
+(2, 3, 'RTX 4090 ROG Strix',             'GPU-4090-ROG', 1,  28000000, 1, 'PRIVATE', 'Special order for client'),
+(2, 4, 'Logitech G Pro X Superlight',   'MSE-LOG-GPRO', 15, 1800000,  5, 'PUBLIC',  'Best gaming mouse'),
+(3, 1, 'ASUS TUF Gaming F15',           'LAP-ASU-TUF',  8,  10200000, 2, 'PUBLIC',  'i5-12500H / RTX 3050'),
+(3, 7, 'Samsung S24 Ultra',             'MOB-SAM-S24U', 4,  14200000, 2, 'PUBLIC',  'Titanium Black, 256GB'),
+(4, 5, 'MikroTik Cloud Core Router',    'NET-MIK-CCR',  3,  5600000,  1, 'PUBLIC',  'Enterprise router'),
+(4, 3, 'Core i9-14900K',                'CPU-INT-I9',   10, 8500000,  2, 'PUBLIC',  'Box version, local warranty');
+
+-- 6. Product Requests
+-- Mansur (A-22) wants 2 MacBooks from Bekzod (A-21) - PENDING
+INSERT INTO ProductRequests 
+(RequesterStoreId, SupplierStoreId, ProductId, QuantityRequested, ProposedPrice, Status)
+VALUES (3, 2, 1, 2, 12100000, 'PENDING');
+
+-- Bekzod (A-21) wants 1 Samsung from Mansur (A-22) - ACCEPTED
+INSERT INTO ProductRequests 
+(RequesterStoreId, SupplierStoreId, ProductId, QuantityRequested, ProposedPrice, Status, RespondedAt)
+VALUES (2, 3, 6, 1, 14000000, 'ACCEPTED', GETDATE());
+
+-- Flash-Store wants RTX 4090 cheap - REJECTED
+INSERT INTO ProductRequests 
+(RequesterStoreId, SupplierStoreId, ProductId, QuantityRequested, ProposedPrice, Status, RejectionNote, RespondedAt)
+VALUES (4, 2, 3, 1, 22000000, 'REJECTED', 'Uka, this price is impossible!', GETDATE());
 GO
 
 -- ============================================================
@@ -266,7 +260,6 @@ AS
     WHERE  u.Username = @Username;
 GO
 
--- ИСПРАВЛЕНО: добавлены StoreId и StoreName (требует UserMapper)
 CREATE PROCEDURE sp_Users_GetByStore
     @StoreId INT
 AS
@@ -294,7 +287,6 @@ AS
     SELECT SCOPE_IDENTITY() AS NewUserId;
 GO
 
--- ИСПРАВЛЕНО: переименовано с sp_Users_Update (требует UserRepository)
 CREATE PROCEDURE sp_Users_UpdateDetails
     @UserId INT, @StoreId INT, @RoleId INT, @FullName NVARCHAR(100)
 AS

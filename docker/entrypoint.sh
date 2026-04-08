@@ -1,8 +1,3 @@
-#!/bin/bash
-# Custom entrypoint for SQL Server.
-# Starts sqlservr, waits for it to be ready, runs init.sql if the DB is empty,
-# then keeps the process in the foreground.
-
 set -e
 
 SA_PASSWORD="${MSSQL_SA_PASSWORD}"
