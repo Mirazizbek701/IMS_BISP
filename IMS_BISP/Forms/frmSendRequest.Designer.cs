@@ -128,7 +128,7 @@ namespace IMS_BISP.Forms
             // 
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblQuantity.Location = new System.Drawing.Point(20, 158);
+            this.lblQuantity.Location = new System.Drawing.Point(14, 158);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(149, 20);
             this.lblQuantity.TabIndex = 2;
@@ -161,7 +161,7 @@ namespace IMS_BISP.Forms
             // 
             this.lblProposedPrice.AutoSize = true;
             this.lblProposedPrice.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblProposedPrice.Location = new System.Drawing.Point(170, 158);
+            this.lblProposedPrice.Location = new System.Drawing.Point(189, 158);
             this.lblProposedPrice.Name = "lblProposedPrice";
             this.lblProposedPrice.Size = new System.Drawing.Size(118, 20);
             this.lblProposedPrice.TabIndex = 4;
@@ -176,7 +176,7 @@ namespace IMS_BISP.Forms
             0,
             0,
             65536});
-            this.nudProposedPrice.Location = new System.Drawing.Point(170, 178);
+            this.nudProposedPrice.Location = new System.Drawing.Point(189, 178);
             this.nudProposedPrice.Maximum = new decimal(new int[] {
             99999999,
             0,
