@@ -518,11 +518,83 @@ AS
     ORDER BY UpdatedAt DESC;
 GO
 
+-- ── CONTRACTS ────────────────────────────────────────────────
+CREATE PROCEDURE sp_Contracts_GetAll
+AS
+    SELECT c.ContractId, c.StoreId, s.StoreName,
+           c.StartDate, c.EndDate, c.MonthlyRent,
+           c.ContractFile, c.CreatedAt,
+           DATEDIFF(DAY, GETDATE(), c.EndDate) AS DaysLeft
+    FROM   Contracts c
+    JOIN   Stores s ON c.StoreId = s.StoreId
+    ORDER  BY c.EndDate ASC;
+GO
+
+CREATE PROCEDURE sp_Contracts_GetById
+    @ContractId INT
+AS
+    SELECT c.ContractId, c.StoreId, s.StoreName,
+           c.StartDate, c.EndDate, c.MonthlyRent,
+           c.ContractFile, c.CreatedAt,
+           DATEDIFF(DAY, GETDATE(), c.EndDate) AS DaysLeft
+    FROM   Contracts c
+    JOIN   Stores s ON c.StoreId = s.StoreId
+    WHERE  c.ContractId = @ContractId;
+GO
+
+CREATE PROCEDURE sp_Contracts_GetExpiringSoon
+AS
+    SELECT c.ContractId, c.StoreId, s.StoreName,
+           c.StartDate, c.EndDate, c.MonthlyRent,
+           c.ContractFile,
+           DATEDIFF(DAY, GETDATE(), c.EndDate) AS DaysLeft
+    FROM   Contracts c
+    JOIN   Stores s ON c.StoreId = s.StoreId
+    WHERE  DATEDIFF(DAY, GETDATE(), c.EndDate) <= 15
+      AND  DATEDIFF(DAY, GETDATE(), c.EndDate) >= 0
+    ORDER  BY c.EndDate ASC;
+GO
+
+CREATE PROCEDURE sp_Contracts_Insert
+    @StoreId      INT,
+    @StartDate    DATE,
+    @EndDate      DATE,
+    @MonthlyRent  DECIMAL(10,2),
+    @ContractFile NVARCHAR(500)
+AS
+    INSERT INTO Contracts (StoreId, StartDate, EndDate, MonthlyRent, ContractFile)
+    VALUES (@StoreId, @StartDate, @EndDate, @MonthlyRent, @ContractFile);
+    SELECT SCOPE_IDENTITY() AS NewContractId;
+GO
+
+CREATE PROCEDURE sp_Contracts_Update
+    @ContractId   INT,
+    @StoreId      INT,
+    @StartDate    DATE,
+    @EndDate      DATE,
+    @MonthlyRent  DECIMAL(10,2),
+    @ContractFile NVARCHAR(500)
+AS
+    UPDATE Contracts
+    SET StoreId      = @StoreId,
+        StartDate    = @StartDate,
+        EndDate      = @EndDate,
+        MonthlyRent  = @MonthlyRent,
+        ContractFile = @ContractFile
+    WHERE ContractId = @ContractId;
+GO
+
+CREATE PROCEDURE sp_Contracts_Delete
+    @ContractId INT
+AS
+    DELETE FROM Contracts WHERE ContractId = @ContractId;
+GO
+
 -- ============================================================
 PRINT '-------------------------------------------------------';
 PRINT ' MalikaTechMarketDB setup complete!';
-PRINT ' Tables  : 7';
-PRINT ' Procs   : 26';
-PRINT ' Login   -> Username: admin | Password: Admin@123';
+PRINT ' Tables  : 8';
+PRINT ' Procs   : 32';
+PRINT ' Login   -> Username: admin | Password: 1234';
 PRINT '-------------------------------------------------------';
 GO
