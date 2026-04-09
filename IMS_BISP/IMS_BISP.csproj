@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\frmAddEditContract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddEditContract.Designer.cs">
+      <DependentUpon>frmAddEditContract.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmAddEditStore.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,12 @@
     <Compile Include="UserControls\Dashboard\ucDashboardManager.Designer.cs">
       <DependentUpon>ucDashboardManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Manage\ucContracts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Manage\ucContracts.Designer.cs">
+      <DependentUpon>ucContracts.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Manage\ucManageStores.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -154,6 +166,9 @@
     <Compile Include="UserControls\Requests\ucSentRequests.Designer.cs">
       <DependentUpon>ucSentRequests.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\frmAddEditContract.resx">
+      <DependentUpon>frmAddEditContract.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
