@@ -1,4 +1,5 @@
-﻿using IMS_BISP.Sessions;
+﻿using IMS_BISP.DAL.Data;
+using IMS_BISP.Sessions;
 using IMS_BISP.UserControls.Audit;
 using IMS_BISP.UserControls.Dashboard;
 using IMS_BISP.UserControls.Manage;
@@ -30,6 +31,7 @@ namespace IMS_BISP
             manageToolStripMenuItem.Visible = false;
             storesToolStripMenuItem.Visible = false;
             usersToolStripMenuItem.Visible = false;
+            contractsToolStripMenuItem.Visible = false;
             auditLogToolStripMenuItem.Visible = false;
 
             if (UserSession.IsAdmin())
@@ -37,6 +39,7 @@ namespace IMS_BISP
                 manageToolStripMenuItem.Visible = true;
                 storesToolStripMenuItem.Visible = true;
                 usersToolStripMenuItem.Visible = true;
+                contractsToolStripMenuItem.Visible = true;
                 auditLogToolStripMenuItem.Visible = true;
             }
             else if (UserSession.IsManager())
@@ -56,6 +59,23 @@ namespace IMS_BISP
             }
 
             this.Text = $"IMS - {UserSession.FullName} ({UserSession.RoleName})";
+
+            if (UserSession.IsAdmin())
+            {
+                try
+                {
+                    var expiring = ContractRepository.GetExpiringSoon();
+                    if (expiring != null && expiring.Count > 0)
+                    {
+                        string message = "The following contracts are expiring soon:\n\n";
+                        foreach (var c in expiring)
+                            message += $"- {c.StoreName} ({c.DaysLeft} days left)\n";
+                        MessageBox.Show(message, "Contract Alert",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch { }
+            }
         }
 
         private void LoadControl(Control uc)
@@ -93,6 +113,11 @@ namespace IMS_BISP
         private void storesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadControl(new ucManageStores());
+        }
+
+        private void contractsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadControl(new ucContracts());
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)

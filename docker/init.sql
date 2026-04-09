@@ -98,6 +98,17 @@ CREATE TABLE AuditLog (
 );
 GO
 
+CREATE TABLE Contracts (
+    ContractId     INT            PRIMARY KEY IDENTITY(1,1),
+    StoreId        INT            NOT NULL REFERENCES Stores(StoreId),
+    StartDate      DATE           NOT NULL,
+    EndDate        DATE           NOT NULL,
+    MonthlyRent    DECIMAL(10,2)  NOT NULL,
+    ContractFile   NVARCHAR(500)  NULL,
+    CreatedAt      DATETIME       NOT NULL DEFAULT GETDATE()
+);
+GO
+
 -- ============================================================
 --  SEED DATA
 -- ============================================================

@@ -17,67 +17,6 @@ namespace IMS_BISP.UserControls.Manage
         public ucContracts()
         {
             InitializeComponent();
-            SetupGrid();
-        }
-
-        private void SetupGrid()
-        {
-            dgvContracts.AutoGenerateColumns = false;
-            dgvContracts.Columns.Clear();
-
-            dgvContracts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colContractId", HeaderText = "ID",
-                DataPropertyName = "ContractId",
-                Visible = false
-            });
-            dgvContracts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colStoreName", HeaderText = "Store Name",
-                DataPropertyName = "StoreName",
-                FillWeight = 25, MinimumWidth = 140
-            });
-            dgvContracts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colStartDate", HeaderText = "Start Date",
-                DataPropertyName = "StartDate",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd.MM.yyyy" },
-                FillWeight = 15, MinimumWidth = 100
-            });
-            dgvContracts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colEndDate", HeaderText = "End Date",
-                DataPropertyName = "EndDate",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd.MM.yyyy" },
-                FillWeight = 15, MinimumWidth = 100
-            });
-            dgvContracts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colMonthlyRent", HeaderText = "Monthly Rent",
-                DataPropertyName = "MonthlyRent",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "$ #,##0.00", Alignment = DataGridViewContentAlignment.MiddleRight },
-                FillWeight = 18, MinimumWidth = 120
-            });
-            dgvContracts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colContractFile", HeaderText = "Contract File",
-                DataPropertyName = "ContractFile",
-                FillWeight = 20, MinimumWidth = 130
-            });
-            dgvContracts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colDaysLeft", HeaderText = "Days Left",
-                DataPropertyName = "DaysLeft",
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter },
-                FillWeight = 10, MinimumWidth = 80
-            });
-
-            dgvContracts.ColumnHeadersDefaultCellStyle.Font      = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dgvContracts.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
-            dgvContracts.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvContracts.EnableHeadersVisualStyles               = false;
-            dgvContracts.DefaultCellStyle.Font                   = new Font("Segoe UI", 9F);
-            dgvContracts.RowTemplate.Height                      = 28;
         }
 
         private void ucContracts_Load(object sender, EventArgs e)

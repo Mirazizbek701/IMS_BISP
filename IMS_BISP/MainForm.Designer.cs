@@ -40,6 +40,7 @@
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contractsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlContent = new System.Windows.Forms.Panel();
@@ -120,7 +121,8 @@
             // 
             this.manageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.storesToolStripMenuItem,
-            this.usersToolStripMenuItem});
+            this.usersToolStripMenuItem,
+            this.contractsToolStripMenuItem});
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
             this.manageToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
             this.manageToolStripMenuItem.Text = "Manage";
@@ -138,9 +140,16 @@
             this.usersToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.usersToolStripMenuItem.Text = "Users";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
-            // 
+            //
+            // contractsToolStripMenuItem
+            //
+            this.contractsToolStripMenuItem.Name = "contractsToolStripMenuItem";
+            this.contractsToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.contractsToolStripMenuItem.Text = "Contracts";
+            this.contractsToolStripMenuItem.Click += new System.EventHandler(this.contractsToolStripMenuItem_Click);
+            //
             // auditLogToolStripMenuItem
-            // 
+            //
             this.auditLogToolStripMenuItem.Name = "auditLogToolStripMenuItem";
             this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.auditLogToolStripMenuItem.Text = "Audit Log";
@@ -194,6 +203,7 @@
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem storesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem contractsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auditLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.Panel pnlContent;

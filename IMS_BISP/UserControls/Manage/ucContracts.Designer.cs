@@ -15,15 +15,91 @@ namespace IMS_BISP.UserControls.Manage
 
         private void InitializeComponent()
         {
-            this.lblTitle       = new System.Windows.Forms.Label();
-            this.btnAdd         = new System.Windows.Forms.Button();
-            this.btnEdit        = new System.Windows.Forms.Button();
-            this.btnDelete      = new System.Windows.Forms.Button();
-            this.btnOpenFile    = new System.Windows.Forms.Button();
-            this.btnRefresh     = new System.Windows.Forms.Button();
-            this.dgvContracts   = new System.Windows.Forms.DataGridView();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.colContractId   = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStoreName    = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStartDate    = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEndDate      = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMonthlyRent  = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colContractFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDaysLeft     = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTitle        = new System.Windows.Forms.Label();
+            this.btnAdd          = new System.Windows.Forms.Button();
+            this.btnEdit         = new System.Windows.Forms.Button();
+            this.btnDelete       = new System.Windows.Forms.Button();
+            this.btnOpenFile     = new System.Windows.Forms.Button();
+            this.btnRefresh      = new System.Windows.Forms.Button();
+            this.dgvContracts    = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvContracts)).BeginInit();
             this.SuspendLayout();
+            //
+            // colContractId
+            //
+            this.colContractId.DataPropertyName = "ContractId";
+            this.colContractId.HeaderText       = "ID";
+            this.colContractId.Name             = "colContractId";
+            this.colContractId.Visible          = false;
+            //
+            // colStoreName
+            //
+            this.colStoreName.DataPropertyName = "StoreName";
+            this.colStoreName.FillWeight       = 25F;
+            this.colStoreName.HeaderText       = "Store Name";
+            this.colStoreName.MinimumWidth     = 140;
+            this.colStoreName.Name             = "colStoreName";
+            //
+            // colStartDate
+            //
+            dataGridViewCellStyle1.Format      = "dd.MM.yyyy";
+            this.colStartDate.DataPropertyName = "StartDate";
+            this.colStartDate.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colStartDate.FillWeight       = 15F;
+            this.colStartDate.HeaderText       = "Start Date";
+            this.colStartDate.MinimumWidth     = 100;
+            this.colStartDate.Name             = "colStartDate";
+            //
+            // colEndDate
+            //
+            dataGridViewCellStyle2.Format    = "dd.MM.yyyy";
+            this.colEndDate.DataPropertyName = "EndDate";
+            this.colEndDate.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colEndDate.FillWeight       = 15F;
+            this.colEndDate.HeaderText       = "End Date";
+            this.colEndDate.MinimumWidth     = 100;
+            this.colEndDate.Name             = "colEndDate";
+            //
+            // colMonthlyRent
+            //
+            dataGridViewCellStyle3.Format           = "$ #,##0.00";
+            this.colMonthlyRent.DataPropertyName    = "MonthlyRent";
+            this.colMonthlyRent.DefaultCellStyle    = dataGridViewCellStyle3;
+            this.colMonthlyRent.FillWeight          = 18F;
+            this.colMonthlyRent.HeaderText          = "Monthly Rent";
+            this.colMonthlyRent.MinimumWidth        = 120;
+            this.colMonthlyRent.Name                = "colMonthlyRent";
+            //
+            // colContractFile
+            //
+            this.colContractFile.DataPropertyName = "ContractFile";
+            this.colContractFile.FillWeight       = 20F;
+            this.colContractFile.HeaderText       = "Contract File";
+            this.colContractFile.MinimumWidth     = 130;
+            this.colContractFile.Name             = "colContractFile";
+            //
+            // colDaysLeft
+            //
+            dataGridViewCellStyle4.Alignment      = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colDaysLeft.DataPropertyName     = "DaysLeft";
+            this.colDaysLeft.DefaultCellStyle     = dataGridViewCellStyle4;
+            this.colDaysLeft.FillWeight           = 10F;
+            this.colDaysLeft.HeaderText           = "Days Left";
+            this.colDaysLeft.MinimumWidth         = 80;
+            this.colDaysLeft.Name                 = "colDaysLeft";
             //
             // lblTitle
             //
@@ -117,24 +193,41 @@ namespace IMS_BISP.UserControls.Manage
             //
             // dgvContracts
             //
-            this.dgvContracts.AllowUserToAddRows          = false;
-            this.dgvContracts.AllowUserToDeleteRows       = false;
-            this.dgvContracts.Anchor                      = ((System.Windows.Forms.AnchorStyles)(
+            this.dgvContracts.AllowUserToAddRows    = false;
+            this.dgvContracts.AllowUserToDeleteRows = false;
+            this.dgvContracts.Anchor                = ((System.Windows.Forms.AnchorStyles)(
                 System.Windows.Forms.AnchorStyles.Top    |
                 System.Windows.Forms.AnchorStyles.Bottom |
                 System.Windows.Forms.AnchorStyles.Left   |
                 System.Windows.Forms.AnchorStyles.Right));
+            this.dgvContracts.AutoGenerateColumns         = false;
             this.dgvContracts.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvContracts.BackgroundColor             = System.Drawing.Color.White;
             this.dgvContracts.BorderStyle                 = System.Windows.Forms.BorderStyle.None;
             this.dgvContracts.CellBorderStyle             = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle5.BackColor              = System.Drawing.Color.FromArgb(44, 62, 80);
+            dataGridViewCellStyle5.Font                   = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor              = System.Drawing.Color.White;
+            this.dgvContracts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvContracts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvContracts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                this.colContractId,
+                this.colStoreName,
+                this.colStartDate,
+                this.colEndDate,
+                this.colMonthlyRent,
+                this.colContractFile,
+                this.colDaysLeft});
+            dataGridViewCellStyle6.Font                   = new System.Drawing.Font("Segoe UI", 9F);
+            this.dgvContracts.DefaultCellStyle            = dataGridViewCellStyle6;
+            this.dgvContracts.EnableHeadersVisualStyles   = false;
             this.dgvContracts.GridColor                   = System.Drawing.Color.FromArgb(220, 220, 220);
             this.dgvContracts.Location                    = new System.Drawing.Point(20, 103);
             this.dgvContracts.MultiSelect                 = false;
             this.dgvContracts.Name                        = "dgvContracts";
             this.dgvContracts.ReadOnly                    = true;
             this.dgvContracts.RowHeadersVisible           = false;
+            this.dgvContracts.RowTemplate.Height          = 28;
             this.dgvContracts.SelectionMode               = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvContracts.Size                        = new System.Drawing.Size(860, 367);
             this.dgvContracts.TabIndex                    = 6;
@@ -162,6 +255,13 @@ namespace IMS_BISP.UserControls.Manage
 
         #endregion
 
+        private System.Windows.Forms.DataGridViewTextBoxColumn colContractId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStoreName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEndDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMonthlyRent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colContractFile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDaysLeft;
         private System.Windows.Forms.Label        lblTitle;
         private System.Windows.Forms.Button       btnAdd;
         private System.Windows.Forms.Button       btnEdit;
