@@ -41,7 +41,7 @@ A desktop-based inventory management system built for **Malika Tech Market** in 
 ```
 IMS_BISP/
 ├── Forms/              # Login and dialog forms
-├── UserControls/       # Dashboard, Products, Marketplace, Requests, Manage, Audit
+├── UserControls/       # Dashboard, Products, Marketplace, Contracts, Requests, Manage, Audit
 ├── Sessions/           # UserSession static class
 ├── Resources/          # Images
 └── App.config          # Connection string
@@ -86,8 +86,8 @@ Open `IMS_BISP.sln` in Visual Studio and press **F5**.
 
 ## Database
 
-- **7 tables** — Roles, Stores, Users, Categories, Products, ProductRequests, AuditLog
-- **30 stored procedures** — all DB operations go through stored procedures, no raw SQL in C#
+- **8 tables** — Roles, Stores, Users, Categories, Contracts, Products, ProductRequests, AuditLog
+- **32 stored procedures** — all DB operations go through stored procedures, no raw SQL in C#
 - Connection string configured in `IMS_BISP/App.config`
 
 ---
