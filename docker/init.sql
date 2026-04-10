@@ -64,6 +64,7 @@ CREATE TABLE Products (
     ProductName  NVARCHAR(150) NOT NULL,
     SKU          NVARCHAR(50)  NOT NULL UNIQUE,
     Quantity     INT           NOT NULL DEFAULT 0,
+    BookedQnt    INT           NOT NULL DEFAULT 0,
     UnitPrice    DECIMAL(18,2) NOT NULL DEFAULT 0,
     MinThreshold INT           NOT NULL DEFAULT 5,
     Visibility   NVARCHAR(10)  NOT NULL DEFAULT 'PRIVATE'
@@ -81,8 +82,8 @@ CREATE TABLE ProductRequests (
     ProductId         INT           NOT NULL REFERENCES Products(ProductId),
     QuantityRequested INT           NOT NULL,
     ProposedPrice     DECIMAL(18,2) NOT NULL,
-    Status            NVARCHAR(10)  NOT NULL DEFAULT 'PENDING'
-                      CONSTRAINT CHK_Status CHECK (Status IN ('PENDING','ACCEPTED','REJECTED')),
+    Status NVARCHAR(20) NOT NULL DEFAULT 'PENDING'
+       CONSTRAINT CHK_Status CHECK (Status IN ('PENDING','ACCEPTED','REJECTED','DELIVERED','NOT_DELIVERED')),
     RejectionNote     NVARCHAR(500) NULL,
     CreatedAt         DATETIME      NOT NULL DEFAULT GETDATE(),
     RespondedAt       DATETIME      NULL
@@ -171,6 +172,14 @@ INSERT INTO ProductRequests
 (RequesterStoreId, SupplierStoreId, ProductId, QuantityRequested, ProposedPrice, Status, RejectionNote, RespondedAt)
 VALUES (4, 2, 3, 1, 22000000, 'REJECTED', 'Uka, this price is impossible!', GETDATE());
 GO
+
+-- 7. Test Contracts
+INSERT INTO Contracts (StoreId, StartDate, EndDate, MonthlyRent, ContractFile)
+VALUES
+(2, '2025-03-01', '2025-06-01', 450.00, NULL),  -- A-21 Bekzod,
+(3, '2025-01-01', '2026-01-01', 380.00, NULL),  -- A-22 Mansur
+(4, '2025-06-01', '2026-06-01', 500.00, NULL);  -- B-05 Flash
+
 
 -- ============================================================
 --  STORED PROCEDURES
@@ -329,8 +338,10 @@ CREATE PROCEDURE sp_Products_GetByStore
     @StoreId INT
 AS
     SELECT p.ProductId, p.StoreId, p.CategoryId, c.CategoryName,
-           p.ProductName, p.SKU, p.Quantity, p.UnitPrice,
-           p.MinThreshold, p.Visibility, p.Description, p.UpdatedAt
+           p.ProductName, p.SKU, p.Quantity, p.BookedQnt,
+           (p.Quantity - p.BookedQnt) AS Available,
+           p.UnitPrice, p.MinThreshold, p.Visibility,
+           p.Description, p.UpdatedAt
     FROM   Products p
     JOIN   Categories c ON p.CategoryId = c.CategoryId
     WHERE  p.StoreId = @StoreId AND p.IsActive = 1
@@ -454,11 +465,56 @@ AS
 GO
 
 CREATE PROCEDURE sp_Requests_Respond
-    @RequestId INT, @Status NVARCHAR(10), @RejectionNote NVARCHAR(500)
+    @RequestId INT, @Status NVARCHAR(20), @RejectionNote NVARCHAR(500)
 AS
+    DECLARE @ProductId INT, @Qty INT, @SupplierStoreId INT;
+
+    SELECT @ProductId       = ProductId,
+           @Qty             = QuantityRequested,
+           @SupplierStoreId = SupplierStoreId
+    FROM   ProductRequests
+    WHERE  RequestId = @RequestId;
+
+    IF @Status = 'ACCEPTED'
+        UPDATE Products
+        SET Quantity  = Quantity  - @Qty,
+            BookedQnt = BookedQnt + @Qty,
+            UpdatedAt = GETDATE()
+        WHERE ProductId = @ProductId AND StoreId = @SupplierStoreId;
+
+    IF @Status = 'DELIVERED'
+        UPDATE Products
+        SET BookedQnt = BookedQnt - @Qty,
+            UpdatedAt = GETDATE()
+        WHERE ProductId = @ProductId AND StoreId = @SupplierStoreId;
+
+    IF @Status = 'NOT_DELIVERED'
+        UPDATE Products
+        SET Quantity  = Quantity  + @Qty,
+            BookedQnt = BookedQnt - @Qty,
+            UpdatedAt = GETDATE()
+        WHERE ProductId = @ProductId AND StoreId = @SupplierStoreId;
+
     UPDATE ProductRequests
-    SET Status = @Status, RejectionNote = @RejectionNote, RespondedAt = GETDATE()
+    SET Status        = @Status,
+        RejectionNote = @RejectionNote,
+        RespondedAt   = GETDATE()
     WHERE RequestId = @RequestId;
+GO
+
+CREATE PROCEDURE sp_Requests_GetAcceptedBySupplier
+    @SupplierStoreId INT
+AS
+    SELECT r.RequestId, rs.StoreName AS RequesterStoreName,
+           p.ProductName, p.SKU,
+           r.QuantityRequested, r.ProposedPrice,
+           r.Status, r.CreatedAt, r.RespondedAt
+    FROM   ProductRequests r
+    JOIN   Stores   rs ON r.RequesterStoreId = rs.StoreId
+    JOIN   Products p  ON r.ProductId        = p.ProductId
+    WHERE  r.SupplierStoreId = @SupplierStoreId
+      AND  r.Status = 'ACCEPTED'
+    ORDER  BY r.RespondedAt DESC;
 GO
 
 -- ── AUDIT LOG ────────────────────────────────────────────────
@@ -527,6 +583,20 @@ AS
     FROM Products
     WHERE StoreId = @StoreId AND IsActive = 1
     ORDER BY UpdatedAt DESC;
+GO
+
+CREATE PROCEDURE sp_Products_GetLowStock
+    @StoreId INT
+AS
+    SELECT p.ProductId, p.ProductName, p.SKU,
+           c.CategoryName, p.Quantity, p.MinThreshold,
+           p.BookedQnt, (p.Quantity - p.BookedQnt) AS Available
+    FROM   Products p
+    JOIN   Categories c ON p.CategoryId = c.CategoryId
+    WHERE  p.StoreId  = @StoreId
+      AND  p.IsActive = 1
+      AND  p.Quantity <= p.MinThreshold
+    ORDER  BY p.Quantity ASC;
 GO
 
 -- ── CONTRACTS ────────────────────────────────────────────────

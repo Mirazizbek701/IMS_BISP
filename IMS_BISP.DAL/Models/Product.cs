@@ -12,6 +12,8 @@ namespace IMS_BISP.DAL.Models
         public string ProductName { get; set; }
         public string SKU { get; set; }
         public int Quantity { get; set; }
+        public int BookedQnt { get; set; }
+        public int Available { get; set; }
         public decimal UnitPrice { get; set; }
         public int MinThreshold { get; set; }
         public string Visibility { get; set; }

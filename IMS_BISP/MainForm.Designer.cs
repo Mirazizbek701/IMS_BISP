@@ -37,6 +37,7 @@
             this.requestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sentRequestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.incomingRequestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deliveriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,7 +99,8 @@
             // 
             this.requestsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sentRequestsToolStripMenuItem,
-            this.incomingRequestsToolStripMenuItem});
+            this.incomingRequestsToolStripMenuItem,
+            this.deliveriesToolStripMenuItem});
             this.requestsToolStripMenuItem.Name = "requestsToolStripMenuItem";
             this.requestsToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.requestsToolStripMenuItem.Text = "Requests";
@@ -109,14 +111,21 @@
             this.sentRequestsToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
             this.sentRequestsToolStripMenuItem.Text = "Sent Requests";
             this.sentRequestsToolStripMenuItem.Click += new System.EventHandler(this.sentRequestsToolStripMenuItem_Click);
-            // 
+            //
             // incomingRequestsToolStripMenuItem
-            // 
+            //
             this.incomingRequestsToolStripMenuItem.Name = "incomingRequestsToolStripMenuItem";
             this.incomingRequestsToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
             this.incomingRequestsToolStripMenuItem.Text = "Incoming Requests";
             this.incomingRequestsToolStripMenuItem.Click += new System.EventHandler(this.incomingRequestsToolStripMenuItem_Click);
-            // 
+            //
+            // deliveriesToolStripMenuItem
+            //
+            this.deliveriesToolStripMenuItem.Name = "deliveriesToolStripMenuItem";
+            this.deliveriesToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.deliveriesToolStripMenuItem.Text = "Deliveries";
+            this.deliveriesToolStripMenuItem.Click += new System.EventHandler(this.deliveriesToolStripMenuItem_Click);
+            //
             // manageToolStripMenuItem
             // 
             this.manageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -200,6 +209,7 @@
         private System.Windows.Forms.ToolStripMenuItem requestsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sentRequestsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem incomingRequestsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deliveriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem storesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;

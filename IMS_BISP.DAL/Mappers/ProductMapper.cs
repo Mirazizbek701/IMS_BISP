@@ -18,6 +18,8 @@ namespace IMS_BISP.DAL.Mappers
                 ProductName = reader["ProductName"].ToString(),
                 SKU = reader["SKU"].ToString(),
                 Quantity = (int)reader["Quantity"],
+                BookedQnt = reader.HasColumn("BookedQnt") ? (int)reader["BookedQnt"] : 0,
+                Available = reader.HasColumn("Available") ? (int)reader["Available"] : 0,
                 UnitPrice = (decimal)reader["UnitPrice"],
                 MinThreshold = reader.HasColumn("MinThreshold") ? (int)reader["MinThreshold"] : 0,
                 Visibility = reader.HasColumn("Visibility") ? reader["Visibility"].ToString() : "PUBLIC",

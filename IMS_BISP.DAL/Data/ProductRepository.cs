@@ -36,6 +36,34 @@ namespace IMS_BISP.DAL.Data
             }
         }
 
+        public static List<Product> GetLowStock(int storeId)
+        {
+            var list = new List<Product>();
+            using (var con = DatabaseHelper.GetConnection())
+            using (var cmd = new SqlCommand("sp_Products_GetLowStock", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@StoreId", storeId);
+                con.Open();
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(new Product
+                    {
+                        ProductId    = reader["ProductId"]    != DBNull.Value ? (int)reader["ProductId"]    : 0,
+                        ProductName  = reader["ProductName"].ToString(),
+                        SKU          = reader["SKU"].ToString(),
+                        CategoryName = reader["CategoryName"].ToString(),
+                        Quantity     = (int)reader["Quantity"],
+                        MinThreshold = (int)reader["MinThreshold"],
+                        BookedQnt    = reader["BookedQnt"]    != DBNull.Value ? (int)reader["BookedQnt"]    : 0,
+                        Available    = reader["Available"]    != DBNull.Value ? (int)reader["Available"]    : 0
+                    });
+                }
+            }
+            return list;
+        }
+
         public static Product GetById(int productId)
         {
             try

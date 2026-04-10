@@ -114,6 +114,35 @@ namespace IMS_BISP.DAL.Data
             }
         }
 
+        public static List<ProductRequest> GetAcceptedBySupplier(int supplierStoreId)
+        {
+            var list = new List<ProductRequest>();
+            using (var con = DatabaseHelper.GetConnection())
+            using (var cmd = new SqlCommand("sp_Requests_GetAcceptedBySupplier", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SupplierStoreId", supplierStoreId);
+                con.Open();
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(new ProductRequest
+                    {
+                        RequestId          = (int)reader["RequestId"],
+                        RequesterStoreName = reader["RequesterStoreName"].ToString(),
+                        ProductName        = reader["ProductName"].ToString(),
+                        SKU                = reader["SKU"].ToString(),
+                        QuantityRequested  = (int)reader["QuantityRequested"],
+                        ProposedPrice      = (decimal)reader["ProposedPrice"],
+                        Status             = reader["Status"].ToString(),
+                        CreatedAt          = (DateTime)reader["CreatedAt"],
+                        RespondedAt        = reader["RespondedAt"] == DBNull.Value ? (DateTime?)null : (DateTime)reader["RespondedAt"]
+                    });
+                }
+            }
+            return list;
+        }
+
         public static void Respond(int requestId, string status, string rejectionNote)
         {
             try

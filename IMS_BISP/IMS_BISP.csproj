@@ -72,6 +72,12 @@
     <Compile Include="Forms\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmLowStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLowStock.Designer.cs">
+      <DependentUpon>frmLowStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmResetPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,12 @@
     </Compile>
     <Compile Include="UserControls\Products\ucProducts.Designer.cs">
       <DependentUpon>ucProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Requests\ucDeliveries.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Requests\ucDeliveries.Designer.cs">
+      <DependentUpon>ucDeliveries.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Requests\ucIncomingRequests.cs">
       <SubType>UserControl</SubType>

@@ -125,32 +125,38 @@ namespace IMS_BISP.UserControls.Dashboard
             this.pnlLowStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(237)))), ((int)(((byte)(236)))));
             this.pnlLowStock.Controls.Add(this.lblLowStockTitle);
             this.pnlLowStock.Controls.Add(this.lblLowStock);
+            this.pnlLowStock.Cursor   = System.Windows.Forms.Cursors.Hand;
             this.pnlLowStock.Location = new System.Drawing.Point(740, 64);
-            this.pnlLowStock.Name = "pnlLowStock";
-            this.pnlLowStock.Size = new System.Drawing.Size(293, 153);
+            this.pnlLowStock.Name     = "pnlLowStock";
+            this.pnlLowStock.Size     = new System.Drawing.Size(293, 153);
             this.pnlLowStock.TabIndex = 2;
+            this.pnlLowStock.Click   += new System.EventHandler(this.pnlLowStock_Click);
             // 
             // lblLowStockTitle
             // 
-            this.lblLowStockTitle.AutoSize = true;
-            this.lblLowStockTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblLowStockTitle.AutoSize  = true;
+            this.lblLowStockTitle.Cursor    = System.Windows.Forms.Cursors.Hand;
+            this.lblLowStockTitle.Font      = new System.Drawing.Font("Segoe UI", 9F);
             this.lblLowStockTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.lblLowStockTitle.Location = new System.Drawing.Point(12, 13);
-            this.lblLowStockTitle.Name = "lblLowStockTitle";
-            this.lblLowStockTitle.Size = new System.Drawing.Size(76, 20);
-            this.lblLowStockTitle.TabIndex = 0;
-            this.lblLowStockTitle.Text = "Low Stock";
+            this.lblLowStockTitle.Location  = new System.Drawing.Point(12, 13);
+            this.lblLowStockTitle.Name      = "lblLowStockTitle";
+            this.lblLowStockTitle.Size      = new System.Drawing.Size(76, 20);
+            this.lblLowStockTitle.TabIndex  = 0;
+            this.lblLowStockTitle.Text      = "Low Stock";
+            this.lblLowStockTitle.Click    += new System.EventHandler(this.pnlLowStock_Click);
             // 
             // lblLowStock
             // 
-            this.lblLowStock.AutoSize = true;
-            this.lblLowStock.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this.lblLowStock.AutoSize  = true;
+            this.lblLowStock.Cursor    = System.Windows.Forms.Cursors.Hand;
+            this.lblLowStock.Font      = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblLowStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(50)))), ((int)(((byte)(38)))));
-            this.lblLowStock.Location = new System.Drawing.Point(10, 40);
-            this.lblLowStock.Name = "lblLowStock";
-            this.lblLowStock.Size = new System.Drawing.Size(35, 41);
-            this.lblLowStock.TabIndex = 1;
-            this.lblLowStock.Text = "0";
+            this.lblLowStock.Location  = new System.Drawing.Point(10, 40);
+            this.lblLowStock.Name      = "lblLowStock";
+            this.lblLowStock.Size      = new System.Drawing.Size(35, 41);
+            this.lblLowStock.TabIndex  = 1;
+            this.lblLowStock.Text      = "0";
+            this.lblLowStock.Click    += new System.EventHandler(this.pnlLowStock_Click);
             // 
             // pnlIncoming
             // 

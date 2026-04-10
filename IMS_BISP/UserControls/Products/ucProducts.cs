@@ -58,6 +58,18 @@ namespace IMS_BISP.UserControls.Products
             });
             dgvProducts.Columns.Add(new DataGridViewTextBoxColumn
             {
+                Name = "colBookedQnt", HeaderText = "Booked",
+                DataPropertyName = "BookedQnt",
+                FillWeight = 6, MinimumWidth = 55
+            });
+            dgvProducts.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colAvailable", HeaderText = "Available",
+                DataPropertyName = "Available",
+                FillWeight = 7, MinimumWidth = 65
+            });
+            dgvProducts.Columns.Add(new DataGridViewTextBoxColumn
+            {
                 Name = "colUnitPrice", HeaderText = "Unit Price",
                 DataPropertyName = "UnitPrice",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" },
@@ -139,6 +151,12 @@ namespace IMS_BISP.UserControls.Products
                 var p = _filtered[i];
                 if (p.Quantity <= p.MinThreshold)
                     dgvProducts.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 204, 204);
+
+                var availCell = dgvProducts.Rows[i].Cells["colAvailable"];
+                if (p.Available <= 0)
+                    availCell.Style.BackColor = Color.FromArgb(255, 102, 102);
+                else if (p.Available <= p.MinThreshold)
+                    availCell.Style.BackColor = Color.FromArgb(255, 178, 102);
             }
         }
 

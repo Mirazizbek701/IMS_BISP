@@ -28,6 +28,7 @@ namespace IMS_BISP
             requestsToolStripMenuItem.Visible = false;
             sentRequestsToolStripMenuItem.Visible = false;
             incomingRequestsToolStripMenuItem.Visible = false;
+            deliveriesToolStripMenuItem.Visible = false;
             manageToolStripMenuItem.Visible = false;
             storesToolStripMenuItem.Visible = false;
             usersToolStripMenuItem.Visible = false;
@@ -50,12 +51,15 @@ namespace IMS_BISP
                 requestsToolStripMenuItem.Visible = true;
                 sentRequestsToolStripMenuItem.Visible = true;
                 incomingRequestsToolStripMenuItem.Visible = true;
+                deliveriesToolStripMenuItem.Visible = true;
             }
             else if (UserSession.IsStaff())
             {
                 inventoryToolStripMenuItem.Visible = true;
                 myProductsToolStripMenuItem.Visible = true;
                 marketplaceToolStripMenuItem.Visible = true;
+                requestsToolStripMenuItem.Visible = true;
+                deliveriesToolStripMenuItem.Visible = true;
             }
 
             this.Text = $"IMS - {UserSession.FullName} ({UserSession.RoleName})";
@@ -108,6 +112,11 @@ namespace IMS_BISP
         private void incomingRequestsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadControl(new ucIncomingRequests());
+        }
+
+        private void deliveriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadControl(new ucDeliveries());
         }
 
         private void storesToolStripMenuItem_Click(object sender, EventArgs e)

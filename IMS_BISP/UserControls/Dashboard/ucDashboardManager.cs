@@ -1,6 +1,9 @@
 using IMS_BISP.DAL.Data;
+using IMS_BISP.DAL.Models;
+using IMS_BISP.Forms;
 using IMS_BISP.Sessions;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -11,6 +14,32 @@ namespace IMS_BISP.UserControls.Dashboard
         public ucDashboardManager()
         {
             InitializeComponent();
+        }
+
+        private void pnlLowStock_Click(object sender, EventArgs e)
+        {
+            if (!UserSession.StoreId.HasValue)
+            {
+                MessageBox.Show("No store assigned.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                List<Product> products = ProductRepository.GetLowStock(UserSession.StoreId.Value);
+                if (products.Count == 0)
+                {
+                    MessageBox.Show("No low stock products.", "Low Stock",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                var frm = new frmLowStock(products);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message + (ex.InnerException != null ? "\n" + ex.InnerException.Message : ""),
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ucDashboardManager_Load(object sender, EventArgs e)
