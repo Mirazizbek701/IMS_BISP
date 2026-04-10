@@ -17,6 +17,8 @@ namespace IMS_BISP.UserControls.Manage
         {
             InitializeComponent();
             SetupGrid();
+            btnEdit.Enabled         = false;
+            btnToggleActive.Enabled = false;
         }
 
         private void SetupGrid()
@@ -94,7 +96,10 @@ namespace IMS_BISP.UserControls.Manage
         private void dgvStores_SelectionChanged(object sender, EventArgs e)
         {
             var store = GetSelectedStore();
-            if (store != null)
+            bool hasSelection         = store != null;
+            btnEdit.Enabled           = hasSelection;
+            btnToggleActive.Enabled   = hasSelection;
+            if (hasSelection)
             {
                 btnToggleActive.Text      = store.IsActive ? "Deactivate" : "Activate";
                 btnToggleActive.BackColor = store.IsActive
@@ -107,7 +112,7 @@ namespace IMS_BISP.UserControls.Manage
         {
             using (var dlg = new frmAddEditStore())
             {
-                if (dlg.ShowDialog(this) != System.Windows.Forms.DialogResult.OK) return;
+                if (dlg.ShowDialog(this) != DialogResult.OK) return;
                 try
                 {
                     int newId = StoreRepository.Insert(dlg.StoreName, dlg.ContactPhone);
@@ -135,7 +140,7 @@ namespace IMS_BISP.UserControls.Manage
 
             using (var dlg = new frmAddEditStore(store))
             {
-                if (dlg.ShowDialog(this) != System.Windows.Forms.DialogResult.OK) return;
+                if (dlg.ShowDialog(this) != DialogResult.OK) return;
                 try
                 {
                     StoreRepository.Update(store.StoreId, dlg.StoreName, dlg.ContactPhone);
@@ -167,7 +172,7 @@ namespace IMS_BISP.UserControls.Manage
             var confirm = MessageBox.Show(
                 $"Are you sure you want to {action} '{store.StoreName}'?",
                 "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm != System.Windows.Forms.DialogResult.Yes) return;
+            if (confirm != DialogResult.Yes) return;
 
             try
             {

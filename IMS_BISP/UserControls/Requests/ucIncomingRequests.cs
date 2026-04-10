@@ -164,8 +164,8 @@ namespace IMS_BISP.UserControls.Requests
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to accept request: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Cannot Accept Request",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -186,8 +186,8 @@ namespace IMS_BISP.UserControls.Requests
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to reject request: " + ex.Message,
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Cannot Reject Request",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

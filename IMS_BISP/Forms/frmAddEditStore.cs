@@ -40,6 +40,34 @@ namespace IMS_BISP.Forms
                 tbxStoreName.Focus();
                 return;
             }
+            if (tbxStoreName.Text.Trim().Length > 100)
+            {
+                MessageBox.Show("Store Name must not exceed 100 characters.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbxStoreName.Focus();
+                return;
+            }
+            if (!string.IsNullOrWhiteSpace(tbxContactPhone.Text))
+            {
+                string phone = tbxContactPhone.Text.Trim();
+                if (phone.Length > 20)
+                {
+                    MessageBox.Show("Contact Phone must not exceed 20 characters.", "Validation",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbxContactPhone.Focus();
+                    return;
+                }
+                foreach (char c in phone)
+                {
+                    if (!char.IsDigit(c) && c != '+')
+                    {
+                        MessageBox.Show("Contact Phone may only contain digits and '+'.", "Validation",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        tbxContactPhone.Focus();
+                        return;
+                    }
+                }
+            }
             this.DialogResult = DialogResult.OK;
         }
 

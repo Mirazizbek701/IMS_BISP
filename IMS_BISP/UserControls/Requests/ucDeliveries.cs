@@ -24,9 +24,10 @@ namespace IMS_BISP.UserControls.Requests
 
         private void LoadData()
         {
+            if (!UserSession.StoreId.HasValue) return;
             try
             {
-                _requests = RequestRepository.GetAcceptedBySupplier(UserSession.StoreId.Value);
+                _requests = RequestRepository.GetDeliveryHistory(UserSession.StoreId.Value);
                 dgvDeliveries.DataSource = null;
                 dgvDeliveries.DataSource = _requests;
             }
@@ -57,8 +58,18 @@ namespace IMS_BISP.UserControls.Requests
             if (_requests == null) return;
             for (int i = 0; i < dgvDeliveries.Rows.Count && i < _requests.Count; i++)
             {
-                if (_requests[i].Status == "ACCEPTED")
-                    dgvDeliveries.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(179, 229, 252);
+                switch (_requests[i].Status)
+                {
+                    case "ACCEPTED":
+                        dgvDeliveries.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(179, 229, 252);
+                        break;
+                    case "DELIVERED":
+                        dgvDeliveries.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(200, 230, 201);
+                        break;
+                    case "NOT_DELIVERED":
+                        dgvDeliveries.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 205, 210);
+                        break;
+                }
             }
         }
 
@@ -81,8 +92,8 @@ namespace IMS_BISP.UserControls.Requests
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to mark as delivered: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Cannot Mark as Delivered",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -105,8 +116,8 @@ namespace IMS_BISP.UserControls.Requests
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to mark as not delivered: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Cannot Mark as Not Delivered",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

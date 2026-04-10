@@ -88,6 +88,7 @@ namespace IMS_BISP.UserControls.Marketplace
 
         private void LoadData()
         {
+            if (!UserSession.StoreId.HasValue) return;
             try
             {
                 _allProducts = ProductRepository.GetPublicExcludingStore(UserSession.StoreId.Value);
@@ -160,8 +161,8 @@ namespace IMS_BISP.UserControls.Marketplace
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to send request: " + ex.Message,
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Request Failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

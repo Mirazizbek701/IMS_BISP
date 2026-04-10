@@ -78,6 +78,13 @@ namespace IMS_BISP.Forms
                 tbxFullName.Focus();
                 return;
             }
+            if (tbxFullName.Text.Trim().Length > 100)
+            {
+                MessageBox.Show("Full Name must not exceed 100 characters.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbxFullName.Focus();
+                return;
+            }
 
             if (!_editMode)
             {
@@ -88,9 +95,33 @@ namespace IMS_BISP.Forms
                     tbxUsername.Focus();
                     return;
                 }
+                if (tbxUsername.Text.Trim().Length > 50)
+                {
+                    MessageBox.Show("Username must not exceed 50 characters.", "Validation",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbxUsername.Focus();
+                    return;
+                }
+                foreach (char c in tbxUsername.Text.Trim())
+                {
+                    if (!char.IsLetterOrDigit(c) && c != '_')
+                    {
+                        MessageBox.Show("Username may only contain letters, digits, and underscores (no spaces).", "Validation",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        tbxUsername.Focus();
+                        return;
+                    }
+                }
                 if (string.IsNullOrWhiteSpace(tbxPassword.Text))
                 {
                     MessageBox.Show("Password is required.", "Validation",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbxPassword.Focus();
+                    return;
+                }
+                if (tbxPassword.Text.Length < 4)
+                {
+                    MessageBox.Show("Password must be at least 4 characters.", "Validation",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     tbxPassword.Focus();
                     return;

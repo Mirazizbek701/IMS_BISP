@@ -17,6 +17,10 @@ namespace IMS_BISP.UserControls.Manage
         public ucContracts()
         {
             InitializeComponent();
+            dgvContracts.SelectionChanged += dgvContracts_SelectionChanged;
+            btnEdit.Enabled     = false;
+            btnDelete.Enabled   = false;
+            btnOpenFile.Enabled = false;
         }
 
         private void ucContracts_Load(object sender, EventArgs e)
@@ -44,6 +48,14 @@ namespace IMS_BISP.UserControls.Manage
             if (_contracts == null || dgvContracts.SelectedRows.Count == 0) return null;
             int idx = dgvContracts.SelectedRows[0].Index;
             return (idx >= 0 && idx < _contracts.Count) ? _contracts[idx] : null;
+        }
+
+        private void dgvContracts_SelectionChanged(object sender, EventArgs e)
+        {
+            bool hasSelection   = GetSelectedContract() != null;
+            btnEdit.Enabled     = hasSelection;
+            btnDelete.Enabled   = hasSelection;
+            btnOpenFile.Enabled = hasSelection;
         }
 
         private void dgvContracts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

@@ -19,6 +19,9 @@ namespace IMS_BISP.UserControls.Products
         {
             InitializeComponent();
             SetupGrid();
+            btnEdit.Enabled             = false;
+            btnDelete.Enabled           = false;
+            btnToggleVisibility.Enabled = false;
         }
 
         private void SetupGrid()
@@ -110,6 +113,7 @@ namespace IMS_BISP.UserControls.Products
 
         private void LoadData()
         {
+            if (!UserSession.StoreId.HasValue) return;
             try
             {
                 _allProducts = ProductRepository.GetByStore(UserSession.StoreId.Value);
@@ -119,8 +123,8 @@ namespace IMS_BISP.UserControls.Products
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to load products: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load products: " + ex.Message,
+                    "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -134,7 +138,11 @@ namespace IMS_BISP.UserControls.Products
         private void dgvProducts_SelectionChanged(object sender, EventArgs e)
         {
             var p = GetSelectedProduct();
-            if (p != null)
+            bool hasSelection               = p != null;
+            btnEdit.Enabled                 = hasSelection;
+            btnDelete.Enabled               = hasSelection;
+            btnToggleVisibility.Enabled     = hasSelection;
+            if (hasSelection)
             {
                 btnToggleVisibility.Text      = p.Visibility == "PUBLIC" ? "Make Private" : "Make Public";
                 btnToggleVisibility.BackColor = p.Visibility == "PUBLIC"
@@ -203,8 +211,8 @@ namespace IMS_BISP.UserControls.Products
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to add product: " + ex.Message,
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Cannot Add Product",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -234,8 +242,8 @@ namespace IMS_BISP.UserControls.Products
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to update product: " + ex.Message,
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Cannot Update Product",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -264,8 +272,8 @@ namespace IMS_BISP.UserControls.Products
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to delete product: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Cannot Delete Product",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -289,8 +297,8 @@ namespace IMS_BISP.UserControls.Products
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to change visibility: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Cannot Change Visibility",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

@@ -114,33 +114,85 @@ namespace IMS_BISP.DAL.Data
             }
         }
 
+        // Superseded by GetDeliveryHistory; kept for reference.
         public static List<ProductRequest> GetAcceptedBySupplier(int supplierStoreId)
         {
-            var list = new List<ProductRequest>();
-            using (var con = DatabaseHelper.GetConnection())
-            using (var cmd = new SqlCommand("sp_Requests_GetAcceptedBySupplier", con))
+            try
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@SupplierStoreId", supplierStoreId);
-                con.Open();
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
+                var list = new List<ProductRequest>();
+                using (var con = DatabaseHelper.GetConnection())
+                using (var cmd = new SqlCommand("sp_Requests_GetAcceptedBySupplier", con))
                 {
-                    list.Add(new ProductRequest
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@SupplierStoreId", supplierStoreId);
+                    con.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        RequestId          = (int)reader["RequestId"],
-                        RequesterStoreName = reader["RequesterStoreName"].ToString(),
-                        ProductName        = reader["ProductName"].ToString(),
-                        SKU                = reader["SKU"].ToString(),
-                        QuantityRequested  = (int)reader["QuantityRequested"],
-                        ProposedPrice      = (decimal)reader["ProposedPrice"],
-                        Status             = reader["Status"].ToString(),
-                        CreatedAt          = (DateTime)reader["CreatedAt"],
-                        RespondedAt        = reader["RespondedAt"] == DBNull.Value ? (DateTime?)null : (DateTime)reader["RespondedAt"]
-                    });
+                        list.Add(new ProductRequest
+                        {
+                            RequestId          = (int)reader["RequestId"],
+                            RequesterStoreName = reader["RequesterStoreName"].ToString(),
+                            ProductName        = reader["ProductName"].ToString(),
+                            SKU                = reader["SKU"].ToString(),
+                            QuantityRequested  = (int)reader["QuantityRequested"],
+                            ProposedPrice      = (decimal)reader["ProposedPrice"],
+                            Status             = reader["Status"].ToString(),
+                            CreatedAt          = (DateTime)reader["CreatedAt"],
+                            RespondedAt        = reader["RespondedAt"] == DBNull.Value ? (DateTime?)null : (DateTime)reader["RespondedAt"]
+                        });
+                    }
                 }
+                return list;
             }
-            return list;
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error: " + ex.Message, ex);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<ProductRequest> GetDeliveryHistory(int supplierStoreId)
+        {
+            try
+            {
+                var list = new List<ProductRequest>();
+                using (var con = DatabaseHelper.GetConnection())
+                using (var cmd = new SqlCommand("sp_Requests_GetDeliveryHistory", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@SupplierStoreId", supplierStoreId);
+                    con.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        list.Add(new ProductRequest
+                        {
+                            RequestId          = (int)reader["RequestId"],
+                            RequesterStoreName = reader["RequesterStoreName"].ToString(),
+                            ProductName        = reader["ProductName"].ToString(),
+                            SKU                = reader["SKU"].ToString(),
+                            QuantityRequested  = (int)reader["QuantityRequested"],
+                            ProposedPrice      = (decimal)reader["ProposedPrice"],
+                            Status             = reader["Status"].ToString(),
+                            CreatedAt          = (DateTime)reader["CreatedAt"],
+                            RespondedAt        = reader["RespondedAt"] == DBNull.Value ? (DateTime?)null : (DateTime)reader["RespondedAt"]
+                        });
+                    }
+                }
+                return list;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error: " + ex.Message, ex);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public static void Respond(int requestId, string status, string rejectionNote)

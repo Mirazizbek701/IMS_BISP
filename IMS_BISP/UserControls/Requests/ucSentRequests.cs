@@ -89,6 +89,7 @@ namespace IMS_BISP.UserControls.Requests
 
         private void LoadData()
         {
+            if (!UserSession.StoreId.HasValue) return;
             try
             {
                 _requests = RequestRepository.GetByRequester(UserSession.StoreId.Value);
@@ -117,6 +118,12 @@ namespace IMS_BISP.UserControls.Requests
                         break;
                     case "REJECTED":
                         dgvSentRequests.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 205, 210);
+                        break;
+                    case "DELIVERED":
+                        dgvSentRequests.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(178, 223, 138);
+                        break;
+                    case "NOT_DELIVERED":
+                        dgvSentRequests.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 171, 145);
                         break;
                 }
             }

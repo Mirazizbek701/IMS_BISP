@@ -78,9 +78,30 @@ namespace IMS_BISP.Forms
                 tbxProductName.Focus();
                 return;
             }
+            if (tbxProductName.Text.Trim().Length > 150)
+            {
+                MessageBox.Show("Product Name must not exceed 150 characters.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbxProductName.Focus();
+                return;
+            }
             if (string.IsNullOrWhiteSpace(tbxSKU.Text))
             {
                 MessageBox.Show("SKU is required.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbxSKU.Focus();
+                return;
+            }
+            if (tbxSKU.Text.Trim().Length > 50)
+            {
+                MessageBox.Show("SKU must not exceed 50 characters.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbxSKU.Focus();
+                return;
+            }
+            if (tbxSKU.Text.Contains(" "))
+            {
+                MessageBox.Show("SKU must not contain spaces.", "Validation",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tbxSKU.Focus();
                 return;
@@ -90,6 +111,34 @@ namespace IMS_BISP.Forms
                 MessageBox.Show("Please select a category.", "Validation",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cmbCategory.Focus();
+                return;
+            }
+            if (nudQuantity.Value < 0)
+            {
+                MessageBox.Show("Quantity must be 0 or greater.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nudQuantity.Focus();
+                return;
+            }
+            if (nudUnitPrice.Value <= 0)
+            {
+                MessageBox.Show("Unit Price must be greater than 0.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nudUnitPrice.Focus();
+                return;
+            }
+            if (nudMinThreshold.Value < 0)
+            {
+                MessageBox.Show("Min Threshold must be 0 or greater.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nudMinThreshold.Focus();
+                return;
+            }
+            if (nudMinThreshold.Value > nudQuantity.Value)
+            {
+                MessageBox.Show("Min Threshold must not exceed the current Quantity.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nudMinThreshold.Focus();
                 return;
             }
 

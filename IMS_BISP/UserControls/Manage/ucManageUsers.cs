@@ -17,6 +17,9 @@ namespace IMS_BISP.UserControls.Manage
         {
             InitializeComponent();
             SetupGrid();
+            btnEdit.Enabled          = false;
+            btnToggleActive.Enabled  = false;
+            btnResetPassword.Enabled = false;
         }
 
         private void SetupGrid()
@@ -99,7 +102,11 @@ namespace IMS_BISP.UserControls.Manage
         private void dgvUsers_SelectionChanged(object sender, EventArgs e)
         {
             var user = GetSelectedUser();
-            if (user != null)
+            bool hasSelection          = user != null;
+            btnEdit.Enabled            = hasSelection;
+            btnToggleActive.Enabled    = hasSelection;
+            btnResetPassword.Enabled   = hasSelection;
+            if (hasSelection)
             {
                 btnToggleActive.Text      = user.IsActive ? "Deactivate" : "Activate";
                 btnToggleActive.BackColor = user.IsActive
@@ -112,7 +119,7 @@ namespace IMS_BISP.UserControls.Manage
         {
             using (var dlg = new frmAddEditUser())
             {
-                if (dlg.ShowDialog(this) != System.Windows.Forms.DialogResult.OK) return;
+                if (dlg.ShowDialog(this) != DialogResult.OK) return;
                 try
                 {
                     int newId = UserRepository.Insert(
@@ -142,7 +149,7 @@ namespace IMS_BISP.UserControls.Manage
 
             using (var dlg = new frmAddEditUser(user))
             {
-                if (dlg.ShowDialog(this) != System.Windows.Forms.DialogResult.OK) return;
+                if (dlg.ShowDialog(this) != DialogResult.OK) return;
                 try
                 {
                     UserRepository.UpdateDetails(user.UserId, dlg.FullName,
@@ -175,7 +182,7 @@ namespace IMS_BISP.UserControls.Manage
             var confirm = MessageBox.Show(
                 $"Are you sure you want to {action} user '{user.FullName}'?",
                 "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm != System.Windows.Forms.DialogResult.Yes) return;
+            if (confirm != DialogResult.Yes) return;
 
             try
             {
@@ -204,7 +211,7 @@ namespace IMS_BISP.UserControls.Manage
 
             using (var dlg = new frmResetPassword())
             {
-                if (dlg.ShowDialog(this) != System.Windows.Forms.DialogResult.OK) return;
+                if (dlg.ShowDialog(this) != DialogResult.OK) return;
                 try
                 {
                     UserRepository.UpdatePassword(user.UserId, dlg.NewPassword);

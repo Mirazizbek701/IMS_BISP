@@ -467,20 +467,42 @@ GO
 CREATE PROCEDURE sp_Requests_Respond
     @RequestId INT, @Status NVARCHAR(20), @RejectionNote NVARCHAR(500)
 AS
-    DECLARE @ProductId INT, @Qty INT, @SupplierStoreId INT;
+    DECLARE @ProductId INT, @Qty INT, @SupplierStoreId INT, @CurrentStatus NVARCHAR(20);
 
     SELECT @ProductId       = ProductId,
            @Qty             = QuantityRequested,
-           @SupplierStoreId = SupplierStoreId
+           @SupplierStoreId = SupplierStoreId,
+           @CurrentStatus   = Status
     FROM   ProductRequests
     WHERE  RequestId = @RequestId;
 
+    -- Guard: prevent invalid state transitions
+    IF @Status IN ('ACCEPTED', 'REJECTED') AND @CurrentStatus != 'PENDING'
+    BEGIN
+        RAISERROR('Request is no longer pending.', 16, 1); RETURN;
+    END
+    IF @Status IN ('DELIVERED', 'NOT_DELIVERED') AND @CurrentStatus != 'ACCEPTED'
+    BEGIN
+        RAISERROR('Request is not in ACCEPTED state.', 16, 1); RETURN;
+    END
+
     IF @Status = 'ACCEPTED'
+    BEGIN
+        DECLARE @CurrentQty INT;
+        SELECT @CurrentQty = Quantity FROM Products
+        WHERE ProductId = @ProductId AND StoreId = @SupplierStoreId;
+
+        IF @CurrentQty < @Qty
+        BEGIN
+            RAISERROR('Not enough stock to accept this request.', 16, 1); RETURN;
+        END
+
         UPDATE Products
         SET Quantity  = Quantity  - @Qty,
             BookedQnt = BookedQnt + @Qty,
             UpdatedAt = GETDATE()
         WHERE ProductId = @ProductId AND StoreId = @SupplierStoreId;
+    END
 
     IF @Status = 'DELIVERED'
         UPDATE Products
@@ -514,6 +536,21 @@ AS
     JOIN   Products p  ON r.ProductId        = p.ProductId
     WHERE  r.SupplierStoreId = @SupplierStoreId
       AND  r.Status = 'ACCEPTED'
+    ORDER  BY r.RespondedAt DESC;
+GO
+
+CREATE PROCEDURE sp_Requests_GetDeliveryHistory
+    @SupplierStoreId INT
+AS
+    SELECT r.RequestId, rs.StoreName AS RequesterStoreName,
+           p.ProductName, p.SKU,
+           r.QuantityRequested, r.ProposedPrice,
+           r.Status, r.CreatedAt, r.RespondedAt
+    FROM   ProductRequests r
+    JOIN   Stores   rs ON r.RequesterStoreId = rs.StoreId
+    JOIN   Products p  ON r.ProductId        = p.ProductId
+    WHERE  r.SupplierStoreId = @SupplierStoreId
+      AND  r.Status IN ('ACCEPTED', 'DELIVERED', 'NOT_DELIVERED')
     ORDER  BY r.RespondedAt DESC;
 GO
 
