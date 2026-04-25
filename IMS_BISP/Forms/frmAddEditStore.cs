@@ -7,29 +7,29 @@ namespace IMS_BISP.Forms
     public partial class frmAddEditStore : Form
     {
         private readonly bool _editMode;
-        private readonly int  _storeId;
+        private readonly int _storeId;
 
         public frmAddEditStore()
         {
             InitializeComponent();
-            _editMode         = false;
+            _editMode = false;
             lblFormTitle.Text = "Add Store";
         }
 
         public frmAddEditStore(Store store)
         {
             InitializeComponent();
-            _editMode              = true;
-            _storeId               = store.StoreId;
-            lblFormTitle.Text      = "Edit Store";
-            tbxStoreName.Text      = store.StoreName;
-            tbxContactPhone.Text   = store.ContactPhone;
+            _editMode = true;
+            _storeId = store.StoreId;
+            lblFormTitle.Text = "Edit Store";
+            tbxStoreName.Text = store.StoreName;
+            tbxContactPhone.Text = store.ContactPhone;
         }
 
-        public string StoreName    => tbxStoreName.Text.Trim();
+        public string StoreName => tbxStoreName.Text.Trim();
         public string ContactPhone => tbxContactPhone.Text.Trim();
-        public bool   IsEditMode   => _editMode;
-        public int    StoreId      => _storeId;
+        public bool IsEditMode => _editMode;
+        public int StoreId => _storeId;
 
         private void btnSave_Click(object sender, EventArgs e)
         {

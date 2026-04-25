@@ -1,7 +1,7 @@
+using IMS_BISP.DAL.Models;
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using IMS_BISP.DAL.Models;
 
 namespace IMS_BISP.DAL.Data
 {
@@ -22,11 +22,11 @@ namespace IMS_BISP.DAL.Data
                     {
                         return new DashboardStats
                         {
-                            TotalProducts      = (int)reader["TotalProducts"],
-                            PublicProducts     = (int)reader["PublicProducts"],
-                            LowStockCount      = (int)reader["LowStockCount"],
-                            PendingIncoming    = (int)reader["PendingIncoming"],
-                            PendingSent        = (int)reader["PendingSent"],
+                            TotalProducts = (int)reader["TotalProducts"],
+                            PublicProducts = (int)reader["PublicProducts"],
+                            LowStockCount = (int)reader["LowStockCount"],
+                            PendingIncoming = (int)reader["PendingIncoming"],
+                            PendingSent = (int)reader["PendingSent"],
                             TotalInventoryValue = (decimal)reader["TotalInventoryValue"]
                         };
                     }
@@ -57,9 +57,9 @@ namespace IMS_BISP.DAL.Data
                     {
                         return new AdminStats
                         {
-                            TotalActiveStores    = (int)reader["TotalActiveStores"],
-                            TotalActiveUsers     = (int)reader["TotalActiveUsers"],
-                            TotalProducts        = (int)reader["TotalProducts"],
+                            TotalActiveStores = (int)reader["TotalActiveStores"],
+                            TotalActiveUsers = (int)reader["TotalActiveUsers"],
+                            TotalProducts = (int)reader["TotalProducts"],
                             TotalPendingRequests = (int)reader["TotalPendingRequests"]
                         };
                     }
@@ -174,7 +174,7 @@ namespace IMS_BISP.DAL.Data
                     {
                         return new BusiestStore
                         {
-                            StoreName     = reader["StoreName"].ToString(),
+                            StoreName = reader["StoreName"].ToString(),
                             TotalRequests = (int)reader["TotalRequests"]
                         };
                     }

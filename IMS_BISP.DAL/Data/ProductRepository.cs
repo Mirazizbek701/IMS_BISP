@@ -1,9 +1,9 @@
+using IMS_BISP.DAL.Mappers;
+using IMS_BISP.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using IMS_BISP.DAL.Mappers;
-using IMS_BISP.DAL.Models;
 
 namespace IMS_BISP.DAL.Data
 {
@@ -50,14 +50,14 @@ namespace IMS_BISP.DAL.Data
                 {
                     list.Add(new Product
                     {
-                        ProductId    = reader["ProductId"]    != DBNull.Value ? (int)reader["ProductId"]    : 0,
-                        ProductName  = reader["ProductName"].ToString(),
-                        SKU          = reader["SKU"].ToString(),
+                        ProductId = reader["ProductId"] != DBNull.Value ? (int)reader["ProductId"] : 0,
+                        ProductName = reader["ProductName"].ToString(),
+                        SKU = reader["SKU"].ToString(),
                         CategoryName = reader["CategoryName"].ToString(),
-                        Quantity     = (int)reader["Quantity"],
+                        Quantity = (int)reader["Quantity"],
                         MinThreshold = (int)reader["MinThreshold"],
-                        BookedQnt    = reader["BookedQnt"]    != DBNull.Value ? (int)reader["BookedQnt"]    : 0,
-                        Available    = reader["Available"]    != DBNull.Value ? (int)reader["Available"]    : 0
+                        BookedQnt = reader["BookedQnt"] != DBNull.Value ? (int)reader["BookedQnt"] : 0,
+                        Available = reader["Available"] != DBNull.Value ? (int)reader["Available"] : 0
                     });
                 }
             }

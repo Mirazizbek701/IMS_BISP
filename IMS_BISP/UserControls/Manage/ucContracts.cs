@@ -18,8 +18,8 @@ namespace IMS_BISP.UserControls.Manage
         {
             InitializeComponent();
             dgvContracts.SelectionChanged += dgvContracts_SelectionChanged;
-            btnEdit.Enabled     = false;
-            btnDelete.Enabled   = false;
+            btnEdit.Enabled = false;
+            btnDelete.Enabled = false;
             btnOpenFile.Enabled = false;
         }
 
@@ -52,9 +52,9 @@ namespace IMS_BISP.UserControls.Manage
 
         private void dgvContracts_SelectionChanged(object sender, EventArgs e)
         {
-            bool hasSelection   = GetSelectedContract() != null;
-            btnEdit.Enabled     = hasSelection;
-            btnDelete.Enabled   = hasSelection;
+            bool hasSelection = GetSelectedContract() != null;
+            btnEdit.Enabled = hasSelection;
+            btnDelete.Enabled = hasSelection;
             btnOpenFile.Enabled = hasSelection;
         }
 
