@@ -49,7 +49,8 @@ namespace IMS_BISP.Forms
                 UserSession.Username = user.Username;
                 UserSession.FullName = user.FullName;
 
-                AuditLogRepository.Insert(user.UserId, "LOGIN", $"{user.Username} logged in.");
+                try { AuditLogRepository.Insert(user.UserId, "LOGIN", $"{user.Username} logged in."); }
+                catch { }
 
                 LoginSuccessful = true;
                 this.Close();
