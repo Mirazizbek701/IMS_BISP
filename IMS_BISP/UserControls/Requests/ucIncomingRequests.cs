@@ -26,68 +26,86 @@ namespace IMS_BISP.UserControls.Requests
 
             dgvIncomingRequests.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colRequestId", HeaderText = "ID",
+                Name = "colRequestId",
+                HeaderText = "ID",
                 DataPropertyName = "RequestId",
-                FillWeight = 5, MinimumWidth = 45
+                FillWeight = 5,
+                MinimumWidth = 45
             });
             dgvIncomingRequests.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colProductName", HeaderText = "Product",
+                Name = "colProductName",
+                HeaderText = "Product",
                 DataPropertyName = "ProductName",
-                FillWeight = 20, MinimumWidth = 130
+                FillWeight = 20,
+                MinimumWidth = 130
             });
             dgvIncomingRequests.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colSKU", HeaderText = "SKU",
+                Name = "colSKU",
+                HeaderText = "SKU",
                 DataPropertyName = "SKU",
-                FillWeight = 9, MinimumWidth = 75
+                FillWeight = 9,
+                MinimumWidth = 75
             });
             dgvIncomingRequests.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colRequesterStore", HeaderText = "Requester Store",
+                Name = "colRequesterStore",
+                HeaderText = "Requester Store",
                 DataPropertyName = "RequesterStoreName",
-                FillWeight = 18, MinimumWidth = 120
+                FillWeight = 18,
+                MinimumWidth = 120
             });
             dgvIncomingRequests.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colQuantity", HeaderText = "Qty",
+                Name = "colQuantity",
+                HeaderText = "Qty",
                 DataPropertyName = "QuantityRequested",
-                FillWeight = 6, MinimumWidth = 50
+                FillWeight = 6,
+                MinimumWidth = 50
             });
             dgvIncomingRequests.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colListedPrice", HeaderText = "Listed Price",
+                Name = "colListedPrice",
+                HeaderText = "Listed Price",
                 DataPropertyName = "OwnListedPrice",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" },
-                FillWeight = 11, MinimumWidth = 90
+                FillWeight = 11,
+                MinimumWidth = 90
             });
             dgvIncomingRequests.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colProposedPrice", HeaderText = "Proposed Price",
+                Name = "colProposedPrice",
+                HeaderText = "Proposed Price",
                 DataPropertyName = "ProposedPrice",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" },
-                FillWeight = 11, MinimumWidth = 95
+                FillWeight = 11,
+                MinimumWidth = 95
             });
             dgvIncomingRequests.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colStatus", HeaderText = "Status",
+                Name = "colStatus",
+                HeaderText = "Status",
                 DataPropertyName = "Status",
-                FillWeight = 9, MinimumWidth = 75
+                FillWeight = 9,
+                MinimumWidth = 75
             });
             dgvIncomingRequests.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colCreatedAt", HeaderText = "Received At",
+                Name = "colCreatedAt",
+                HeaderText = "Received At",
                 DataPropertyName = "CreatedAt",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "dd.MM.yyyy HH:mm" },
-                FillWeight = 13, MinimumWidth = 110
+                FillWeight = 13,
+                MinimumWidth = 110
             });
 
-            dgvIncomingRequests.ColumnHeadersDefaultCellStyle.Font      = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dgvIncomingRequests.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgvIncomingRequests.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
             dgvIncomingRequests.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvIncomingRequests.EnableHeadersVisualStyles               = false;
-            dgvIncomingRequests.DefaultCellStyle.Font                   = new Font("Segoe UI", 9F);
-            dgvIncomingRequests.RowTemplate.Height                      = 28;
+            dgvIncomingRequests.EnableHeadersVisualStyles = false;
+            dgvIncomingRequests.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+            dgvIncomingRequests.RowTemplate.Height = 28;
         }
 
         private void ucIncomingRequests_Load(object sender, EventArgs e)

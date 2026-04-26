@@ -17,7 +17,7 @@ namespace IMS_BISP.UserControls.Manage
         {
             InitializeComponent();
             SetupGrid();
-            btnEdit.Enabled         = false;
+            btnEdit.Enabled = false;
             btnToggleActive.Enabled = false;
         }
 
@@ -28,42 +28,52 @@ namespace IMS_BISP.UserControls.Manage
 
             dgvStores.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colStoreId", HeaderText = "ID",
+                Name = "colStoreId",
+                HeaderText = "ID",
                 DataPropertyName = "StoreId",
-                FillWeight = 5, MinimumWidth = 45
+                FillWeight = 5,
+                MinimumWidth = 45
             });
             dgvStores.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colStoreName", HeaderText = "Store Name",
+                Name = "colStoreName",
+                HeaderText = "Store Name",
                 DataPropertyName = "StoreName",
-                FillWeight = 35, MinimumWidth = 150
+                FillWeight = 35,
+                MinimumWidth = 150
             });
             dgvStores.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colPhone", HeaderText = "Contact Phone",
+                Name = "colPhone",
+                HeaderText = "Contact Phone",
                 DataPropertyName = "ContactPhone",
-                FillWeight = 20, MinimumWidth = 120
+                FillWeight = 20,
+                MinimumWidth = 120
             });
             dgvStores.Columns.Add(new DataGridViewCheckBoxColumn
             {
-                Name = "colIsActive", HeaderText = "Active",
+                Name = "colIsActive",
+                HeaderText = "Active",
                 DataPropertyName = "IsActive",
-                FillWeight = 8, MinimumWidth = 60
+                FillWeight = 8,
+                MinimumWidth = 60
             });
             dgvStores.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colCreatedAt", HeaderText = "Created At",
+                Name = "colCreatedAt",
+                HeaderText = "Created At",
                 DataPropertyName = "CreatedAt",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "dd.MM.yyyy HH:mm" },
-                FillWeight = 20, MinimumWidth = 130
+                FillWeight = 20,
+                MinimumWidth = 130
             });
 
-            dgvStores.ColumnHeadersDefaultCellStyle.Font      = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dgvStores.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgvStores.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
             dgvStores.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvStores.EnableHeadersVisualStyles               = false;
-            dgvStores.DefaultCellStyle.Font                   = new Font("Segoe UI", 9F);
-            dgvStores.RowTemplate.Height                      = 28;
+            dgvStores.EnableHeadersVisualStyles = false;
+            dgvStores.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+            dgvStores.RowTemplate.Height = 28;
         }
 
         private void ucManageStores_Load(object sender, EventArgs e)
@@ -96,12 +106,12 @@ namespace IMS_BISP.UserControls.Manage
         private void dgvStores_SelectionChanged(object sender, EventArgs e)
         {
             var store = GetSelectedStore();
-            bool hasSelection         = store != null;
-            btnEdit.Enabled           = hasSelection;
-            btnToggleActive.Enabled   = hasSelection;
+            bool hasSelection = store != null;
+            btnEdit.Enabled = hasSelection;
+            btnToggleActive.Enabled = hasSelection;
             if (hasSelection)
             {
-                btnToggleActive.Text      = store.IsActive ? "Deactivate" : "Activate";
+                btnToggleActive.Text = store.IsActive ? "Deactivate" : "Activate";
                 btnToggleActive.BackColor = store.IsActive
                     ? Color.FromArgb(192, 57, 43)
                     : Color.FromArgb(39, 174, 96);
@@ -167,7 +177,7 @@ namespace IMS_BISP.UserControls.Manage
             }
 
             bool newStatus = !store.IsActive;
-            string action  = newStatus ? "activate" : "deactivate";
+            string action = newStatus ? "activate" : "deactivate";
 
             var confirm = MessageBox.Show(
                 $"Are you sure you want to {action} '{store.StoreName}'?",

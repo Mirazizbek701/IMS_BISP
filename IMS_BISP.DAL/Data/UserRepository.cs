@@ -1,5 +1,5 @@
-using IMS_BISP.DAL.Models;
 using IMS_BISP.DAL.Mappers;
+using IMS_BISP.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -171,10 +171,10 @@ namespace IMS_BISP.DAL.Data
                 using (var cmd = new SqlCommand("sp_Users_UpdateDetails", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@UserId",   userId);
+                    cmd.Parameters.AddWithValue("@UserId", userId);
                     cmd.Parameters.AddWithValue("@FullName", fullName);
-                    cmd.Parameters.AddWithValue("@RoleId",   roleId);
-                    cmd.Parameters.AddWithValue("@StoreId",  (object)storeId ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@RoleId", roleId);
+                    cmd.Parameters.AddWithValue("@StoreId", (object)storeId ?? DBNull.Value);
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }

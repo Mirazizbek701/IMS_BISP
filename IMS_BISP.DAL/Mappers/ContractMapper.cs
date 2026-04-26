@@ -1,6 +1,6 @@
+using IMS_BISP.DAL.Models;
 using System;
 using System.Data.SqlClient;
-using IMS_BISP.DAL.Models;
 
 namespace IMS_BISP.DAL.Mappers
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IMS_BISP.Sessions
+﻿namespace IMS_BISP.Sessions
 {
     public static class UserSession
     {

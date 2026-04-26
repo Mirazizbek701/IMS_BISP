@@ -28,54 +28,67 @@ namespace IMS_BISP.UserControls.Marketplace
 
             dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colProductId", HeaderText = "ID",
+                Name = "colProductId",
+                HeaderText = "ID",
                 DataPropertyName = "ProductId",
                 Visible = false
             });
             dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colSKU", HeaderText = "SKU",
+                Name = "colSKU",
+                HeaderText = "SKU",
                 DataPropertyName = "SKU",
-                FillWeight = 10, MinimumWidth = 80
+                FillWeight = 10,
+                MinimumWidth = 80
             });
             dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colProductName", HeaderText = "Product Name",
+                Name = "colProductName",
+                HeaderText = "Product Name",
                 DataPropertyName = "ProductName",
-                FillWeight = 22, MinimumWidth = 150
+                FillWeight = 22,
+                MinimumWidth = 150
             });
             dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colCategoryName", HeaderText = "Category",
+                Name = "colCategoryName",
+                HeaderText = "Category",
                 DataPropertyName = "CategoryName",
-                FillWeight = 12, MinimumWidth = 90
+                FillWeight = 12,
+                MinimumWidth = 90
             });
             dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colStoreName", HeaderText = "Supplier Store",
+                Name = "colStoreName",
+                HeaderText = "Supplier Store",
                 DataPropertyName = "StoreName",
-                FillWeight = 18, MinimumWidth = 130
+                FillWeight = 18,
+                MinimumWidth = 130
             });
             dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colQuantity", HeaderText = "Available Qty",
+                Name = "colQuantity",
+                HeaderText = "Available Qty",
                 DataPropertyName = "Quantity",
-                FillWeight = 10, MinimumWidth = 80
+                FillWeight = 10,
+                MinimumWidth = 80
             });
             dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colUnitPrice", HeaderText = "Listed Price",
+                Name = "colUnitPrice",
+                HeaderText = "Listed Price",
                 DataPropertyName = "UnitPrice",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" },
-                FillWeight = 12, MinimumWidth = 90
+                FillWeight = 12,
+                MinimumWidth = 90
             });
 
-            dgvMarketplace.ColumnHeadersDefaultCellStyle.Font      = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dgvMarketplace.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgvMarketplace.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
             dgvMarketplace.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvMarketplace.EnableHeadersVisualStyles               = false;
-            dgvMarketplace.DefaultCellStyle.Font                   = new Font("Segoe UI", 9F);
-            dgvMarketplace.RowTemplate.Height                      = 28;
+            dgvMarketplace.EnableHeadersVisualStyles = false;
+            dgvMarketplace.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+            dgvMarketplace.RowTemplate.Height = 28;
         }
 
         private void ucMarketplace_Load(object sender, EventArgs e)
@@ -92,7 +105,7 @@ namespace IMS_BISP.UserControls.Marketplace
             try
             {
                 _allProducts = ProductRepository.GetPublicExcludingStore(UserSession.StoreId.Value);
-                _filtered    = _allProducts;
+                _filtered = _allProducts;
                 dgvMarketplace.DataSource = null;
                 dgvMarketplace.DataSource = _filtered;
             }

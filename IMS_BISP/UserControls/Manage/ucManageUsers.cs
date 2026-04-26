@@ -17,8 +17,8 @@ namespace IMS_BISP.UserControls.Manage
         {
             InitializeComponent();
             SetupGrid();
-            btnEdit.Enabled          = false;
-            btnToggleActive.Enabled  = false;
+            btnEdit.Enabled = false;
+            btnToggleActive.Enabled = false;
             btnResetPassword.Enabled = false;
         }
 
@@ -29,47 +29,59 @@ namespace IMS_BISP.UserControls.Manage
 
             dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colUserId", HeaderText = "ID",
+                Name = "colUserId",
+                HeaderText = "ID",
                 DataPropertyName = "UserId",
-                FillWeight = 5, MinimumWidth = 45
+                FillWeight = 5,
+                MinimumWidth = 45
             });
             dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colFullName", HeaderText = "Full Name",
+                Name = "colFullName",
+                HeaderText = "Full Name",
                 DataPropertyName = "FullName",
-                FillWeight = 25, MinimumWidth = 140
+                FillWeight = 25,
+                MinimumWidth = 140
             });
             dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colUsername", HeaderText = "Username",
+                Name = "colUsername",
+                HeaderText = "Username",
                 DataPropertyName = "Username",
-                FillWeight = 18, MinimumWidth = 110
+                FillWeight = 18,
+                MinimumWidth = 110
             });
             dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colRoleName", HeaderText = "Role",
+                Name = "colRoleName",
+                HeaderText = "Role",
                 DataPropertyName = "RoleName",
-                FillWeight = 18, MinimumWidth = 110
+                FillWeight = 18,
+                MinimumWidth = 110
             });
             dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "colStoreName", HeaderText = "Store",
+                Name = "colStoreName",
+                HeaderText = "Store",
                 DataPropertyName = "StoreName",
-                FillWeight = 22, MinimumWidth = 130
+                FillWeight = 22,
+                MinimumWidth = 130
             });
             dgvUsers.Columns.Add(new DataGridViewCheckBoxColumn
             {
-                Name = "colIsActive", HeaderText = "Active",
+                Name = "colIsActive",
+                HeaderText = "Active",
                 DataPropertyName = "IsActive",
-                FillWeight = 7, MinimumWidth = 60
+                FillWeight = 7,
+                MinimumWidth = 60
             });
 
-            dgvUsers.ColumnHeadersDefaultCellStyle.Font      = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dgvUsers.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgvUsers.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
             dgvUsers.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvUsers.EnableHeadersVisualStyles               = false;
-            dgvUsers.DefaultCellStyle.Font                   = new Font("Segoe UI", 9F);
-            dgvUsers.RowTemplate.Height                      = 28;
+            dgvUsers.EnableHeadersVisualStyles = false;
+            dgvUsers.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+            dgvUsers.RowTemplate.Height = 28;
         }
 
         private void ucManageUsers_Load(object sender, EventArgs e)
@@ -102,13 +114,13 @@ namespace IMS_BISP.UserControls.Manage
         private void dgvUsers_SelectionChanged(object sender, EventArgs e)
         {
             var user = GetSelectedUser();
-            bool hasSelection          = user != null;
-            btnEdit.Enabled            = hasSelection;
-            btnToggleActive.Enabled    = hasSelection;
-            btnResetPassword.Enabled   = hasSelection;
+            bool hasSelection = user != null;
+            btnEdit.Enabled = hasSelection;
+            btnToggleActive.Enabled = hasSelection;
+            btnResetPassword.Enabled = hasSelection;
             if (hasSelection)
             {
-                btnToggleActive.Text      = user.IsActive ? "Deactivate" : "Activate";
+                btnToggleActive.Text = user.IsActive ? "Deactivate" : "Activate";
                 btnToggleActive.BackColor = user.IsActive
                     ? Color.FromArgb(192, 57, 43)
                     : Color.FromArgb(39, 174, 96);
@@ -177,7 +189,7 @@ namespace IMS_BISP.UserControls.Manage
             }
 
             bool newStatus = !user.IsActive;
-            string action  = newStatus ? "activate" : "deactivate";
+            string action = newStatus ? "activate" : "deactivate";
 
             var confirm = MessageBox.Show(
                 $"Are you sure you want to {action} user '{user.FullName}'?",

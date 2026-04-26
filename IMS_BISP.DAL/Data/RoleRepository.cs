@@ -25,7 +25,7 @@ namespace IMS_BISP.DAL.Data
                         if (roleName == "SuperAdmin") continue;
                         list.Add(new Role
                         {
-                            RoleId   = (int)reader["RoleId"],
+                            RoleId = (int)reader["RoleId"],
                             RoleName = roleName
                         });
                     }

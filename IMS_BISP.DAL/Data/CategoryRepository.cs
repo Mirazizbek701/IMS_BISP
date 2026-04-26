@@ -23,7 +23,7 @@ namespace IMS_BISP.DAL.Data
                     {
                         list.Add(new Category
                         {
-                            CategoryId   = (int)reader["CategoryId"],
+                            CategoryId = (int)reader["CategoryId"],
                             CategoryName = reader["CategoryName"].ToString()
                         });
                     }

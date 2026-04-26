@@ -21,10 +21,10 @@ namespace IMS_BISP.UserControls.Dashboard
 
                 var stats = DashboardRepository.GetAdminStats();
 
-                lblActiveStores.Text     = stats.TotalActiveStores.ToString();
-                lblActiveUsers.Text      = stats.TotalActiveUsers.ToString();
-                lblTotalProducts.Text    = stats.TotalProducts.ToString();
-                lblPendingRequests.Text  = stats.TotalPendingRequests.ToString();
+                lblActiveStores.Text = stats.TotalActiveStores.ToString();
+                lblActiveUsers.Text = stats.TotalActiveUsers.ToString();
+                lblTotalProducts.Text = stats.TotalProducts.ToString();
+                lblPendingRequests.Text = stats.TotalPendingRequests.ToString();
 
                 if (stats.TotalPendingRequests > 0)
                     lblPendingRequests.ForeColor = Color.FromArgb(211, 84, 0);

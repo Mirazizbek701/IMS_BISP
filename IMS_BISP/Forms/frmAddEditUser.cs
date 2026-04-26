@@ -8,59 +8,59 @@ namespace IMS_BISP.Forms
     public partial class frmAddEditUser : Form
     {
         private readonly bool _editMode;
-        private readonly int  _userId;
+        private readonly int _userId;
 
         public frmAddEditUser()
         {
             InitializeComponent();
-            _editMode         = false;
+            _editMode = false;
             lblFormTitle.Text = "Add User";
-            this.Load        += frmAddEditUser_Load;
+            this.Load += frmAddEditUser_Load;
         }
 
         public frmAddEditUser(User user)
         {
             InitializeComponent();
-            _editMode              = true;
-            _userId                = user.UserId;
-            lblFormTitle.Text      = "Edit User";
-            tbxFullName.Text       = user.FullName;
+            _editMode = true;
+            _userId = user.UserId;
+            lblFormTitle.Text = "Edit User";
+            tbxFullName.Text = user.FullName;
 
-            tbxUsername.Text      = user.Username;
-            tbxUsername.ReadOnly  = true;
+            tbxUsername.Text = user.Username;
+            tbxUsername.ReadOnly = true;
             tbxUsername.BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
-            lblPassword.Visible   = false;
-            tbxPassword.Visible   = false;
+            lblPassword.Visible = false;
+            tbxPassword.Visible = false;
 
             this.Load += (s, e) =>
             {
                 frmAddEditUser_Load(s, e);
-                if (cmbRole.Items.Count > 0)  cmbRole.SelectedValue  = user.RoleId;
+                if (cmbRole.Items.Count > 0) cmbRole.SelectedValue = user.RoleId;
                 if (cmbStore.Items.Count > 0 && user.StoreId.HasValue) cmbStore.SelectedValue = user.StoreId.Value;
                 else cmbStore.SelectedIndex = -1;
             };
         }
-        public string FullName      => tbxFullName.Text.Trim();
-        public string Username      => tbxUsername.Text.Trim();
-        public string Password      => tbxPassword.Text.Trim();
-        public int    SelectedRoleId  => (int)cmbRole.SelectedValue;
-        public int?   SelectedStoreId => (cmbStore.SelectedValue == null || cmbStore.SelectedValue == DBNull.Value) ? (int?)null : Convert.ToInt32(cmbStore.SelectedValue);
-        public bool   IsEditMode    => _editMode;
-        public int    UserId        => _userId;
+        public string FullName => tbxFullName.Text.Trim();
+        public string Username => tbxUsername.Text.Trim();
+        public string Password => tbxPassword.Text.Trim();
+        public int SelectedRoleId => (int)cmbRole.SelectedValue;
+        public int? SelectedStoreId => (cmbStore.SelectedValue == null || cmbStore.SelectedValue == DBNull.Value) ? (int?)null : Convert.ToInt32(cmbStore.SelectedValue);
+        public bool IsEditMode => _editMode;
+        public int UserId => _userId;
 
         private void frmAddEditUser_Load(object sender, EventArgs e)
         {
             try
             {
                 var roles = RoleRepository.GetNonAdmin();
-                cmbRole.DataSource    = roles;
+                cmbRole.DataSource = roles;
                 cmbRole.DisplayMember = "RoleName";
-                cmbRole.ValueMember   = "RoleId";
+                cmbRole.ValueMember = "RoleId";
 
                 var stores = StoreRepository.GetAllActive();
-                cmbStore.DataSource    = stores;
+                cmbStore.DataSource = stores;
                 cmbStore.DisplayMember = "StoreName";
-                cmbStore.ValueMember   = "StoreId";
+                cmbStore.ValueMember = "StoreId";
             }
             catch (Exception ex)
             {

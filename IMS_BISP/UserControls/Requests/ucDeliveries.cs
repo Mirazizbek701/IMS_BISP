@@ -49,7 +49,7 @@ namespace IMS_BISP.UserControls.Requests
         {
             var r = GetSelectedRequest();
             bool isAccepted = r != null && r.Status == "ACCEPTED";
-            btnMarkDelivered.Enabled    = isAccepted;
+            btnMarkDelivered.Enabled = isAccepted;
             btnMarkNotDelivered.Enabled = isAccepted;
         }
 

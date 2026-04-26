@@ -1,9 +1,9 @@
+using IMS_BISP.DAL.Mappers;
+using IMS_BISP.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using IMS_BISP.DAL.Mappers;
-using IMS_BISP.DAL.Models;
 
 namespace IMS_BISP.DAL.Data
 {
@@ -131,15 +131,15 @@ namespace IMS_BISP.DAL.Data
                     {
                         list.Add(new ProductRequest
                         {
-                            RequestId          = (int)reader["RequestId"],
+                            RequestId = (int)reader["RequestId"],
                             RequesterStoreName = reader["RequesterStoreName"].ToString(),
-                            ProductName        = reader["ProductName"].ToString(),
-                            SKU                = reader["SKU"].ToString(),
-                            QuantityRequested  = (int)reader["QuantityRequested"],
-                            ProposedPrice      = (decimal)reader["ProposedPrice"],
-                            Status             = reader["Status"].ToString(),
-                            CreatedAt          = (DateTime)reader["CreatedAt"],
-                            RespondedAt        = reader["RespondedAt"] == DBNull.Value ? (DateTime?)null : (DateTime)reader["RespondedAt"]
+                            ProductName = reader["ProductName"].ToString(),
+                            SKU = reader["SKU"].ToString(),
+                            QuantityRequested = (int)reader["QuantityRequested"],
+                            ProposedPrice = (decimal)reader["ProposedPrice"],
+                            Status = reader["Status"].ToString(),
+                            CreatedAt = (DateTime)reader["CreatedAt"],
+                            RespondedAt = reader["RespondedAt"] == DBNull.Value ? (DateTime?)null : (DateTime)reader["RespondedAt"]
                         });
                     }
                 }
@@ -171,15 +171,15 @@ namespace IMS_BISP.DAL.Data
                     {
                         list.Add(new ProductRequest
                         {
-                            RequestId          = (int)reader["RequestId"],
+                            RequestId = (int)reader["RequestId"],
                             RequesterStoreName = reader["RequesterStoreName"].ToString(),
-                            ProductName        = reader["ProductName"].ToString(),
-                            SKU                = reader["SKU"].ToString(),
-                            QuantityRequested  = (int)reader["QuantityRequested"],
-                            ProposedPrice      = (decimal)reader["ProposedPrice"],
-                            Status             = reader["Status"].ToString(),
-                            CreatedAt          = (DateTime)reader["CreatedAt"],
-                            RespondedAt        = reader["RespondedAt"] == DBNull.Value ? (DateTime?)null : (DateTime)reader["RespondedAt"]
+                            ProductName = reader["ProductName"].ToString(),
+                            SKU = reader["SKU"].ToString(),
+                            QuantityRequested = (int)reader["QuantityRequested"],
+                            ProposedPrice = (decimal)reader["ProposedPrice"],
+                            Status = reader["Status"].ToString(),
+                            CreatedAt = (DateTime)reader["CreatedAt"],
+                            RespondedAt = reader["RespondedAt"] == DBNull.Value ? (DateTime?)null : (DateTime)reader["RespondedAt"]
                         });
                     }
                 }

@@ -7,16 +7,16 @@ namespace IMS_BISP.Forms
 {
     public partial class frmAddEditProduct : Form
     {
-        public bool   IsEditMode    { get; private set; }
-        public int    ProductId     { get; private set; }
-        public string ProductName   => tbxProductName.Text.Trim();
-        public string SKU           => tbxSKU.Text.Trim();
-        public int    SelectedCategoryId => (cmbCategory.SelectedItem as Category)?.CategoryId ?? 0;
-        public int    Quantity      => (int)nudQuantity.Value;
-        public decimal UnitPrice    => nudUnitPrice.Value;
-        public int    MinThreshold  => (int)nudMinThreshold.Value;
-        public string Visibility    => rbPublic.Checked ? "PUBLIC" : "PRIVATE";
-        public string Description   => tbxDescription.Text.Trim();
+        public bool IsEditMode { get; private set; }
+        public int ProductId { get; private set; }
+        public string ProductName => tbxProductName.Text.Trim();
+        public string SKU => tbxSKU.Text.Trim();
+        public int SelectedCategoryId => (cmbCategory.SelectedItem as Category)?.CategoryId ?? 0;
+        public int Quantity => (int)nudQuantity.Value;
+        public decimal UnitPrice => nudUnitPrice.Value;
+        public int MinThreshold => (int)nudMinThreshold.Value;
+        public string Visibility => rbPublic.Checked ? "PUBLIC" : "PRIVATE";
+        public string Description => tbxDescription.Text.Trim();
 
         public frmAddEditProduct()
         {
@@ -27,17 +27,17 @@ namespace IMS_BISP.Forms
 
         public frmAddEditProduct(Product product) : this()
         {
-            IsEditMode           = true;
-            ProductId            = product.ProductId;
-            lblFormTitle.Text    = "Edit Product";
-            tbxProductName.Text  = product.ProductName;
-            tbxSKU.Text          = product.SKU;
-            nudQuantity.Value    = product.Quantity;
-            nudUnitPrice.Value   = product.UnitPrice;
+            IsEditMode = true;
+            ProductId = product.ProductId;
+            lblFormTitle.Text = "Edit Product";
+            tbxProductName.Text = product.ProductName;
+            tbxSKU.Text = product.SKU;
+            nudQuantity.Value = product.Quantity;
+            nudUnitPrice.Value = product.UnitPrice;
             nudMinThreshold.Value = product.MinThreshold;
-            rbPublic.Checked     = product.Visibility == "PUBLIC";
-            rbPrivate.Checked    = product.Visibility == "PRIVATE";
-            tbxDescription.Text  = product.Description ?? string.Empty;
+            rbPublic.Checked = product.Visibility == "PUBLIC";
+            rbPrivate.Checked = product.Visibility == "PRIVATE";
+            tbxDescription.Text = product.Description ?? string.Empty;
             this.Tag = product.CategoryId;
         }
 
@@ -46,9 +46,9 @@ namespace IMS_BISP.Forms
             try
             {
                 var categories = CategoryRepository.GetAll();
-                cmbCategory.DataSource    = categories;
+                cmbCategory.DataSource = categories;
                 cmbCategory.DisplayMember = "CategoryName";
-                cmbCategory.ValueMember   = "CategoryId";
+                cmbCategory.ValueMember = "CategoryId";
 
                 if (IsEditMode && this.Tag is int catId)
                 {

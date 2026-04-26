@@ -52,12 +52,12 @@ namespace IMS_BISP.UserControls.Dashboard
 
                 var stats = DashboardRepository.GetStoreStats(UserSession.StoreId.Value);
 
-                lblTotalProducts.Text    = stats.TotalProducts.ToString();
-                lblPublicProducts.Text   = stats.PublicProducts.ToString();
-                lblLowStock.Text         = stats.LowStockCount.ToString();
-                lblIncoming.Text         = stats.PendingIncoming.ToString();
-                lblSent.Text             = stats.PendingSent.ToString();
-                lblInventory.Text        = string.Format("{0:N0} UZS", stats.TotalInventoryValue);
+                lblTotalProducts.Text = stats.TotalProducts.ToString();
+                lblPublicProducts.Text = stats.PublicProducts.ToString();
+                lblLowStock.Text = stats.LowStockCount.ToString();
+                lblIncoming.Text = stats.PendingIncoming.ToString();
+                lblSent.Text = stats.PendingSent.ToString();
+                lblInventory.Text = string.Format("{0:N0} UZS", stats.TotalInventoryValue);
 
                 if (stats.LowStockCount > 0)
                     lblLowStock.ForeColor = Color.FromArgb(192, 57, 43);
@@ -73,7 +73,7 @@ namespace IMS_BISP.UserControls.Dashboard
 
             try
             {
-                var reqStats   = DashboardRepository.GetRequestStats(UserSession.StoreId.Value);
+                var reqStats = DashboardRepository.GetRequestStats(UserSession.StoreId.Value);
                 var lastUpdate = DashboardRepository.GetLastInventoryUpdate(UserSession.StoreId.Value);
 
                 lblLastUpdated.Text = "Last Updated: " + (lastUpdate.HasValue

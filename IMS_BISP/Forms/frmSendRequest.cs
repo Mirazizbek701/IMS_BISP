@@ -6,20 +6,20 @@ namespace IMS_BISP.Forms
 {
     public partial class frmSendRequest : Form
     {
-        public int     SelectedQuantity { get; private set; }
-        public decimal SelectedPrice    { get; private set; }
+        public int SelectedQuantity { get; private set; }
+        public decimal SelectedPrice { get; private set; }
 
-        private int    _availableQty;
+        private int _availableQty;
         private string _storeName;
 
         public frmSendRequest(Product product)
         {
             InitializeComponent();
-            _availableQty       = product.Quantity;
-            _storeName          = product.StoreName;
-            lblProductVal.Text  = $"{product.ProductName} ({product.SKU})";
+            _availableQty = product.Quantity;
+            _storeName = product.StoreName;
+            lblProductVal.Text = $"{product.ProductName} ({product.SKU})";
             lblSupplierVal.Text = product.StoreName;
-            lblPriceVal.Text    = product.UnitPrice.ToString("N2");
+            lblPriceVal.Text = product.UnitPrice.ToString("N2");
             nudProposedPrice.Value = product.UnitPrice;
         }
 
@@ -49,7 +49,7 @@ namespace IMS_BISP.Forms
             }
 
             SelectedQuantity = (int)nudQuantity.Value;
-            SelectedPrice    = nudProposedPrice.Value;
+            SelectedPrice = nudProposedPrice.Value;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }

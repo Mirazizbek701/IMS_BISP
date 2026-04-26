@@ -1,9 +1,9 @@
+using IMS_BISP.DAL.Mappers;
+using IMS_BISP.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using IMS_BISP.DAL.Mappers;
-using IMS_BISP.DAL.Models;
 
 namespace IMS_BISP.DAL.Data
 {
