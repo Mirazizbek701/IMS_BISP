@@ -119,10 +119,10 @@ INSERT INTO Roles (RoleName)
 VALUES ('SuperAdmin'), ('StoreManager'), ('StoreStaff');
 
 -- 2. Stores
-INSERT INTO Stores (StoreName, IsActive)
+INSERT INTO Stores (StoreName, IsActive) 
 VALUES ('SYSTEM', 1);
 
-INSERT INTO Stores (StoreName, ContactPhone) VALUES
+INSERT INTO Stores (StoreName, ContactPhone) VALUES 
 ('A-21 Bekzod',      '+998977702121'),
 ('A-22 Mansur Aka',  '+998901234567'),
 ('B-05 Flash-Store', '+998935550011');
@@ -157,18 +157,21 @@ VALUES
 (4, 3, 'Core i9-14900K',                'CPU-INT-I9',   10, 8500000,  2, 'PUBLIC',  'Box version, local warranty');
 
 -- 6. Product Requests
-INSERT INTO ProductRequests
+-- Mansur (A-22) wants 2 MacBooks from Bekzod (A-21) - PENDING
+INSERT INTO ProductRequests 
 (RequesterStoreId, SupplierStoreId, ProductId, QuantityRequested, ProposedPrice, Status)
 VALUES (3, 2, 1, 2, 12100000, 'PENDING');
 
-INSERT INTO ProductRequests
+-- Bekzod (A-21) wants 1 Samsung from Mansur (A-22) - ACCEPTED
+INSERT INTO ProductRequests 
 (RequesterStoreId, SupplierStoreId, ProductId, QuantityRequested, ProposedPrice, Status, RespondedAt)
 VALUES (2, 3, 6, 1, 14000000, 'ACCEPTED', GETDATE());
 
-INSERT INTO ProductRequests
+-- Flash-Store wants RTX 4090 cheap - REJECTED
+INSERT INTO ProductRequests 
 (RequesterStoreId, SupplierStoreId, ProductId, QuantityRequested, ProposedPrice, Status, RejectionNote, RespondedAt)
 VALUES (4, 2, 3, 1, 22000000, 'REJECTED', 'Uka, this price is impossible!', GETDATE());
-
+GO
 
 -- 7. Test Contracts
 INSERT INTO Contracts (StoreId, StartDate, EndDate, MonthlyRent, ContractFile)
