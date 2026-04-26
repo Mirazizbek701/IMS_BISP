@@ -15,6 +15,7 @@ IF OBJECT_ID('AuditLog',        'U') IS NOT NULL DROP TABLE AuditLog;
 IF OBJECT_ID('ProductRequests', 'U') IS NOT NULL DROP TABLE ProductRequests;
 IF OBJECT_ID('Products',        'U') IS NOT NULL DROP TABLE Products;
 IF OBJECT_ID('Categories',      'U') IS NOT NULL DROP TABLE Categories;
+IF OBJECT_ID('Contracts',       'U') IS NOT NULL DROP TABLE Contracts;
 IF OBJECT_ID('Users',           'U') IS NOT NULL DROP TABLE Users;
 IF OBJECT_ID('Stores',          'U') IS NOT NULL DROP TABLE Stores;
 IF OBJECT_ID('Roles',           'U') IS NOT NULL DROP TABLE Roles;
@@ -162,10 +163,10 @@ INSERT INTO ProductRequests
 (RequesterStoreId, SupplierStoreId, ProductId, QuantityRequested, ProposedPrice, Status)
 VALUES (3, 2, 1, 2, 12100000, 'PENDING');
 
--- Bekzod (A-21) wants 1 Samsung from Mansur (A-22) - ACCEPTED
-INSERT INTO ProductRequests 
+-- Bekzod (A-21) wants 1 Samsung from Mansur (A-22) - DELIVERED
+INSERT INTO ProductRequests
 (RequesterStoreId, SupplierStoreId, ProductId, QuantityRequested, ProposedPrice, Status, RespondedAt)
-VALUES (2, 3, 6, 1, 14000000, 'ACCEPTED', GETDATE());
+VALUES (2, 3, 6, 1, 14000000, 'DELIVERED', GETDATE());
 
 -- Flash-Store wants RTX 4090 cheap - REJECTED
 INSERT INTO ProductRequests 
@@ -179,7 +180,7 @@ VALUES
 (2, '2025-03-01', '2025-06-01', 450.00, NULL),  -- A-21 Bekzod,
 (3, '2025-01-01', '2026-01-01', 380.00, NULL),  -- A-22 Mansur
 (4, '2025-06-01', '2026-06-01', 500.00, NULL);  -- B-05 Flash
-
+GO
 
 -- ============================================================
 --  STORED PROCEDURES
@@ -506,14 +507,14 @@ AS
 
     IF @Status = 'DELIVERED'
         UPDATE Products
-        SET BookedQnt = BookedQnt - @Qty,
+        SET BookedQnt = CASE WHEN BookedQnt >= @Qty THEN BookedQnt - @Qty ELSE 0 END,
             UpdatedAt = GETDATE()
         WHERE ProductId = @ProductId AND StoreId = @SupplierStoreId;
 
     IF @Status = 'NOT_DELIVERED'
         UPDATE Products
         SET Quantity  = Quantity  + @Qty,
-            BookedQnt = BookedQnt - @Qty,
+            BookedQnt = CASE WHEN BookedQnt >= @Qty THEN BookedQnt - @Qty ELSE 0 END,
             UpdatedAt = GETDATE()
         WHERE ProductId = @ProductId AND StoreId = @SupplierStoreId;
 
