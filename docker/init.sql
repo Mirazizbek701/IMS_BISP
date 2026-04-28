@@ -712,8 +712,8 @@ GO
 -- ============================================================
 PRINT '-------------------------------------------------------';
 PRINT ' MalikaTechMarketDB setup complete!';
-PRINT ' Tables  : 8';
-PRINT ' Procs   : 32';
+PRINT ' Tables  : 9';
+PRINT ' Procs   : 34';
 PRINT ' Login   -> Username: admin | Password: 1234';
 PRINT '-------------------------------------------------------';
 GO

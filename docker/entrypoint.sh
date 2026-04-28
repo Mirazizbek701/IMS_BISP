@@ -4,11 +4,11 @@ SA_PASSWORD="${MSSQL_SA_PASSWORD}"
 SQLCMD="/opt/mssql-tools18/bin/sqlcmd"
 INIT_SCRIPT="/docker-entrypoint-initdb.d/init.sql"
 
-# ── 1. Start SQL Server in the background ──────────────────────────────────
+# Start SQL Server in the background
 /opt/mssql/bin/sqlservr &
 MSSQL_PID=$!
 
-# ── 2. Wait until SQL Server is accepting connections ─────────────────────
+# Wait until SQL Server is accepting connections
 echo "[init] Waiting for SQL Server to start..."
 for i in $(seq 1 30); do
     if $SQLCMD -S localhost -U sa -P "$SA_PASSWORD" -C -Q "SELECT 1" &>/dev/null; then
@@ -19,7 +19,7 @@ for i in $(seq 1 30); do
     sleep 2
 done
 
-# ── 3. Check whether the database already exists ──────────────────────────
+# Check whether the database already exists
 DB_EXISTS=$($SQLCMD -S localhost -U sa -P "$SA_PASSWORD" -C \
     -Q "SET NOCOUNT ON; SELECT COUNT(1) FROM sys.databases WHERE name='MalikaTechMarketDB'" \
     -h -1 2>/dev/null | tr -d '[:space:]')
@@ -32,5 +32,5 @@ else
     echo "[init] Database already exists — skipping seed."
 fi
 
-# ── 4. Hand control back to the SQL Server process ────────────────────────
+# Hand control back to the SQL Server process
 wait $MSSQL_PID
