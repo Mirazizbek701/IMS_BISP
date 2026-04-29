@@ -22,6 +22,12 @@ namespace IMS_BISP.UserControls.Manage
             this.btnResetPassword  = new System.Windows.Forms.Button();
             this.btnRefresh        = new System.Windows.Forms.Button();
             this.dgvUsers          = new System.Windows.Forms.DataGridView();
+            this.colUserId         = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFullName       = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUsername       = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRoleName       = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStoreName      = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIsActive       = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
             //
@@ -124,6 +130,7 @@ namespace IMS_BISP.UserControls.Manage
                 System.Windows.Forms.AnchorStyles.Bottom |
                 System.Windows.Forms.AnchorStyles.Left   |
                 System.Windows.Forms.AnchorStyles.Right));
+            this.dgvUsers.AutoGenerateColumns         = false;
             this.dgvUsers.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvUsers.BackgroundColor             = System.Drawing.Color.White;
             this.dgvUsers.BorderStyle                 = System.Windows.Forms.BorderStyle.None;
@@ -139,6 +146,51 @@ namespace IMS_BISP.UserControls.Manage
             this.dgvUsers.Size                        = new System.Drawing.Size(860, 370);
             this.dgvUsers.TabIndex                    = 6;
             this.dgvUsers.SelectionChanged           += new System.EventHandler(this.dgvUsers_SelectionChanged);
+            // colUserId
+            this.colUserId.DataPropertyName = "UserId";
+            this.colUserId.FillWeight       = 5F;
+            this.colUserId.HeaderText       = "ID";
+            this.colUserId.MinimumWidth     = 45;
+            this.colUserId.Name             = "colUserId";
+            this.colUserId.ReadOnly         = true;
+            // colFullName
+            this.colFullName.DataPropertyName = "FullName";
+            this.colFullName.FillWeight       = 25F;
+            this.colFullName.HeaderText       = "Full Name";
+            this.colFullName.MinimumWidth     = 140;
+            this.colFullName.Name             = "colFullName";
+            this.colFullName.ReadOnly         = true;
+            // colUsername
+            this.colUsername.DataPropertyName = "Username";
+            this.colUsername.FillWeight       = 18F;
+            this.colUsername.HeaderText       = "Username";
+            this.colUsername.MinimumWidth     = 110;
+            this.colUsername.Name             = "colUsername";
+            this.colUsername.ReadOnly         = true;
+            // colRoleName
+            this.colRoleName.DataPropertyName = "RoleName";
+            this.colRoleName.FillWeight       = 18F;
+            this.colRoleName.HeaderText       = "Role";
+            this.colRoleName.MinimumWidth     = 110;
+            this.colRoleName.Name             = "colRoleName";
+            this.colRoleName.ReadOnly         = true;
+            // colStoreName
+            this.colStoreName.DataPropertyName = "StoreName";
+            this.colStoreName.FillWeight       = 22F;
+            this.colStoreName.HeaderText       = "Store";
+            this.colStoreName.MinimumWidth     = 130;
+            this.colStoreName.Name             = "colStoreName";
+            this.colStoreName.ReadOnly         = true;
+            // colIsActive
+            this.colIsActive.DataPropertyName = "IsActive";
+            this.colIsActive.FillWeight       = 7F;
+            this.colIsActive.HeaderText       = "Active";
+            this.colIsActive.MinimumWidth     = 60;
+            this.colIsActive.Name             = "colIsActive";
+            this.colIsActive.ReadOnly         = true;
+            this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                this.colUserId, this.colFullName, this.colUsername,
+                this.colRoleName, this.colStoreName, this.colIsActive });
             //
             // ucManageUsers
             //
@@ -162,12 +214,18 @@ namespace IMS_BISP.UserControls.Manage
 
         #endregion
 
-        private System.Windows.Forms.Label           lblTitle;
-        private System.Windows.Forms.Button          btnAdd;
-        private System.Windows.Forms.Button          btnEdit;
-        private System.Windows.Forms.Button          btnToggleActive;
-        private System.Windows.Forms.Button          btnResetPassword;
-        private System.Windows.Forms.Button          btnRefresh;
-        private System.Windows.Forms.DataGridView    dgvUsers;
+        private System.Windows.Forms.Label              lblTitle;
+        private System.Windows.Forms.Button             btnAdd;
+        private System.Windows.Forms.Button             btnEdit;
+        private System.Windows.Forms.Button             btnToggleActive;
+        private System.Windows.Forms.Button             btnResetPassword;
+        private System.Windows.Forms.Button             btnRefresh;
+        private System.Windows.Forms.DataGridView       dgvUsers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn    colUserId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn    colFullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn    colUsername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn    colRoleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn    colStoreName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn   colIsActive;
     }
 }

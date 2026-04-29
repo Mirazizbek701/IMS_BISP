@@ -21,6 +21,13 @@ namespace IMS_BISP.UserControls.Marketplace
             this.btnRequestProduct = new System.Windows.Forms.Button();
             this.btnRefresh        = new System.Windows.Forms.Button();
             this.dgvMarketplace    = new System.Windows.Forms.DataGridView();
+            this.colProductId      = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSKU            = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProductName    = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCategoryName   = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStoreName      = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity       = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitPrice      = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMarketplace)).BeginInit();
             this.SuspendLayout();
             // lblTitle
@@ -36,7 +43,7 @@ namespace IMS_BISP.UserControls.Marketplace
             this.tbxSearch.Location = new System.Drawing.Point(20, 58);
             this.tbxSearch.Name     = "tbxSearch";
             this.tbxSearch.Size     = new System.Drawing.Size(220, 26);
-            this.tbxSearch.TabIndex        = 1;
+            this.tbxSearch.TabIndex = 1;
             // btnSearch
             this.btnSearch.BackColor                  = System.Drawing.Color.FromArgb(41, 128, 185);
             this.btnSearch.Cursor                     = System.Windows.Forms.Cursors.Hand;
@@ -101,6 +108,7 @@ namespace IMS_BISP.UserControls.Marketplace
                 System.Windows.Forms.AnchorStyles.Bottom |
                 System.Windows.Forms.AnchorStyles.Left   |
                 System.Windows.Forms.AnchorStyles.Right));
+            this.dgvMarketplace.AutoGenerateColumns         = false;
             this.dgvMarketplace.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMarketplace.BackgroundColor             = System.Drawing.Color.White;
             this.dgvMarketplace.BorderStyle                 = System.Windows.Forms.BorderStyle.None;
@@ -115,6 +123,60 @@ namespace IMS_BISP.UserControls.Marketplace
             this.dgvMarketplace.SelectionMode               = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMarketplace.Size                        = new System.Drawing.Size(910, 374);
             this.dgvMarketplace.TabIndex                    = 6;
+            // colProductId
+            this.colProductId.DataPropertyName = "ProductId";
+            this.colProductId.HeaderText       = "ID";
+            this.colProductId.Name             = "colProductId";
+            this.colProductId.ReadOnly         = true;
+            this.colProductId.Visible          = false;
+            // colSKU
+            this.colSKU.DataPropertyName = "SKU";
+            this.colSKU.FillWeight       = 10F;
+            this.colSKU.HeaderText       = "SKU";
+            this.colSKU.MinimumWidth     = 80;
+            this.colSKU.Name             = "colSKU";
+            this.colSKU.ReadOnly         = true;
+            // colProductName
+            this.colProductName.DataPropertyName = "ProductName";
+            this.colProductName.FillWeight       = 22F;
+            this.colProductName.HeaderText       = "Product Name";
+            this.colProductName.MinimumWidth     = 150;
+            this.colProductName.Name             = "colProductName";
+            this.colProductName.ReadOnly         = true;
+            // colCategoryName
+            this.colCategoryName.DataPropertyName = "CategoryName";
+            this.colCategoryName.FillWeight       = 12F;
+            this.colCategoryName.HeaderText       = "Category";
+            this.colCategoryName.MinimumWidth     = 90;
+            this.colCategoryName.Name             = "colCategoryName";
+            this.colCategoryName.ReadOnly         = true;
+            // colStoreName
+            this.colStoreName.DataPropertyName = "StoreName";
+            this.colStoreName.FillWeight       = 18F;
+            this.colStoreName.HeaderText       = "Supplier Store";
+            this.colStoreName.MinimumWidth     = 130;
+            this.colStoreName.Name             = "colStoreName";
+            this.colStoreName.ReadOnly         = true;
+            // colQuantity
+            this.colQuantity.DataPropertyName = "Quantity";
+            this.colQuantity.FillWeight       = 10F;
+            this.colQuantity.HeaderText       = "Available Qty";
+            this.colQuantity.MinimumWidth     = 80;
+            this.colQuantity.Name             = "colQuantity";
+            this.colQuantity.ReadOnly         = true;
+            // colUnitPrice
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            dataGridViewCellStyle1.Format = "N2";
+            this.colUnitPrice.DataPropertyName = "UnitPrice";
+            this.colUnitPrice.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colUnitPrice.FillWeight       = 12F;
+            this.colUnitPrice.HeaderText       = "Listed Price";
+            this.colUnitPrice.MinimumWidth     = 90;
+            this.colUnitPrice.Name             = "colUnitPrice";
+            this.colUnitPrice.ReadOnly         = true;
+            this.dgvMarketplace.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                this.colProductId, this.colSKU, this.colProductName,
+                this.colCategoryName, this.colStoreName, this.colQuantity, this.colUnitPrice });
             // ucMarketplace
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode       = System.Windows.Forms.AutoScaleMode.Font;
@@ -136,12 +198,19 @@ namespace IMS_BISP.UserControls.Marketplace
 
         #endregion
 
-        private System.Windows.Forms.Label           lblTitle;
-        private System.Windows.Forms.TextBox         tbxSearch;
-        private System.Windows.Forms.Button          btnSearch;
-        private System.Windows.Forms.Button          btnClearSearch;
-        private System.Windows.Forms.Button          btnRequestProduct;
-        private System.Windows.Forms.Button          btnRefresh;
-        private System.Windows.Forms.DataGridView    dgvMarketplace;
+        private System.Windows.Forms.Label              lblTitle;
+        private System.Windows.Forms.TextBox            tbxSearch;
+        private System.Windows.Forms.Button             btnSearch;
+        private System.Windows.Forms.Button             btnClearSearch;
+        private System.Windows.Forms.Button             btnRequestProduct;
+        private System.Windows.Forms.Button             btnRefresh;
+        private System.Windows.Forms.DataGridView       dgvMarketplace;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProductId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSKU;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCategoryName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStoreName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitPrice;
     }
 }

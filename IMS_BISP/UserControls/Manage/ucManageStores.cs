@@ -23,51 +23,6 @@ namespace IMS_BISP.UserControls.Manage
 
         private void SetupGrid()
         {
-            dgvStores.AutoGenerateColumns = false;
-            dgvStores.Columns.Clear();
-
-            dgvStores.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colStoreId",
-                HeaderText = "ID",
-                DataPropertyName = "StoreId",
-                FillWeight = 5,
-                MinimumWidth = 45
-            });
-            dgvStores.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colStoreName",
-                HeaderText = "Store Name",
-                DataPropertyName = "StoreName",
-                FillWeight = 35,
-                MinimumWidth = 150
-            });
-            dgvStores.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colPhone",
-                HeaderText = "Contact Phone",
-                DataPropertyName = "ContactPhone",
-                FillWeight = 20,
-                MinimumWidth = 120
-            });
-            dgvStores.Columns.Add(new DataGridViewCheckBoxColumn
-            {
-                Name = "colIsActive",
-                HeaderText = "Active",
-                DataPropertyName = "IsActive",
-                FillWeight = 8,
-                MinimumWidth = 60
-            });
-            dgvStores.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colCreatedAt",
-                HeaderText = "Created At",
-                DataPropertyName = "CreatedAt",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd.MM.yyyy HH:mm" },
-                FillWeight = 20,
-                MinimumWidth = 130
-            });
-
             dgvStores.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgvStores.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
             dgvStores.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;

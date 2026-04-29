@@ -23,66 +23,6 @@ namespace IMS_BISP.UserControls.Marketplace
 
         private void SetupGrid()
         {
-            dgvMarketplace.AutoGenerateColumns = false;
-            dgvMarketplace.Columns.Clear();
-
-            dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colProductId",
-                HeaderText = "ID",
-                DataPropertyName = "ProductId",
-                Visible = false
-            });
-            dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colSKU",
-                HeaderText = "SKU",
-                DataPropertyName = "SKU",
-                FillWeight = 10,
-                MinimumWidth = 80
-            });
-            dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colProductName",
-                HeaderText = "Product Name",
-                DataPropertyName = "ProductName",
-                FillWeight = 22,
-                MinimumWidth = 150
-            });
-            dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colCategoryName",
-                HeaderText = "Category",
-                DataPropertyName = "CategoryName",
-                FillWeight = 12,
-                MinimumWidth = 90
-            });
-            dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colStoreName",
-                HeaderText = "Supplier Store",
-                DataPropertyName = "StoreName",
-                FillWeight = 18,
-                MinimumWidth = 130
-            });
-            dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colQuantity",
-                HeaderText = "Available Qty",
-                DataPropertyName = "Quantity",
-                FillWeight = 10,
-                MinimumWidth = 80
-            });
-            dgvMarketplace.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colUnitPrice",
-                HeaderText = "Listed Price",
-                DataPropertyName = "UnitPrice",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" },
-                FillWeight = 12,
-                MinimumWidth = 90
-            });
-
             dgvMarketplace.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgvMarketplace.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
             dgvMarketplace.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;

@@ -24,6 +24,17 @@ namespace IMS_BISP.UserControls.Products
             this.btnToggleVisibility = new System.Windows.Forms.Button();
             this.btnRefresh          = new System.Windows.Forms.Button();
             this.dgvProducts         = new System.Windows.Forms.DataGridView();
+            this.colProductId        = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSKU              = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProductName      = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCategoryName     = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity         = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBookedQnt        = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAvailable        = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitPrice        = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMinThreshold     = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVisibility       = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUpdatedAt        = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // lblTitle
@@ -146,6 +157,7 @@ namespace IMS_BISP.UserControls.Products
                 System.Windows.Forms.AnchorStyles.Bottom |
                 System.Windows.Forms.AnchorStyles.Left   |
                 System.Windows.Forms.AnchorStyles.Right));
+            this.dgvProducts.AutoGenerateColumns         = false;
             this.dgvProducts.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProducts.BackgroundColor             = System.Drawing.Color.White;
             this.dgvProducts.BorderStyle                 = System.Windows.Forms.BorderStyle.None;
@@ -162,6 +174,92 @@ namespace IMS_BISP.UserControls.Products
             this.dgvProducts.TabIndex                    = 9;
             this.dgvProducts.SelectionChanged           += new System.EventHandler(this.dgvProducts_SelectionChanged);
             this.dgvProducts.DataBindingComplete        += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvProducts_DataBindingComplete);
+            // colProductId
+            this.colProductId.DataPropertyName = "ProductId";
+            this.colProductId.HeaderText       = "ID";
+            this.colProductId.Name             = "colProductId";
+            this.colProductId.ReadOnly         = true;
+            this.colProductId.Visible          = false;
+            // colSKU
+            this.colSKU.DataPropertyName = "SKU";
+            this.colSKU.FillWeight       = 10F;
+            this.colSKU.HeaderText       = "SKU";
+            this.colSKU.MinimumWidth     = 80;
+            this.colSKU.Name             = "colSKU";
+            this.colSKU.ReadOnly         = true;
+            // colProductName
+            this.colProductName.DataPropertyName = "ProductName";
+            this.colProductName.FillWeight       = 22F;
+            this.colProductName.HeaderText       = "Product Name";
+            this.colProductName.MinimumWidth     = 150;
+            this.colProductName.Name             = "colProductName";
+            this.colProductName.ReadOnly         = true;
+            // colCategoryName
+            this.colCategoryName.DataPropertyName = "CategoryName";
+            this.colCategoryName.FillWeight       = 14F;
+            this.colCategoryName.HeaderText       = "Category";
+            this.colCategoryName.MinimumWidth     = 100;
+            this.colCategoryName.Name             = "colCategoryName";
+            this.colCategoryName.ReadOnly         = true;
+            // colQuantity
+            this.colQuantity.DataPropertyName = "Quantity";
+            this.colQuantity.FillWeight       = 6F;
+            this.colQuantity.HeaderText       = "Qty";
+            this.colQuantity.MinimumWidth     = 50;
+            this.colQuantity.Name             = "colQuantity";
+            this.colQuantity.ReadOnly         = true;
+            // colBookedQnt
+            this.colBookedQnt.DataPropertyName = "BookedQnt";
+            this.colBookedQnt.FillWeight       = 6F;
+            this.colBookedQnt.HeaderText       = "Booked";
+            this.colBookedQnt.MinimumWidth     = 55;
+            this.colBookedQnt.Name             = "colBookedQnt";
+            this.colBookedQnt.ReadOnly         = true;
+            // colAvailable
+            this.colAvailable.DataPropertyName = "Available";
+            this.colAvailable.FillWeight       = 7F;
+            this.colAvailable.HeaderText       = "Available";
+            this.colAvailable.MinimumWidth     = 65;
+            this.colAvailable.Name             = "colAvailable";
+            this.colAvailable.ReadOnly         = true;
+            // colUnitPrice
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            dataGridViewCellStyle1.Format = "N2";
+            this.colUnitPrice.DataPropertyName = "UnitPrice";
+            this.colUnitPrice.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colUnitPrice.FillWeight       = 10F;
+            this.colUnitPrice.HeaderText       = "Unit Price";
+            this.colUnitPrice.MinimumWidth     = 80;
+            this.colUnitPrice.Name             = "colUnitPrice";
+            this.colUnitPrice.ReadOnly         = true;
+            // colMinThreshold
+            this.colMinThreshold.DataPropertyName = "MinThreshold";
+            this.colMinThreshold.FillWeight       = 10F;
+            this.colMinThreshold.HeaderText       = "Min Threshold";
+            this.colMinThreshold.MinimumWidth     = 90;
+            this.colMinThreshold.Name             = "colMinThreshold";
+            this.colMinThreshold.ReadOnly         = true;
+            // colVisibility
+            this.colVisibility.DataPropertyName = "Visibility";
+            this.colVisibility.FillWeight       = 9F;
+            this.colVisibility.HeaderText       = "Visibility";
+            this.colVisibility.MinimumWidth     = 70;
+            this.colVisibility.Name             = "colVisibility";
+            this.colVisibility.ReadOnly         = true;
+            // colUpdatedAt
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            dataGridViewCellStyle2.Format = "dd.MM.yyyy HH:mm";
+            this.colUpdatedAt.DataPropertyName = "UpdatedAt";
+            this.colUpdatedAt.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colUpdatedAt.FillWeight       = 14F;
+            this.colUpdatedAt.HeaderText       = "Updated At";
+            this.colUpdatedAt.MinimumWidth     = 120;
+            this.colUpdatedAt.Name             = "colUpdatedAt";
+            this.colUpdatedAt.ReadOnly         = true;
+            this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                this.colProductId, this.colSKU, this.colProductName, this.colCategoryName,
+                this.colQuantity, this.colBookedQnt, this.colAvailable,
+                this.colUnitPrice, this.colMinThreshold, this.colVisibility, this.colUpdatedAt });
             // ucProducts
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode       = System.Windows.Forms.AutoScaleMode.Font;
@@ -186,15 +284,26 @@ namespace IMS_BISP.UserControls.Products
 
         #endregion
 
-        private System.Windows.Forms.Label           lblTitle;
-        private System.Windows.Forms.TextBox         tbxSearch;
-        private System.Windows.Forms.Button          btnSearch;
-        private System.Windows.Forms.Button          btnClearSearch;
-        private System.Windows.Forms.Button          btnAdd;
-        private System.Windows.Forms.Button          btnEdit;
-        private System.Windows.Forms.Button          btnDelete;
-        private System.Windows.Forms.Button          btnToggleVisibility;
-        private System.Windows.Forms.Button          btnRefresh;
-        private System.Windows.Forms.DataGridView    dgvProducts;
+        private System.Windows.Forms.Label              lblTitle;
+        private System.Windows.Forms.TextBox            tbxSearch;
+        private System.Windows.Forms.Button             btnSearch;
+        private System.Windows.Forms.Button             btnClearSearch;
+        private System.Windows.Forms.Button             btnAdd;
+        private System.Windows.Forms.Button             btnEdit;
+        private System.Windows.Forms.Button             btnDelete;
+        private System.Windows.Forms.Button             btnToggleVisibility;
+        private System.Windows.Forms.Button             btnRefresh;
+        private System.Windows.Forms.DataGridView       dgvProducts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProductId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSKU;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCategoryName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBookedQnt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAvailable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMinThreshold;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVisibility;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUpdatedAt;
     }
 }

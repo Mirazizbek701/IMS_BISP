@@ -19,6 +19,15 @@ namespace IMS_BISP.UserControls.Requests
             this.btnReject           = new System.Windows.Forms.Button();
             this.btnRefresh          = new System.Windows.Forms.Button();
             this.dgvIncomingRequests = new System.Windows.Forms.DataGridView();
+            this.colRequestId        = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProductName      = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSKU              = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRequesterStore   = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity         = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colListedPrice      = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProposedPrice    = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatus           = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCreatedAt        = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncomingRequests)).BeginInit();
             this.SuspendLayout();
             // lblTitle
@@ -81,6 +90,7 @@ namespace IMS_BISP.UserControls.Requests
                 System.Windows.Forms.AnchorStyles.Bottom |
                 System.Windows.Forms.AnchorStyles.Left   |
                 System.Windows.Forms.AnchorStyles.Right));
+            this.dgvIncomingRequests.AutoGenerateColumns         = false;
             this.dgvIncomingRequests.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvIncomingRequests.BackgroundColor             = System.Drawing.Color.White;
             this.dgvIncomingRequests.BorderStyle                 = System.Windows.Forms.BorderStyle.None;
@@ -97,6 +107,82 @@ namespace IMS_BISP.UserControls.Requests
             this.dgvIncomingRequests.TabIndex                    = 4;
             this.dgvIncomingRequests.SelectionChanged           += new System.EventHandler(this.dgvIncomingRequests_SelectionChanged);
             this.dgvIncomingRequests.DataBindingComplete        += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvIncomingRequests_DataBindingComplete);
+            // colRequestId
+            this.colRequestId.DataPropertyName = "RequestId";
+            this.colRequestId.FillWeight       = 5F;
+            this.colRequestId.HeaderText       = "ID";
+            this.colRequestId.MinimumWidth     = 45;
+            this.colRequestId.Name             = "colRequestId";
+            this.colRequestId.ReadOnly         = true;
+            // colProductName
+            this.colProductName.DataPropertyName = "ProductName";
+            this.colProductName.FillWeight       = 20F;
+            this.colProductName.HeaderText       = "Product";
+            this.colProductName.MinimumWidth     = 130;
+            this.colProductName.Name             = "colProductName";
+            this.colProductName.ReadOnly         = true;
+            // colSKU
+            this.colSKU.DataPropertyName = "SKU";
+            this.colSKU.FillWeight       = 9F;
+            this.colSKU.HeaderText       = "SKU";
+            this.colSKU.MinimumWidth     = 75;
+            this.colSKU.Name             = "colSKU";
+            this.colSKU.ReadOnly         = true;
+            // colRequesterStore
+            this.colRequesterStore.DataPropertyName = "RequesterStoreName";
+            this.colRequesterStore.FillWeight       = 18F;
+            this.colRequesterStore.HeaderText       = "Requester Store";
+            this.colRequesterStore.MinimumWidth     = 120;
+            this.colRequesterStore.Name             = "colRequesterStore";
+            this.colRequesterStore.ReadOnly         = true;
+            // colQuantity
+            this.colQuantity.DataPropertyName = "QuantityRequested";
+            this.colQuantity.FillWeight       = 6F;
+            this.colQuantity.HeaderText       = "Qty";
+            this.colQuantity.MinimumWidth     = 50;
+            this.colQuantity.Name             = "colQuantity";
+            this.colQuantity.ReadOnly         = true;
+            // colListedPrice
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            dataGridViewCellStyle1.Format = "N2";
+            this.colListedPrice.DataPropertyName = "OwnListedPrice";
+            this.colListedPrice.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colListedPrice.FillWeight       = 11F;
+            this.colListedPrice.HeaderText       = "Listed Price";
+            this.colListedPrice.MinimumWidth     = 90;
+            this.colListedPrice.Name             = "colListedPrice";
+            this.colListedPrice.ReadOnly         = true;
+            // colProposedPrice
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            dataGridViewCellStyle2.Format = "N2";
+            this.colProposedPrice.DataPropertyName = "ProposedPrice";
+            this.colProposedPrice.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colProposedPrice.FillWeight       = 11F;
+            this.colProposedPrice.HeaderText       = "Proposed Price";
+            this.colProposedPrice.MinimumWidth     = 95;
+            this.colProposedPrice.Name             = "colProposedPrice";
+            this.colProposedPrice.ReadOnly         = true;
+            // colStatus
+            this.colStatus.DataPropertyName = "Status";
+            this.colStatus.FillWeight       = 9F;
+            this.colStatus.HeaderText       = "Status";
+            this.colStatus.MinimumWidth     = 75;
+            this.colStatus.Name             = "colStatus";
+            this.colStatus.ReadOnly         = true;
+            // colCreatedAt
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            dataGridViewCellStyle3.Format = "dd.MM.yyyy HH:mm";
+            this.colCreatedAt.DataPropertyName = "CreatedAt";
+            this.colCreatedAt.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colCreatedAt.FillWeight       = 13F;
+            this.colCreatedAt.HeaderText       = "Received At";
+            this.colCreatedAt.MinimumWidth     = 110;
+            this.colCreatedAt.Name             = "colCreatedAt";
+            this.colCreatedAt.ReadOnly         = true;
+            this.dgvIncomingRequests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                this.colRequestId, this.colProductName, this.colSKU, this.colRequesterStore,
+                this.colQuantity, this.colListedPrice, this.colProposedPrice,
+                this.colStatus, this.colCreatedAt });
             // ucIncomingRequests
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode       = System.Windows.Forms.AutoScaleMode.Font;
@@ -116,10 +202,19 @@ namespace IMS_BISP.UserControls.Requests
 
         #endregion
 
-        private System.Windows.Forms.Label           lblTitle;
-        private System.Windows.Forms.Button          btnAccept;
-        private System.Windows.Forms.Button          btnReject;
-        private System.Windows.Forms.Button          btnRefresh;
-        private System.Windows.Forms.DataGridView    dgvIncomingRequests;
+        private System.Windows.Forms.Label              lblTitle;
+        private System.Windows.Forms.Button             btnAccept;
+        private System.Windows.Forms.Button             btnReject;
+        private System.Windows.Forms.Button             btnRefresh;
+        private System.Windows.Forms.DataGridView       dgvIncomingRequests;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRequestId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSKU;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRequesterStore;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colListedPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProposedPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCreatedAt;
     }
 }

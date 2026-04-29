@@ -24,58 +24,6 @@ namespace IMS_BISP.UserControls.Manage
 
         private void SetupGrid()
         {
-            dgvUsers.AutoGenerateColumns = false;
-            dgvUsers.Columns.Clear();
-
-            dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colUserId",
-                HeaderText = "ID",
-                DataPropertyName = "UserId",
-                FillWeight = 5,
-                MinimumWidth = 45
-            });
-            dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colFullName",
-                HeaderText = "Full Name",
-                DataPropertyName = "FullName",
-                FillWeight = 25,
-                MinimumWidth = 140
-            });
-            dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colUsername",
-                HeaderText = "Username",
-                DataPropertyName = "Username",
-                FillWeight = 18,
-                MinimumWidth = 110
-            });
-            dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colRoleName",
-                HeaderText = "Role",
-                DataPropertyName = "RoleName",
-                FillWeight = 18,
-                MinimumWidth = 110
-            });
-            dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colStoreName",
-                HeaderText = "Store",
-                DataPropertyName = "StoreName",
-                FillWeight = 22,
-                MinimumWidth = 130
-            });
-            dgvUsers.Columns.Add(new DataGridViewCheckBoxColumn
-            {
-                Name = "colIsActive",
-                HeaderText = "Active",
-                DataPropertyName = "IsActive",
-                FillWeight = 7,
-                MinimumWidth = 60
-            });
-
             dgvUsers.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgvUsers.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
             dgvUsers.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;

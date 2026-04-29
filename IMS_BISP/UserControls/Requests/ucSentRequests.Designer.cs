@@ -17,6 +17,14 @@ namespace IMS_BISP.UserControls.Requests
             this.lblTitle        = new System.Windows.Forms.Label();
             this.btnRefresh      = new System.Windows.Forms.Button();
             this.dgvSentRequests = new System.Windows.Forms.DataGridView();
+            this.colRequestId    = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProductName  = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSKU          = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSupplierStore = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity     = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProposedPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatus       = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCreatedAt    = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSentRequests)).BeginInit();
             this.SuspendLayout();
             // lblTitle
@@ -49,6 +57,7 @@ namespace IMS_BISP.UserControls.Requests
                 System.Windows.Forms.AnchorStyles.Bottom |
                 System.Windows.Forms.AnchorStyles.Left   |
                 System.Windows.Forms.AnchorStyles.Right));
+            this.dgvSentRequests.AutoGenerateColumns         = false;
             this.dgvSentRequests.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSentRequests.BackgroundColor             = System.Drawing.Color.White;
             this.dgvSentRequests.BorderStyle                 = System.Windows.Forms.BorderStyle.None;
@@ -64,6 +73,71 @@ namespace IMS_BISP.UserControls.Requests
             this.dgvSentRequests.Size                        = new System.Drawing.Size(910, 417);
             this.dgvSentRequests.TabIndex                    = 2;
             this.dgvSentRequests.DataBindingComplete        += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSentRequests_DataBindingComplete);
+            // colRequestId
+            this.colRequestId.DataPropertyName = "RequestId";
+            this.colRequestId.FillWeight       = 5F;
+            this.colRequestId.HeaderText       = "ID";
+            this.colRequestId.MinimumWidth     = 45;
+            this.colRequestId.Name             = "colRequestId";
+            this.colRequestId.ReadOnly         = true;
+            // colProductName
+            this.colProductName.DataPropertyName = "ProductName";
+            this.colProductName.FillWeight       = 22F;
+            this.colProductName.HeaderText       = "Product";
+            this.colProductName.MinimumWidth     = 140;
+            this.colProductName.Name             = "colProductName";
+            this.colProductName.ReadOnly         = true;
+            // colSKU
+            this.colSKU.DataPropertyName = "SKU";
+            this.colSKU.FillWeight       = 10F;
+            this.colSKU.HeaderText       = "SKU";
+            this.colSKU.MinimumWidth     = 80;
+            this.colSKU.Name             = "colSKU";
+            this.colSKU.ReadOnly         = true;
+            // colSupplierStore
+            this.colSupplierStore.DataPropertyName = "SupplierStoreName";
+            this.colSupplierStore.FillWeight       = 18F;
+            this.colSupplierStore.HeaderText       = "Supplier Store";
+            this.colSupplierStore.MinimumWidth     = 120;
+            this.colSupplierStore.Name             = "colSupplierStore";
+            this.colSupplierStore.ReadOnly         = true;
+            // colQuantity
+            this.colQuantity.DataPropertyName = "QuantityRequested";
+            this.colQuantity.FillWeight       = 6F;
+            this.colQuantity.HeaderText       = "Qty";
+            this.colQuantity.MinimumWidth     = 50;
+            this.colQuantity.Name             = "colQuantity";
+            this.colQuantity.ReadOnly         = true;
+            // colProposedPrice
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            dataGridViewCellStyle1.Format = "N2";
+            this.colProposedPrice.DataPropertyName = "ProposedPrice";
+            this.colProposedPrice.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colProposedPrice.FillWeight       = 12F;
+            this.colProposedPrice.HeaderText       = "Proposed Price";
+            this.colProposedPrice.MinimumWidth     = 100;
+            this.colProposedPrice.Name             = "colProposedPrice";
+            this.colProposedPrice.ReadOnly         = true;
+            // colStatus
+            this.colStatus.DataPropertyName = "Status";
+            this.colStatus.FillWeight       = 9F;
+            this.colStatus.HeaderText       = "Status";
+            this.colStatus.MinimumWidth     = 75;
+            this.colStatus.Name             = "colStatus";
+            this.colStatus.ReadOnly         = true;
+            // colCreatedAt
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            dataGridViewCellStyle2.Format = "dd.MM.yyyy HH:mm";
+            this.colCreatedAt.DataPropertyName = "CreatedAt";
+            this.colCreatedAt.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colCreatedAt.FillWeight       = 14F;
+            this.colCreatedAt.HeaderText       = "Sent At";
+            this.colCreatedAt.MinimumWidth     = 120;
+            this.colCreatedAt.Name             = "colCreatedAt";
+            this.colCreatedAt.ReadOnly         = true;
+            this.dgvSentRequests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                this.colRequestId, this.colProductName, this.colSKU, this.colSupplierStore,
+                this.colQuantity, this.colProposedPrice, this.colStatus, this.colCreatedAt });
             // ucSentRequests
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode       = System.Windows.Forms.AutoScaleMode.Font;
@@ -81,8 +155,16 @@ namespace IMS_BISP.UserControls.Requests
 
         #endregion
 
-        private System.Windows.Forms.Label           lblTitle;
-        private System.Windows.Forms.Button          btnRefresh;
-        private System.Windows.Forms.DataGridView    dgvSentRequests;
+        private System.Windows.Forms.Label              lblTitle;
+        private System.Windows.Forms.Button             btnRefresh;
+        private System.Windows.Forms.DataGridView       dgvSentRequests;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRequestId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSKU;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSupplierStore;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProposedPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCreatedAt;
     }
 }

@@ -21,6 +21,11 @@ namespace IMS_BISP.UserControls.Manage
             this.btnToggleActive = new System.Windows.Forms.Button();
             this.btnRefresh      = new System.Windows.Forms.Button();
             this.dgvStores       = new System.Windows.Forms.DataGridView();
+            this.colStoreId      = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStoreName    = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPhone        = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIsActive     = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colCreatedAt    = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStores)).BeginInit();
             this.SuspendLayout();
             //
@@ -107,6 +112,7 @@ namespace IMS_BISP.UserControls.Manage
                 System.Windows.Forms.AnchorStyles.Bottom |
                 System.Windows.Forms.AnchorStyles.Left   |
                 System.Windows.Forms.AnchorStyles.Right));
+            this.dgvStores.AutoGenerateColumns         = false;
             this.dgvStores.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStores.BackgroundColor             = System.Drawing.Color.White;
             this.dgvStores.BorderStyle                 = System.Windows.Forms.BorderStyle.None;
@@ -122,6 +128,46 @@ namespace IMS_BISP.UserControls.Manage
             this.dgvStores.Size                        = new System.Drawing.Size(860, 370);
             this.dgvStores.TabIndex                    = 5;
             this.dgvStores.SelectionChanged           += new System.EventHandler(this.dgvStores_SelectionChanged);
+            // colStoreId
+            this.colStoreId.DataPropertyName = "StoreId";
+            this.colStoreId.FillWeight       = 5F;
+            this.colStoreId.HeaderText       = "ID";
+            this.colStoreId.MinimumWidth     = 45;
+            this.colStoreId.Name             = "colStoreId";
+            this.colStoreId.ReadOnly         = true;
+            // colStoreName
+            this.colStoreName.DataPropertyName = "StoreName";
+            this.colStoreName.FillWeight       = 35F;
+            this.colStoreName.HeaderText       = "Store Name";
+            this.colStoreName.MinimumWidth     = 150;
+            this.colStoreName.Name             = "colStoreName";
+            this.colStoreName.ReadOnly         = true;
+            // colPhone
+            this.colPhone.DataPropertyName = "ContactPhone";
+            this.colPhone.FillWeight       = 20F;
+            this.colPhone.HeaderText       = "Contact Phone";
+            this.colPhone.MinimumWidth     = 120;
+            this.colPhone.Name             = "colPhone";
+            this.colPhone.ReadOnly         = true;
+            // colIsActive
+            this.colIsActive.DataPropertyName = "IsActive";
+            this.colIsActive.FillWeight       = 8F;
+            this.colIsActive.HeaderText       = "Active";
+            this.colIsActive.MinimumWidth     = 60;
+            this.colIsActive.Name             = "colIsActive";
+            this.colIsActive.ReadOnly         = true;
+            // colCreatedAt
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            dataGridViewCellStyle1.Format = "dd.MM.yyyy HH:mm";
+            this.colCreatedAt.DataPropertyName = "CreatedAt";
+            this.colCreatedAt.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colCreatedAt.FillWeight       = 20F;
+            this.colCreatedAt.HeaderText       = "Created At";
+            this.colCreatedAt.MinimumWidth     = 130;
+            this.colCreatedAt.Name             = "colCreatedAt";
+            this.colCreatedAt.ReadOnly         = true;
+            this.dgvStores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                this.colStoreId, this.colStoreName, this.colPhone, this.colIsActive, this.colCreatedAt });
             //
             // ucManageStores
             //
@@ -144,11 +190,16 @@ namespace IMS_BISP.UserControls.Manage
 
         #endregion
 
-        private System.Windows.Forms.Label           lblTitle;
-        private System.Windows.Forms.Button          btnAdd;
-        private System.Windows.Forms.Button          btnEdit;
-        private System.Windows.Forms.Button          btnToggleActive;
-        private System.Windows.Forms.Button          btnRefresh;
-        private System.Windows.Forms.DataGridView    dgvStores;
+        private System.Windows.Forms.Label              lblTitle;
+        private System.Windows.Forms.Button             btnAdd;
+        private System.Windows.Forms.Button             btnEdit;
+        private System.Windows.Forms.Button             btnToggleActive;
+        private System.Windows.Forms.Button             btnRefresh;
+        private System.Windows.Forms.DataGridView       dgvStores;
+        private System.Windows.Forms.DataGridViewTextBoxColumn    colStoreId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn    colStoreName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn    colPhone;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn   colIsActive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn    colCreatedAt;
     }
 }
